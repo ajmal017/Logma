@@ -22,26 +22,25 @@ class ManagerClient(EClient):
 		tick_increment = self.tick_increments[symbol]
 
 		## Direction
-		action = self.direction2action[action]
+		action = self.direction2action[direction]
 
 		## Adjust the price for min tick increment rule
 		price = adjust_price(price, tick_increment, direction, margin = 1)
 
 		## Trade details
 		details = {
-			"entry_price" : price
-			"take_profit" : price + (direction * tick_increment * 4),
-			"soft_stop" : price - (direction * tick_increment * 4),
-			"hard_stop" : price - (direction * tick_increment * 8)
+			"entry_price" : price,
+			"take_profit" : price + (direction * tick_increment * 1),
+			"soft_stop" : price - (direction * tick_increment * 1),
+			"hard_stop" : price - (direction * tick_increment * 2)
 		}
 
 		## Add trade object to index
-		self.trades[symbol] = Trade(manager = self, symbol = symbol, action = action,
-					  				initial_order = initial_order, closing_details = closing_details)
+		self.trades[symbol] = Trade(manager = self, symbol = symbol, action = action, direction = direction, quantity = quantity, details = details)
 
 		## Request Live Quotes
 		self.reqMarketDataType(1)
 
 		## Start market data for instrument
-		self.reqMktData(self.ticker_ids[symbol], contract, '', False, False, [])
+		self.reqMktData(self.ticker2id[symbol], self.contracts[symbol], '', False, False, [])
 

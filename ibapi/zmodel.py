@@ -12,15 +12,13 @@ class Model(object):
 
     model_path = 'D:/AlgoMLData/Models/lgbm_2019-04-16'
     scaling_dir = 'D:/AlgoMLData/Scalers'
-    
-    def __init__(self, ticker, candle_size, short_period, 
-                 long_period, log_trim):
+    log_trim = 7
+
+    def __init__(self, ticker, short_num_periods, num_periods):
         
         self.ticker = ticker
-        self.candle_size = candle_size
-        self.short_period = short_period
-        self.long_period = long_period
-        self.log_trim = log_trim
+        self.short_num_periods = short_num_periods
+        self.num_periods = num_periods
         
         with open('{}/{}'.format(Model.scaling_dir, ticker), 'rb') as file:
             self.scalers = joblib.load(file)
@@ -68,6 +66,7 @@ class Model(object):
     def is_trade(self, data):
 
         dfe = pd.DataFrame(data.copy(), columns=['Datetime', 'Open', 'High', 'Low', 'Close'])
+        dfe.describe()
         df = dfe.iloc[1:, :].copy()
         
         df['Hour'] = pd.to_datetime(df.Datetime).dt.hour
@@ -86,17 +85,17 @@ class Model(object):
         sig30 = 1 if change > sig30mean + 3*sig30std else 1 if change < sig30mean - 3*sig30std else 0
         sig50 = 1 if change > sig50mean + 3*sig50std else 1 if change < sig50mean - 3*sig50std else 0
         
-        if self.is_signal(sig20, sig30, sig50):
+        if True and self.ticker == 'EURUSD':#self.is_signal(sig20, sig30, sig50):
             
             direction = np.sign(change)*-1
             
             change = self.log_trimming(self.iqr_trimming(change, 'change'))
 
-            dfs = df.iloc[-self.short_period:, :]
+            dfs = df.iloc[-self.short_num_periods:, :]
 
             ## Distribution Statistics
-            long_vol = np.log(1e-8+(df.Change.std() / np.sqrt(self.long_period)))
-            short_vol = np.log(1e-8+(dfs.Change.std() / np.sqrt(self.short_period)))
+            long_vol = np.log(1e-8+(df.Change.std() / np.sqrt(self.num_periods)))
+            short_vol = np.log(1e-8+(dfs.Change.std() / np.sqrt(self.short_num_periods)))
 
             long_skew = df.Change.skew()
             short_skew = dfs.Change.skew()
@@ -104,11 +103,11 @@ class Model(object):
             long_kurtosis = kurtosis(df.Change.values)
             short_kurtosis = kurtosis(dfs.Change.values)
             
-            dlongsma = dfe.Close / dfe.Close.rolling(window=self.long_period, min_periods=1).mean()
+            dlongsma = dfe.Close / dfe.Close.rolling(window=self.num_periods, min_periods=1).mean()
             dlongsma = dlongsma.values[-1]
             dlongsma = self.log_trimming(self.iqr_trimming(dlongsma, 'dlongsma'))
 
-            dshortsma = dfe.Close / dfe.Close.rolling(window=self.short_period, min_periods=1).mean()
+            dshortsma = dfe.Close / dfe.Close.rolling(window=self.short_num_periods, min_periods=1).mean()
             dshortsma = dshortsma.values[-1]
             dshortsma = self.log_trimming(self.iqr_trimming(dshortsma, 'dshortsma'))
 
@@ -123,10 +122,10 @@ class Model(object):
             longprog = dfe.Close.values[1:].cumprod()[-1]
             longprog = self.log_trimming(self.iqr_trimming(longprog, 'longprog'))
 
-            shortprog = dfe.Close.values[-self.short_period:].cumprod()[-1]
+            shortprog = dfe.Close.values[-self.short_num_periods:].cumprod()[-1]
             shortprog = self.log_trimming(self.iqr_trimming(shortprog, 'shortprog'))
 
-            longspec = spectral_entropy(df.Change.values, sf=self.long_period, method='welch', nperseg=(self.long_period/8), normalize=True)
+            longspec = spectral_entropy(df.Change.values, sf=self.num_periods, method='welch', nperseg=(self.num_periods/8), normalize=True)
             
             longape = app_entropy(df.Change.values.copy(), order=2, metric='chebyshev')
             shortape = app_entropy(dfs.Change.values.copy(), order=2, metric='chebyshev')
@@ -151,7 +150,7 @@ class Model(object):
 
             feats[include] = self.scalers['ss'].transform([feats[include]])
 
-            return self.predict([feats])[0], feats, direction, df.Close.values[-1]
+            return self.predict([feats])[0], feats, 1, df.Close.values[-1]
 
         else:
 

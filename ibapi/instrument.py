@@ -7,24 +7,23 @@ from threading import Thread
 import time
 
 class Instrument(Thread):
+
+    n_times_per_second = 10
     
-    def __init__(self, ticker, time_period, short_num_periods, num_periods, log_trim, manager, storage, 
-                 n_times_per_second):
+    def __init__(self, ticker, time_period, short_num_periods, num_periods, manager, storage):
+
+        Thread.__init__(self)
         
         ## Book keeping
         self.ticker = ticker
         self.time_period = time_period
         self.short_num_periods = short_num_periods
-        self.num_periods = num_periods
-        self.log_trim = log_trim
         
         ## Evaluation granularity
-        self.n_times_per_second = n_times_per_second
-        self.n_micros = int(1e6 / n_times_per_second)
+        self.n_micros = int(1e6 / self.n_times_per_second)
         
         ## Get ML Model
-        self.model = Model(ticker = ticker, short_period = short_num_periods, long_period = num_periods,
-                           log_trim = log_trim)
+        self.model = Model(ticker = ticker, short_num_periods = short_num_periods, num_periods = num_periods)
         
         ## Storage object for historical data
         self.storage = storage
@@ -37,20 +36,22 @@ class Instrument(Thread):
         ## Update the storage object
         self.storage.on_period()
 
-        ## Evaluate the current candle for a signal
-        signal, features, direction, price = self.model.is_trade(list(self.storage.data))
+        if self.ticker not in self.manager.trades:
 
-        ## Start a trade if we have a signal
-        if signal and self.ticker not in self.manager.trades:
+            ## Evaluate the current candle for a signal
+            signal, features, direction, price = self.model.is_trade(list(self.storage.data))
 
-            ## Initiate the trade via the order manager
-            self.manager.on_signal(direction = direction, quantity = 20000, symbol = self.ticker, price = price)
+            ## Start a trade if we have a signal
+            if signal:
 
-            ## Pause the scanner job
-            #self.blocker.pause('scanner_job')
+                ## Initiate the trade via the order manager
+                self.manager.on_signal(direction = direction, quantity = 20000, symbol = self.ticker, price = price)
 
-            ## Resume the manager job
-            self.blocker.resume('manager_job')
+                ## Pause the scanner job
+                #self.blocker.pause('scanner_job')
+
+                ## Resume the manager job
+                self.blocker.resume_job('manager_job')
             
     def manager_job(self):
     
@@ -63,7 +64,7 @@ class Instrument(Thread):
         else:
 
             # Pause the current job
-            self.blocker.pause('manager_job')
+            self.blocker.pause_job('manager_job')
 
             # Resume the scanner job
             #self.blocker.resume('scanner_job')
@@ -87,7 +88,12 @@ class Instrument(Thread):
             'max_instances': 1
         }
         self.blocker = BlockingScheduler(job_defaults = job_defaults)
-        self.blocker.add_job(self.microsecond_job, 'cron', second='*', id='manager_job', next_run_time=None, args=(self.manager_job, ()))
-        self.blocker.add_job(self.scanner_job, 'cron', minute='*', id='scanner_job')
+        self.blocker.add_job(self.manager_job, 'cron', second='*', id='manager_job', next_run_time=None)
+        self.blocker.add_job(self.scanner_job, 'cron', minute='*/{}'.format(self.time_period), id='scanner_job')
         
         self.blocker.start()
+
+    def on_close(self):
+
+        self.blocker.shutdown()
+        self.join()

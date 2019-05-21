@@ -1,41 +1,21 @@
 from ibapi.wrapper import EWrapper
 
+from datetime import datetime
 import queue
 
 import numpy as np
 import pandas as pd
-from datetime import datetime
 
 class ScannerWrapper(EWrapper):
 
-	def init_errors(self):
-		self._errors = queue.Queue()
-
-	def is_error(self):
-		return not self._errors.empty()
-
-	def get_error(self, timeout):
-		if self.is_error():
-			try:
-				return self._errors.get(timeout = timeout)
-			except queue.Empty:
-				return 'Timeout'
-
 	def error(self, id_, error_code, error_msg):
 		msg = '{}/{} ... {}'.format(id_, error_code, error_msg)
-		self._errors.put(msg)
-
-	def print_errors(self):
-		while self.is_error():
-			print(self.get_error(0.1))
+		print(msg)
 
 	def historicalData(self, reqId, bar):
-
 		ticker = self.id2ticker[reqId]
-		self.storages[ticker].append((bar.date, bar.open, bar.high, bar.low, bar.close))
+		self.storages[ticker].append(bar)
 
 	def historicalDataUpdate(self, reqId, bar):
-		
 		ticker = self.id2ticker[reqId]
 		self.storages[ticker].update(bar)
-		

@@ -16,17 +16,19 @@ class ScannerClient(EClient):
 
 	def init_historical_data(self):
 
-		dt = datetime.now()
-		while dt.second != 0:
-			dt = datetime.now()
+		#print('Waiting for next minute')
+		#dt = datetime.now()
+		#while dt.second != 0:
+		#	dt = datetime.now()
 
 		for ticker, contract in self.contracts.items():
 
-			self.storages[ticker] = Storage(ticker, self.num_periods, self.time_period)
-			reqId = self.ticker2id[ticker]			
+			self.storages[ticker] = Storage(ticker = ticker, num_periods = self.num_periods, time_period = self.time_period)
+			reqId = self.ticker2id[ticker]
+			print('Requesting Historicals', reqId, ticker)			
 			self.reqHistoricalData(reqId, contract, '', *self.config, [])
 
-		time.sleep(10)
+		time.sleep(5)
 
 		initialized = True
 		for ticker in self.storages:
@@ -44,3 +46,5 @@ class ScannerClient(EClient):
 			reqId = self.ticker2id[ticker]
 			del self.storages[ticker]		
 			self.cancelHistoricalData(reqId)
+
+		print(self.storages)

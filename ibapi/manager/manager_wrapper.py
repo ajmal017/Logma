@@ -6,28 +6,11 @@ import sys, os
 import queue
 from queue import Queue, LifoQueue
 
-class mWrapper(EWrapper):
-
-	def init_errors(self):
-		self._errors = Queue()
-
-	def is_error(self):
-		return not self._errors.empty()
-
-	def get_error(self, timeout = 0.1):
-		if self.is_error():
-			try:
-				return self._errors.get(timeout = timeout)
-			except queue.Empty:
-				return 'Timeout'
-
-	def print_errors(self, timeout = 0.1):
-		while self.is_error():
-			print(self.get_error(timeout = timeout))
+class ManagerWrapper(EWrapper):
 
 	def error(self, id_, error_code, error_msg):
 		msg = '{}/{} ... {}'.format(id_, error_code, error_msg)
-		self._errors.put(msg)
+		print(msg)
 
 	def nextValidId(self, orderId):
 		self.order_id = orderId + self.order_id_offset
@@ -73,6 +56,7 @@ class mWrapper(EWrapper):
 		trade = self.trades[self.id2ticker[tickerId]]
 		if field == self.tick_types[trade.direction]:
 			trade.last_update = price
+			trade.on_period()
 
 	def marketDataType(self, reqId, marketDataType):
 

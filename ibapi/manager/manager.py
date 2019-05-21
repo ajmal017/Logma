@@ -1,7 +1,7 @@
 from apscheduler.schedulers.background import BackgroundScheduler
 
-from manager_client import ManagerClient
-from mwrapper import mWrapper
+from manager.manager_client import ManagerClient
+from manager.manager_wrapper import ManagerWrapper
 
 from threading import Thread
 from datetime import datetime
@@ -18,18 +18,18 @@ clientId = 1
 
 ##############################
 
-class Manager(ManagerClient, mWrapper):
+class Manager(ManagerClient, ManagerWrapper):
 
-	def __init__(self, ip_address, port, clientId, ticker2id, id2ticker, contracts, tick_incremenets):
+	def __init__(self, ip_address, port, clientId, ticker2id, id2ticker, contracts, tick_increments):
 
-		mWrapper.__init__(self)
+		ManagerWrapper.__init__(self)
 		ManagerClient.__init__(self, self)
 
 		## Instrument configuration
 		self.ticker2id = ticker2id
 		self.id2ticker = id2ticker
 		self.contracts = contracts
-		self.tick_incremenets = tick_incremenets
+		self.tick_increments = tick_increments
 
 		## Reserving OrderIDs
 		self.order_id_offset = 0
@@ -67,18 +67,12 @@ class Manager(ManagerClient, mWrapper):
 			"SELL" : "BUY"
 		}
 
-		## Errors
-		self.init_errors() 
-
 		## Connect to gateway
 		self.connect(ip_address, port, clientId)
 
 		## Init message loop
 		thread = Thread(target = self.run)
 		thread.start()
-
-		## Errors
-		self.wrapper.print_errors()
 
 	def on_start(self):
 

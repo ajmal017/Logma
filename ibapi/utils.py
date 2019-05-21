@@ -1,3 +1,5 @@
+import numpy as np
+
 def adjust_price(price, tick_incr, direction, margin = 1, base = 5):
 
 		## Add a 1 tick buffer

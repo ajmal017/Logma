@@ -8,7 +8,7 @@ TradeOrders = namedtuple('TradeOrders', ['init_order', 'init_oid', 'profit_order
 
 class Trade(object):
 
-	def __init__(self, manager, symbol, action, initial_order, details):
+	def __init__(self, manager, symbol, action, direction, quantity, details):
 
 		## Start Time
 		self.init_time = datetime.now()
@@ -17,7 +17,7 @@ class Trade(object):
 		self.symbol = symbol
 		self.contract = manager.contracts[symbol]
 		self.direction = direction
-		self.action = manager.direction2action[direction]
+		self.action = action
 		self.closing_action = manager.closing_actions[action]
 
 		## Manager stuff
@@ -31,10 +31,10 @@ class Trade(object):
 		self.status = 'PENDING'
 
 		## Initial order
-		self.init_quantity = initial_order.totalQuantity
+		self.quantity = quantity
 
 		## Place initial order
-		self.setup(initial_order)
+		self.setup()
 
 		## Switches
 		self.soft_stop_switch = True
@@ -53,20 +53,20 @@ class Trade(object):
 
 		## Initial order
 		init_oid = self.manager.order_id
-		init_order = limit_order(action = action, quantity = quantity, 
+		init_order = limit_order(action = self.action, quantity = self.quantity, 
 								 price = self.details['entry_price'], purpose = 'initiate')
 		self.manager.placeOrder(init_oid, self.contract, init_order)
 
 		## Take profit order
 		self.manager.order_id_offset += 1
 		profit_oid = init_oid + 1
-		profit_order = limit_order(action = self.closing_action, quantity = self.init_quantity,
+		profit_order = limit_order(action = self.closing_action, quantity = self.quantity,
 								   price = self.details['take_profit'], purpose = 'close')
 
 		## Stop loss order
 		self.manager.order_id_offset += 1
 		loss_oid = profit_oid + 1
-		loss_order = limit_order(action = self.closing_action, quantity = self.init_quantity,
+		loss_order = limit_order(action = self.closing_action, quantity = self.quantity,
 								   price = self.details['hard_stop'], purpose = 'close')
 
 		## Orders object for modifications
@@ -104,7 +104,7 @@ class Trade(object):
 		del self.manager.trades[self.symbol]
 
 		## Cancel market data
-		self.manager.cancelMktData(self.manager.ticker_ids[self.symbol])
+		self.manager.cancelMktData(self.manager.ticker2id[self.symbol])
 
 	def update_and_send(self, adjusted_price):
 		
@@ -114,13 +114,15 @@ class Trade(object):
 
 	def on_period(self):
 
+		print('Update')
+		
 		if self.status == 'ACTIVE':
 
 			if self.is_hard_stop() and self.hard_stop_switch:
 
 				print('HARD STOP')
 
-				adjust_price = adjust_price(self.last_update, self.tick_incr, self.direction, margin = 1)
+				adjusted_price = adjust_price(self.last_update, self.tick_incr, self.direction, margin = 1)
 				if self.orders.loss_order.lmtPrice != adjusted_price:
 					self.update_and_send(adjusted_price)
 
@@ -137,7 +139,7 @@ class Trade(object):
 				print('MATURITY')
 
 				factor = 1 if self.is_in_profit() else -1
-				self.closing_details['hard_stop'] = adjust_price(self.last_update, self.tick_incr, factor * self.direction, margin = 1)
+				self.details['hard_stop'] = adjust_price(self.last_update, self.tick_incr, factor * self.direction, margin = 1)
 				self.soft_stop_switch = False
 
 		elif self.status == 'PENDING':
@@ -154,23 +156,23 @@ class Trade(object):
 	## Action logic
 	def is_in_profit(self):
 
-		target = self.init_order.lmtPrice
+		target = self.details['entry_price']
 		return self.direction * (self.last_update - target) >= 0
 
 	def is_take_profit(self):
 		
-		target = self.closing_details['take_profit']
+		target = self.details['take_profit']
 		return self.direction * (self.last_update - target) > 0
 
 	def is_hard_stop(self):
 
-		target = self.closing_details['hard_stop']
+		target = self.details['hard_stop']
 		return self.direction * (target - self.last_update) > 0
 
 	def is_soft_stop(self):
 
 		dt = datetime.now()
-		target = self.closing_details['soft_stop']
+		target = self.details['soft_stop']
 		return dt.minute % 1 == 0 and dt.second == 0 and self.direction * (target - self.last_update) > 0
 
 	def is_matured(self):

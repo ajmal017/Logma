@@ -1,14 +1,18 @@
 from scanner.scanner import Scanner
 from manager.manager import Manager
 
+from instrument import Instrument
 from zmodel import Model
+from zcontracts import forex_contract
 
 class Strategy(object):
 
-	ip_address = '192.168.2.26'
+	#ip_address = '192.168.2.26'
+	ip_address = '192.168.43.63'
+	#ip_address = '127.0.0.1'
 	port = 4001
 
-	def __init__(self, num_periods, time_period):
+	def __init__(self, num_periods, short_num_periods, time_period):
 
 		## Client IDs
 		self.client2id = {
@@ -61,25 +65,47 @@ class Strategy(object):
 		## Strategy configuration
 		self.num_periods = num_periods
 		self.time_period = time_period
+		self.short_num_periods = short_num_periods
 
 		## Scanner for finding signals
 		self.scanner = Scanner(ip_address = self.ip_address, port = self.port, clientId = self.client2id['scanner'],
 							   ticker2id = self.ticker2id, id2ticker = self.id2ticker, contracts = self.contracts,
-							   tick_increments = self.tick_increments)
+							   tick_increments = self.tick_increments, num_periods = num_periods, time_period = time_period)
 
 		## Manager for managing trades
 		self.manager = Manager(ip_address = self.ip_address, port = self.port, clientId = self.client2id['manager'],
 							   ticker2id = self.ticker2id, id2ticker = self.id2ticker, contracts = self.contracts,
 							   tick_increments = self.tick_increments)
 
+		self.instruments = {}
+
 	def on_start(self):
 
+		## Start data collection threads
 		self.scanner.on_start()
 		self.manager.on_start()
+
+		## Initialize instrument threads
+		for ticker in self.contracts:
+			self.instruments[ticker] = Instrument(
+					ticker = ticker,
+					time_period = self.time_period,
+					short_num_periods = self.short_num_periods,
+					num_periods = self.num_periods,
+					manager = self.manager,
+					storage = self.scanner.storages[ticker]
+				)
+			self.instruments[ticker].start()
 
 	def on_close(self):
 
 		self.scanner.on_close()
 		self.manager.on_close()
 
+		for ticker in self.instruments:
+			self.instruments[ticker].on_close()
 
+if __name__ == '__main__':
+
+	strat = Strategy(num_periods = 50, short_num_periods = 20, time_period = 1)
+	strat.on_start()
