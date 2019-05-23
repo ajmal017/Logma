@@ -1,6 +1,8 @@
 from collections import deque
 from datetime import datetime, timedelta
 
+from zlogging import loggers
+
 class Storage(object):
     
     def __init__(self, ticker, num_periods, time_period):
@@ -15,6 +17,8 @@ class Storage(object):
         
         self.current_candle_time = self.candle_time()
         self.current_candle = None
+
+        self.logger = loggers[ticker]
         
     def candle_time(self):
         
@@ -29,9 +33,9 @@ class Storage(object):
     def on_period(self):
         
         self.append(self.current_candle)
-        print(self.ticker, self.current_candle.date, self.current_candle.open, self.current_candle.high, self.current_candle.low, self.current_candle.close)
         self.current_candle_time = self.candle_time()
-        
+        self.logger.info('TIME: {}~-~{}'.format(self.current_candle.date, self.current_candle_time))
+
     def append(self, bar):
 
         self.data.append((bar.date, bar.open, bar.high, bar.low, bar.close))

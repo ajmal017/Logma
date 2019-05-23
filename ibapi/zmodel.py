@@ -85,7 +85,7 @@ class Model(object):
         sig30 = 1 if change > sig30mean + 3*sig30std else 1 if change < sig30mean - 3*sig30std else 0
         sig50 = 1 if change > sig50mean + 3*sig50std else 1 if change < sig50mean - 3*sig50std else 0
         
-        if True and self.ticker == 'EURUSD':#self.is_signal(sig20, sig30, sig50):
+        if self.is_signal(sig20, sig30, sig50):
             
             direction = np.sign(change)*-1
             

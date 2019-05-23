@@ -4,6 +4,7 @@ from ibapi.order import Order
 from zcontracts import forex_contract
 from zorders import limit_order
 from utils import adjust_price
+from zlogging import loggers
 
 from trade import Trade
 
@@ -17,6 +18,8 @@ class ManagerClient(EClient):
 		EClient.__init__(self, wrapper = wrapper)
 
 	def on_signal(self, direction, quantity, symbol, price):
+
+		loggers[symbol].info('Signal {} - Executing Trade'.format(direction))
 
 		## Tick increment
 		tick_increment = self.tick_increments[symbol]

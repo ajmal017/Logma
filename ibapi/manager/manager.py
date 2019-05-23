@@ -16,7 +16,7 @@ ip_address = '192.168.2.26'
 port = 4001
 clientId = 1
 
-##############################
+##############################	
 
 class Manager(ManagerClient, ManagerWrapper):
 

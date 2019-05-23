@@ -8,8 +8,8 @@ from zcontracts import forex_contract
 class Strategy(object):
 
 	#ip_address = '192.168.2.26'
-	ip_address = '192.168.43.63'
-	#ip_address = '127.0.0.1'
+	#ip_address = '192.168.43.63'
+	ip_address = '127.0.0.1'
 	port = 4001
 
 	def __init__(self, num_periods, short_num_periods, time_period):
@@ -107,5 +107,5 @@ class Strategy(object):
 
 if __name__ == '__main__':
 
-	strat = Strategy(num_periods = 50, short_num_periods = 20, time_period = 1)
+	strat = Strategy(num_periods = 50, short_num_periods = 20, time_period = 5)
 	strat.on_start()

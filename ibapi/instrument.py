@@ -1,6 +1,7 @@
 from apscheduler.schedulers.background import BlockingScheduler
 
 from zmodel import Model
+from zlogging import loggers
 
 from datetime import datetime
 from threading import Thread
@@ -30,6 +31,9 @@ class Instrument(Thread):
         
         ## Manager to execute trades
         self.manager = manager
+
+        ## Store the logger
+        self.logger = loggers[ticker]
         
     def scanner_job(self):
     
@@ -51,6 +55,7 @@ class Instrument(Thread):
                 #self.blocker.pause('scanner_job')
 
                 ## Resume the manager job
+                self.logger.info('JOB: Starting Manager')
                 self.blocker.resume_job('manager_job')
             
     def manager_job(self):
@@ -64,6 +69,7 @@ class Instrument(Thread):
         else:
 
             # Pause the current job
+            self.logger.info('JOB: Stopping Manager')
             self.blocker.pause_job('manager_job')
 
             # Resume the scanner job

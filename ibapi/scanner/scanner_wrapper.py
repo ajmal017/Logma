@@ -1,4 +1,5 @@
 from ibapi.wrapper import EWrapper
+from zlogging import loggers
 
 from datetime import datetime
 import queue
@@ -9,8 +10,8 @@ import pandas as pd
 class ScannerWrapper(EWrapper):
 
 	def error(self, id_, error_code, error_msg):
-		msg = '{}/{} ... {}'.format(id_, error_code, error_msg)
-		print(msg)
+		msg = '{}~-~{}~-~{}'.format(id_, error_code, error_msg)
+		loggers['error'].info(msg)
 
 	def historicalData(self, reqId, bar):
 		ticker = self.id2ticker[reqId]

@@ -1,4 +1,5 @@
 from ibapi.wrapper import EWrapper
+from zlogging import loggers
 
 import numpy as np
 
@@ -9,8 +10,8 @@ from queue import Queue, LifoQueue
 class ManagerWrapper(EWrapper):
 
 	def error(self, id_, error_code, error_msg):
-		msg = '{}/{} ... {}'.format(id_, error_code, error_msg)
-		print(msg)
+		msg = '{}~-~{}~-~{}'.format(id_, error_code, error_msg)
+		loggers['error'].info(msg)
 
 	def nextValidId(self, orderId):
 		self.order_id = orderId + self.order_id_offset
@@ -35,7 +36,7 @@ class ManagerWrapper(EWrapper):
 				trade.avg_fill_price = avgFilledPrice
 
 				if status == 'Filled':
-
+					loggers[trade.symbol].info('INIT TRADE:{}~-~{}'.format(filled, avgFilledPrice))
 					trade.on_fill()
 
 			elif order.purpose == 'close':
@@ -43,8 +44,11 @@ class ManagerWrapper(EWrapper):
 				## Store position filled on close
 				trade.num_filled_on_close = filled
 
-				if status == 'Filled':
+				## Store avg cost
+				trade.avg_fill_price_on_close = avgFilledPrice
 
+				if status == 'Filled':
+					loggers[trade.symbol].info('CLOSED TRADE:{}~-~{}'.format(filled, avgFilledPrice))
 					## Close the trade
 					trade.on_close()
 
@@ -57,7 +61,3 @@ class ManagerWrapper(EWrapper):
 		if field == self.tick_types[trade.direction]:
 			trade.last_update = price
 			trade.on_period()
-
-	def marketDataType(self, reqId, marketDataType):
-
-		print('\n\nReqId', reqId, 'Data Type', marketDataType)

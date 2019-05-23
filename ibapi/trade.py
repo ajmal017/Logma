@@ -1,6 +1,7 @@
 from datetime import datetime
 from zorders import limit_order, limit_if_touched
 from utils import adjust_price
+from zlogging import loggers
 
 from collections import namedtuple
 
@@ -29,6 +30,8 @@ class Trade(object):
 
 		## Trade status
 		self.status = 'PENDING'
+		self.state = 'NORMAL'
+		self.execution_logic = 'TAKE PROFIT'
 
 		## Initial order
 		self.quantity = quantity
@@ -44,10 +47,14 @@ class Trade(object):
 		## Placeholders
 		self.num_filled = 0
 		self.num_filled_on_close = 0
+		self.avg_filled_price_on_close = -1
+		self.avg_filled_price = -1
 
 		## Period details
-		self.time_period = 1
-		self.maturity = 1
+		self.time_period = 5
+		self.maturity = 20
+
+		self.logger = loggers[symbol]
 
 	def setup(self):
 
@@ -100,8 +107,12 @@ class Trade(object):
 			del self.manager.orders[oid]
 			self.manager.cancelOrder(oid)
 
+		## Make elasticsearch object for indexing. 
+
 		# Remove trade from list
 		del self.manager.trades[self.symbol]
+
+		self.logger.info('CLOSING LOGIC: {}'.format(self.execution_logic))
 
 		## Cancel market data
 		self.manager.cancelMktData(self.manager.ticker2id[self.symbol])
@@ -113,14 +124,12 @@ class Trade(object):
 		self.manager.placeOrder(self.orders.loss_oid, self.contract, self.orders.loss_order)	
 
 	def on_period(self):
-
-		print('Update')
 		
 		if self.status == 'ACTIVE':
 
 			if self.is_hard_stop() and self.hard_stop_switch:
 
-				print('HARD STOP')
+				self.execution_logic = 'HARD STOP'
 
 				adjusted_price = adjust_price(self.last_update, self.tick_incr, self.direction, margin = 1)
 				if self.orders.loss_order.lmtPrice != adjusted_price:
@@ -128,7 +137,7 @@ class Trade(object):
 
 			elif self.is_soft_stop() and self.soft_stop_switch: 
 
-				print('SOFT STOP')
+				self.execution_logic = 'SOFT STOP'
 
 				adjusted_price = adjust_price(self.last_update, self.tick_incr, self.direction, margin = 1)
 				if self.orders.loss_order.lmtPrice != adjusted_price:
@@ -136,7 +145,8 @@ class Trade(object):
 
 			elif self.is_matured():
 
-				print('MATURITY')
+				self.logger.info('MATURITY State reached.')
+				self.state = 'MATURITY'
 
 				factor = 1 if self.is_in_profit() else -1
 				self.details['hard_stop'] = adjust_price(self.last_update, self.tick_incr, factor * self.direction, margin = 1)
@@ -146,7 +156,7 @@ class Trade(object):
 			
 			if self.is_no_fill():
 
-				print('NO FILL')
+				self.execution_logic = 'NO FILL'
 
 				self.on_close()
 
