@@ -1,0 +1,71 @@
+{
+  "settings" : {
+    "number_of_shards" : 1,
+    "number_of_replicas" : 1
+  },
+  "mappings": {
+    "retracement" : {
+      "properties": {
+        "ticker" : {
+          "type" : "keyword"
+        },
+        "action" : {
+          "type" : "keyword"
+        },
+        "position" : {
+          "type" : "long"
+        },
+        "avgCost" : {
+          "type" : "double"
+        },
+        "initTime" : {
+          "type" : "date",
+          "format" : "date_hour_minute_second"
+        },
+        "executionTime" : {
+          "type" : "date",
+          "format" : "date_hour_minute_second"
+        },
+        "positionClosed" : {
+          "type" : "long"
+        },
+        "avgCostOnClose" : {
+          "type" : "double"
+        },
+        "entryLimitPrice" : {
+          "type" : "double"
+        },
+        "takeProfitLimitPrice" : {
+          "type" : "double"
+        },
+        "stopLossLimitPrice" : {
+          "type" : "double"
+        },
+        "drawdown" : {
+          "type" : "double"
+        },
+        "runUp" : {
+          "type" : "double"
+        },
+        "tickIncrement" : {
+          "type" : "double"
+        },
+        "state" : {
+          "type" : "text"
+        },
+        "executionLogic" : {
+          "type" : "text"
+        },
+        "time_period" : {
+          "type" : "long"
+        },
+        "maturity" : {
+          "type" : "long"
+        },
+        "num_periods" : {
+          "type" : "long"
+        }
+      }
+    }
+  }
+}

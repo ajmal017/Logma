@@ -39,7 +39,7 @@ class Scanner(ScannerClient, ScannerWrapper):
 		## Historical data configuration
 		self.config = DataConfig(
 				durationStr = "{} S".format(int(time_period * num_periods * 60)),
-				barSizeSetting = "{} mins".format(time_period),
+				barSizeSetting = "{} min".format(time_period),
 				whatToShow = "MIDPOINT",
 				useRTH = 0,
 				formatDate = 1,

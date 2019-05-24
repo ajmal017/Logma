@@ -33,7 +33,7 @@ class ManagerWrapper(EWrapper):
 				trade.num_filled = filled
 
 				## Store the average cost of the position
-				trade.avg_fill_price = avgFilledPrice
+				trade.avg_filled_price = avgFilledPrice
 
 				if status == 'Filled':
 					loggers[trade.symbol].info('INIT TRADE:{}~-~{}'.format(filled, avgFilledPrice))
@@ -45,7 +45,7 @@ class ManagerWrapper(EWrapper):
 				trade.num_filled_on_close = filled
 
 				## Store avg cost
-				trade.avg_fill_price_on_close = avgFilledPrice
+				trade.avg_filled_price_on_close = avgFilledPrice
 
 				if status == 'Filled':
 					loggers[trade.symbol].info('CLOSED TRADE:{}~-~{}'.format(filled, avgFilledPrice))

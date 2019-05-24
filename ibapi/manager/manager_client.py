@@ -17,7 +17,7 @@ class ManagerClient(EClient):
 
 		EClient.__init__(self, wrapper = wrapper)
 
-	def on_signal(self, direction, quantity, symbol, price):
+	def on_signal(self, direction, quantity, symbol, price, data):
 
 		loggers[symbol].info('Signal {} - Executing Trade'.format(direction))
 
@@ -39,7 +39,7 @@ class ManagerClient(EClient):
 		}
 
 		## Add trade object to index
-		self.trades[symbol] = Trade(manager = self, symbol = symbol, action = action, direction = direction, quantity = quantity, details = details)
+		self.trades[symbol] = Trade(manager = self, symbol = symbol, action = action, direction = direction, quantity = quantity, details = details, data = data)
 
 		## Request Live Quotes
 		self.reqMarketDataType(1)

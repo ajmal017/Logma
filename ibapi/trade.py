@@ -1,7 +1,7 @@
 from datetime import datetime
 from zorders import limit_order, limit_if_touched
 from utils import adjust_price
-from zlogging import loggers
+from zlogging import loggers, post_doc
 
 from collections import namedtuple
 
@@ -9,7 +9,7 @@ TradeOrders = namedtuple('TradeOrders', ['init_order', 'init_oid', 'profit_order
 
 class Trade(object):
 
-	def __init__(self, manager, symbol, action, direction, quantity, details):
+	def __init__(self, manager, symbol, action, direction, quantity, details, data):
 
 		## Start Time
 		self.init_time = datetime.now()
@@ -20,6 +20,7 @@ class Trade(object):
 		self.direction = direction
 		self.action = action
 		self.closing_action = manager.closing_actions[action]
+		self.data = data
 
 		## Manager stuff
 		self.manager = manager
@@ -47,8 +48,11 @@ class Trade(object):
 		## Placeholders
 		self.num_filled = 0
 		self.num_filled_on_close = 0
+		self.drawdown = 0
+		self.run_up = 0
 		self.avg_filled_price_on_close = -1
 		self.avg_filled_price = -1
+		self.execution_time = -1
 
 		## Period details
 		self.time_period = 5
@@ -100,6 +104,12 @@ class Trade(object):
 
 	def on_close(self):
 
+		## Cancel market data
+		self.manager.cancelMktData(self.manager.ticker2id[self.symbol])
+
+		## Logging
+		self.logger.info('CLOSING LOGIC: {}'.format(self.execution_logic))
+
 		## Clean up maps
 		for i in range(1, len(self.orders), 2):
 			oid = self.orders[i]
@@ -107,15 +117,12 @@ class Trade(object):
 			del self.manager.orders[oid]
 			self.manager.cancelOrder(oid)
 
-		## Make elasticsearch object for indexing. 
-
 		# Remove trade from list
 		del self.manager.trades[self.symbol]
 
+		## Logging
+		post_doc(self)
 		self.logger.info('CLOSING LOGIC: {}'.format(self.execution_logic))
-
-		## Cancel market data
-		self.manager.cancelMktData(self.manager.ticker2id[self.symbol])
 
 	def update_and_send(self, adjusted_price):
 		
@@ -126,6 +133,10 @@ class Trade(object):
 	def on_period(self):
 		
 		if self.status == 'ACTIVE':
+
+			## Calculate drawdown/runup
+			self.drawdown = min(self.direction * (self.last_update - self.avg_filled_price), self.drawdown)
+			self.run_up = max(self.direction * (self.last_update - self.avg_filled_price), self.run_up)
 
 			if self.is_hard_stop() and self.hard_stop_switch:
 

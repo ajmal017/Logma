@@ -48,8 +48,13 @@ class Instrument(Thread):
             ## Start a trade if we have a signal
             if signal:
 
+                data = {
+                    "historical" : list(self.storage.data),
+                    "features" : features
+                }
+
                 ## Initiate the trade via the order manager
-                self.manager.on_signal(direction = direction, quantity = 20000, symbol = self.ticker, price = price)
+                self.manager.on_signal(direction = 1, quantity = 20000, symbol = self.ticker, price = price, data = data)
 
                 ## Pause the scanner job
                 #self.blocker.pause('scanner_job')
