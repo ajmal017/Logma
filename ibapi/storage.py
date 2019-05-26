@@ -1,7 +1,7 @@
 from collections import deque
 from datetime import datetime, timedelta
 
-from zlogging import loggers
+from tools.zlogging import loggers
 
 class Storage(object):
     

@@ -56,31 +56,37 @@ es = Elasticsearch([{"host" : "192.168.2.38", "port" : 9200}])
 
 def post_doc(trade):
 
+	trades.data['dates'] = [x[0] for x in trade.data['historical']]
 	trade.data['historical'] = [x[1:] for x in trade.data['historical']]
 
 	doc_ = {
 		"ticker" : trade.symbol,
 		"action" : trade.action,
-		"position" : trade.num_filled,
-		"avgCost" : trade.avg_filled_price,
 		"initTime" : trade.init_time.strftime(fmt),
-		"positionClosed" : trade.num_filled_on_close,
-		"avgCostOnClose" : trade.avg_filled_price_on_close,
+		"direction" : 1 if trade.action == "BUY" else -1
 		"state" : trade.state,
-		"executionLogic" : trade.execution_logic,
+		"status" : trade.status,
 		"data" : trade.data,
 		"entryLimitPrice" : trade.orders.init_order.lmtPrice,
 		"takeProfitLimitPrice" : trade.orders.profit_order.lmtPrice,
 		"stopLossLimitPrice" : trade.orders.loss_order.lmtPrice,
-		"drawdown" : trade.drawdown,
-		"runUp" : trade.run_up,
 		"timePeriod" : trade.time_period,
 		"maturity" : trade.maturity,
-		"num_period" : len(trade.data['historical'])
+		"numPeriods" : len(trade.data['historical'])
+		"executionLogic" : trade.execution_logic,
+		"tickIncrement" : trade.tick_incr
 	}
 
-	if trade.execution_time != -1:
-		doc["executionTime"] = trade.execution_time.strftime(fmt)
+	if trade.status != 'PENDING':
+
+		doc_['position'] = trade.num_filled
+		doc_['avgCost'] = trade.avg_filled_price
+		doc_['positionClosed'] = trade.num_filled_on_close
+		doc_['avgCostOnClose'] = trade.avg_filled_price_on_close
+		doc_['executionTime'] = trade.execution_time.strftime(fmt)
+		doc_['drawdown'] = trade.drawdown
+		doc_['runUp'] = trade.run_up
+		doc_['closingTime'] = datetime.now().strftime(fmt)
 
 	doc_ = {
 		"_index" : "trades",

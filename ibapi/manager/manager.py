@@ -6,7 +6,7 @@ from manager.manager_wrapper import ManagerWrapper
 from threading import Thread
 from datetime import datetime
 
-from zcontracts import forex_contract
+from tools.zcontracts import forex_contract
 
 import logging
 

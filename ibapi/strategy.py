@@ -2,8 +2,7 @@ from scanner.scanner import Scanner
 from manager.manager import Manager
 
 from instrument import Instrument
-from zmodel import Model
-from zcontracts import forex_contract
+from tools.zcontracts import forex_contract
 
 class Strategy(object):
 

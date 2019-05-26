@@ -1,7 +1,7 @@
 from apscheduler.schedulers.background import BlockingScheduler
 
-from zmodel import Model
-from zlogging import loggers
+from model import Model
+from tools.zlogging import loggers
 
 from datetime import datetime
 from threading import Thread
@@ -19,33 +19,21 @@ class Instrument(Thread):
         self.ticker = ticker
         self.time_period = time_period
         self.short_num_periods = short_num_periods
-        
-        ## Evaluation granularity
         self.n_micros = int(1e6 / self.n_times_per_second)
-        
-        ## Get ML Model
-        self.model = Model(ticker = ticker, short_num_periods = short_num_periods, num_periods = num_periods)
-        
-        ## Storage object for historical data
-        self.storage = storage
-        
-        ## Manager to execute trades
-        self.manager = manager
 
-        ## Store the logger
+        self.model = Model(ticker = ticker, short_num_periods = short_num_periods, num_periods = num_periods)
+        self.storage = storage
+        self.manager = manager
         self.logger = loggers[ticker]
         
     def scanner_job(self):
     
-        ## Update the storage object
         self.storage.on_period()
 
         if self.ticker not in self.manager.trades:
 
-            ## Evaluate the current candle for a signal
             signal, features, direction, price = self.model.is_trade(list(self.storage.data))
 
-            ## Start a trade if we have a signal
             if signal:
 
                 data = {
@@ -53,32 +41,22 @@ class Instrument(Thread):
                     "features" : features
                 }
 
-                ## Initiate the trade via the order manager
                 self.manager.on_signal(direction = 1, quantity = 20000, symbol = self.ticker, price = price, data = data)
 
-                ## Pause the scanner job
-                #self.blocker.pause('scanner_job')
-
-                ## Resume the manager job
                 self.logger.info('JOB: Starting Manager')
                 self.blocker.resume_job('manager_job')
             
     def manager_job(self):
     
-        ## Check that the position hasnt been closed / not filled
         if self.ticker in self.manager.trades:
 
             self.manager.trades[self.ticker].on_period()
 
-        ## Trade has been removed aka closed or not filled
         else:
 
-            # Pause the current job
             self.logger.info('JOB: Stopping Manager')
             self.blocker.pause_job('manager_job')
 
-            # Resume the scanner job
-            #self.blocker.resume('scanner_job')
             
     def microsecond_job(self, job_func, params):
         

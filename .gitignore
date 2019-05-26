@@ -5,3 +5,4 @@ __pycache__
 plots/
 all_plots/
 tmp_data/
+logs/

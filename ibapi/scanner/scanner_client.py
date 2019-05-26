@@ -1,6 +1,6 @@
 from ibapi.client import EClient
-from zcontracts import forex_contract
-from zlogging import loggers
+from tools.zcontracts import forex_contract
+from tools.zlogging import loggers
 from storage import Storage
 
 from datetime import datetime

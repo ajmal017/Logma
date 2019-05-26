@@ -1,10 +1,10 @@
 from ibapi.client import EClient
 from ibapi.order import Order
 
-from zcontracts import forex_contract
-from zorders import limit_order
-from utils import adjust_price
-from zlogging import loggers
+from tools.zcontracts import forex_contract
+from tools.zorders import limit_order
+from tools.utils import adjust_price
+from tools.zlogging import loggers
 
 from trade import Trade
 
