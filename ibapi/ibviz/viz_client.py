@@ -8,5 +8,5 @@ class VizClient(EClient):
 		EClient.__init__(self, wrapper = wrapper)
 
 	def get_account_updates(self):
-
+		print('Here')
 		self.reqAccountUpdates(True, "")

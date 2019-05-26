@@ -1,19 +1,25 @@
 from elasticsearch import Elasticsearch
 es = Elasticsearch([{"host" : "localhost", "port" : 9200}])
 
-def query(*args):
-    
-    doc_ = {
-        "size" : 10000,
-        "query" : {
-            "bool" : {
-                "must" : [
-                    *args
-                ]
+def query(filters):
+    if len(filters) == 0:
+        doc_ = {
+            "size" : 10000,
+            "query" : {
+                "match_all" : {}
             }
-        },
-        
-    }
+        }
+    else:
+        doc_ = {
+            "size" : 10000,
+            "query" : {
+                "bool" : {
+                    "filter" : [
+                        *filters
+                    ]
+                }
+            },
+        }
     return aggregations(doc_)
 
 def term_query(field, value):
