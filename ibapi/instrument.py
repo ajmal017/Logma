@@ -34,14 +34,14 @@ class Instrument(Thread):
 
             signal, features, direction, price = self.model.is_trade(list(self.storage.data))
 
-            if signal:
+            if signal and self.ticker == "EURUSD":
 
                 data = {
                     "historical" : list(self.storage.data),
                     "features" : features
                 }
 
-                self.manager.on_signal(direction = 1, quantity = 20000, symbol = self.ticker, price = price, data = data)
+                self.manager.on_signal(direction = 1, quantity = 20000, symbol = self.ticker, price = self.storage.data[-1][-1], data = data)
 
                 self.logger.info('JOB: Starting Manager')
                 self.blocker.resume_job('manager_job')

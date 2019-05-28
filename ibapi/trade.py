@@ -63,20 +63,19 @@ class Trade(object):
 	def setup(self):
 
 		## Initial order
+		self.manager.order_id_offset += 3
 		init_oid = self.manager.order_id
 		init_order = limit_order(action = self.action, quantity = self.quantity, 
 								 price = self.details['entry_price'], purpose = 'initiate')
 		self.manager.placeOrder(init_oid, self.contract, init_order)
 
 		## Take profit order
-		self.manager.order_id_offset += 1
-		profit_oid = init_oid + 1
+		profit_oid = init_oid - 1
 		profit_order = limit_order(action = self.closing_action, quantity = self.quantity,
 								   price = self.details['take_profit'], purpose = 'close')
 
 		## Stop loss order
-		self.manager.order_id_offset += 1
-		loss_oid = profit_oid + 1
+		loss_oid = profit_oid - 1
 		loss_order = limit_order(action = self.closing_action, quantity = self.quantity,
 								   price = self.details['hard_stop'], purpose = 'close')
 
@@ -89,6 +88,8 @@ class Trade(object):
 		for order, oid in zip([init_order, profit_order, loss_order], [init_oid, profit_oid, loss_oid]):
 			self.manager.orders[oid] = order
 			self.manager.order2trade[oid] = self
+
+		print(self.manager.order2trade)
 
 		## Get next ID
 		self.manager.reqIds(-1)
@@ -106,7 +107,8 @@ class Trade(object):
 
 		## Cancel market data
 		self.manager.cancelMktData(self.manager.ticker2id[self.symbol])
-
+		print(self.manager.order2trade)
+		print(self.orders)
 		## Logging
 		self.logger.info('CLOSING LOGIC: {}'.format(self.execution_logic))
 

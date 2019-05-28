@@ -105,12 +105,12 @@ class Viz(VizClient, VizWrapper):
 					trade['_source']['state'],
 					trade['_source']['drawdown'],
 					trade['_source']['runUp'],
-					(trade['_source']['direction'] * (trade['_source']['avgCostOnClosed'] - trade['_source']['avgCost'])) / trade['_source']['avgCost']
+					(trade['_source']['direction'] * (trade['_source']['avgCostOnClose'] - trade['_source']['avgCost'])) / trade['_source']['avgCost']
 				])
 				
 				self.run_up_dist.append(trade['_source']['runUp'])
 				self.drawdown_dist.append(trade['_source']['drawdown'] * -1) 
-				self.return_dist.append((trade['_source']['direction'] * (trade['_source']['avgCostOnClosed'] - trade['_source']['avgCost'])) / trade['_source']['avgCost'])
+				self.return_dist.append((trade['_source']['direction'] * (trade['_source']['avgCostOnClose'] - trade['_source']['avgCost'])) / trade['_source']['avgCost'])
 				
 			else:
 				

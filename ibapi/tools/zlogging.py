@@ -52,18 +52,18 @@ loggers['error'] = logger
 #### INDEXING ######
 
 fmt = '%Y-%m-%dT%H:%M:%S'
-es = Elasticsearch([{"host" : "192.168.2.38", "port" : 9200}])
+es = Elasticsearch([{"host" : "localhost", "port" : 9200}])
 
 def post_doc(trade):
 
-	trades.data['dates'] = [x[0] for x in trade.data['historical']]
+	trade.data['dates'] = [x[0] for x in trade.data['historical']]
 	trade.data['historical'] = [x[1:] for x in trade.data['historical']]
 
 	doc_ = {
 		"ticker" : trade.symbol,
 		"action" : trade.action,
 		"initTime" : trade.init_time.strftime(fmt),
-		"direction" : 1 if trade.action == "BUY" else -1
+		"direction" : 1 if trade.action == "BUY" else -1,
 		"state" : trade.state,
 		"status" : trade.status,
 		"data" : trade.data,
@@ -72,7 +72,7 @@ def post_doc(trade):
 		"stopLossLimitPrice" : trade.orders.loss_order.lmtPrice,
 		"timePeriod" : trade.time_period,
 		"maturity" : trade.maturity,
-		"numPeriods" : len(trade.data['historical'])
+		"numPeriods" : len(trade.data['historical']),
 		"executionLogic" : trade.execution_logic,
 		"tickIncrement" : trade.tick_incr
 	}
@@ -89,8 +89,8 @@ def post_doc(trade):
 		doc_['closingTime'] = datetime.now().strftime(fmt)
 
 	doc_ = {
-		"_index" : "trades",
-		"_type" : "retracement",
+		"_index" : "retracements",
+		"_type" : "_doc",
 		"_source" : doc_
 	}
 
