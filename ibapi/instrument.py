@@ -34,7 +34,7 @@ class Instrument(Thread):
 
             signal, features, direction, price = self.model.is_trade(list(self.storage.data))
 
-            if signal and self.ticker == "EURUSD":
+            if True:
 
                 data = {
                     "historical" : list(self.storage.data),

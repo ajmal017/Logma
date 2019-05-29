@@ -34,7 +34,7 @@ class Trade(object):
 		self.state = 'NORMAL'
 		self.execution_logic = 'TAKE PROFIT'
 
-		## Initial order
+		## Initial order quantity
 		self.quantity = quantity
 
 		## Place initial order
@@ -55,82 +55,113 @@ class Trade(object):
 		self.execution_time = -1
 
 		## Period details
-		self.time_period = 5
+		self.time_period = 1
 		self.maturity = 20
 
 		self.logger = loggers[symbol]
 
 	def setup(self):
 
+		self.orders = {
+			"init" : {
+				"order" : None,
+				"order_id" : None
+			},
+			"profit" : {
+				"order" : None,
+				"order_id" : None
+			},
+			"loss" : {
+				"order" : None,
+				"order_id" : None
+			}
+		}
+
 		## Initial order
-		self.manager.order_id_offset += 3
-		init_oid = self.manager.order_id
 		init_order = limit_order(action = self.action, quantity = self.quantity, 
-								 price = self.details['entry_price'], purpose = 'initiate')
+								 price = self.details['entry_price'], purpose = 'initiate', 
+								 key = 'init')
+		init_oid = self.manager.get_oid()
 		self.manager.placeOrder(init_oid, self.contract, init_order)
 
+		## Book keeping
+		self.orders['init']['order_id'] = init_oid
+		self.orders['init']['order'] = init_order
+		self.manager.orders[init_oid] = init_order
+		self.manager.order2trade[init_oid] = self
+
 		## Take profit order
-		profit_oid = init_oid - 1
 		profit_order = limit_order(action = self.closing_action, quantity = self.quantity,
-								   price = self.details['take_profit'], purpose = 'close')
+								   price = self.details['take_profit'], purpose = 'close', 
+								   key = 'profit')
+		self.orders['profit']['order'] = profit_order
 
 		## Stop loss order
-		loss_oid = profit_oid - 1
 		loss_order = limit_order(action = self.closing_action, quantity = self.quantity,
-								   price = self.details['hard_stop'], purpose = 'close')
+								   price = self.details['hard_stop'], purpose = 'close',
+								   key = 'loss')
+		self.orders['loss']['order'] = loss_order
 
-		## Orders object for modifications
-		self.orders = TradeOrders(init_order = init_order, init_oid = init_oid, 
-								  profit_order = profit_order, profit_oid = profit_oid,
-								  loss_order = loss_order, loss_oid = loss_oid)
-		
-		## Book keeping
-		for order, oid in zip([init_order, profit_order, loss_order], [init_oid, profit_oid, loss_oid]):
-			self.manager.orders[oid] = order
-			self.manager.order2trade[oid] = self
+		print('Init', self.symbol, init_oid)
 
-		print(self.manager.order2trade)
-
-		## Get next ID
-		self.manager.reqIds(-1)
 
 	def on_fill(self):
 
-		## Set trade status
-		self.status = 'ACTIVE'
-		self.execution_time = datetime.now()
+		if self.status == 'PENDING':
+			## Set trade status
+			self.status = 'ACTIVE'
+			self.execution_time = datetime.now()
 
-		## Send closing orders
-		self.manager.placeOrder(self.orders.profit_oid, self.contract, self.orders.profit_order)
+			## Send closing orders
+			profit_oid = self.manager.get_oid()
+			self.manager.placeOrder(profit_oid, self.contract, self.orders['profit']['order'])
+
+			## Book keeping
+			self.orders['profit']['order_id'] = profit_oid
+			self.manager.orders[profit_oid] = self.orders['profit']['order']
+			self.manager.order2trade[profit_oid] = self
+
+			print('Profit', self.symbol, profit_oid)
 
 	def on_close(self):
 
-		## Cancel market data
-		self.manager.cancelMktData(self.manager.ticker2id[self.symbol])
-		print(self.manager.order2trade)
-		print(self.orders)
-		## Logging
-		self.logger.info('CLOSING LOGIC: {}'.format(self.execution_logic))
+		if self.status in ['PENDING', 'ACTIVE']:
 
-		## Clean up maps
-		for i in range(1, len(self.orders), 2):
-			oid = self.orders[i]
-			del self.manager.order2trade[oid]
-			del self.manager.orders[oid]
-			self.manager.cancelOrder(oid)
+			print('CLOSING', self.symbol)
+			## Cancel market data
+			self.manager.cancelMktData(self.manager.ticker2id[self.symbol])
 
-		# Remove trade from list
-		del self.manager.trades[self.symbol]
+			## Logging
+			self.logger.info('CLOSING LOGIC: {}'.format(self.execution_logic))
 
-		## Logging
-		post_doc(self)
-		self.logger.info('CLOSING LOGIC: {}'.format(self.execution_logic))
+			for key in self.orders.keys():
+				oid = self.orders[key]['order_id']
+				if oid is not None:
+					del self.manager.order2trade[oid]
+					del self.manager.orders[oid]
+					self.manager.cancelOrder(oid)
 
-	def update_and_send(self, adjusted_price):
-		
-		self.orders.loss_order.lmtPrice = adjusted_price
-		self.orders.loss_order.totalQuantity -= self.num_filled_on_close
-		self.manager.placeOrder(self.orders.loss_oid, self.contract, self.orders.loss_order)	
+			# Remove trade from list
+			del self.manager.trades[self.symbol]
+
+			## Logging
+			#post_doc(self)
+
+			self.status == 'CLOSED'
+
+	def update_and_send(self, order_key, adjusted_price):
+
+		self.orders[order_key]['order'].lmtPrice = adjusted_price
+		self.orders[order_key]['order'].totalQuantity -= self.num_filled_on_close
+
+		oid = self.orders[order_key]['order_id']
+		oid = oid if oid is not None else self.manager.get_oid()
+		self.manager.placeOrder(oid, self.contract, self.orders['loss']['order'])
+		print(order_key, self.symbol, oid)
+
+		self.orders[order_key]['order_id'] = oid
+		self.manager.orders[oid] = self.orders[order_key]['order']
+		self.manager.order2trade[oid] = self
 
 	def on_period(self):
 		
@@ -145,16 +176,16 @@ class Trade(object):
 				self.execution_logic = 'HARD STOP'
 
 				adjusted_price = adjust_price(self.last_update, self.tick_incr, self.direction, margin = 1)
-				if self.orders.loss_order.lmtPrice != adjusted_price:
-					self.update_and_send(adjusted_price)
+				if self.orders['loss']['order'].lmtPrice != adjusted_price:
+					self.update_and_send('loss', adjusted_price)
 
 			elif self.is_soft_stop() and self.soft_stop_switch: 
 
 				self.execution_logic = 'SOFT STOP'
 
 				adjusted_price = adjust_price(self.last_update, self.tick_incr, self.direction, margin = 1)
-				if self.orders.loss_order.lmtPrice != adjusted_price:
-					self.update_and_send(adjusted_price)
+				if self.orders['loss']['order'].lmtPrice != adjusted_price:
+					self.update_and_send('loss', adjusted_price)
 
 			elif self.is_matured():
 

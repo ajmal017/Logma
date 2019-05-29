@@ -30,7 +30,7 @@ for ticker in tickers:
 	logger = logging.getLogger(ticker)
 	logger.setLevel(logging.INFO)
 
-	file_handler = logging.FileHandler('{}/{}/{}.log'.format(dir_, 'logs', ticker), 'w')
+	file_handler = logging.FileHandler('{}/{}/{}.log'.format(dir_, 'logs', ticker), 'a')
 	file_handler.setLevel(logging.INFO)
 	file_handler.setFormatter(logging.Formatter(fmt='%(asctime)s %(levelname)s: %(message)s\n', datefmt='%Y-%m-%d  %H:%M:%S'))
 
@@ -41,7 +41,7 @@ for ticker in tickers:
 logger = logging.getLogger('errors')
 logger.setLevel(logging.INFO)
 
-file_handler = logging.FileHandler('{}/{}/{}.log'.format(dir_, 'logs', 'errors'), 'w')
+file_handler = logging.FileHandler('{}/{}/{}.log'.format(dir_, 'logs', 'errors'), 'a')
 file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(logging.Formatter(fmt='%(asctime)s %(levelname)s: %(message)s\n', datefmt='%Y-%m-%d  %H:%M:%S'))
 
@@ -67,9 +67,9 @@ def post_doc(trade):
 		"state" : trade.state,
 		"status" : trade.status,
 		"data" : trade.data,
-		"entryLimitPrice" : trade.orders.init_order.lmtPrice,
-		"takeProfitLimitPrice" : trade.orders.profit_order.lmtPrice,
-		"stopLossLimitPrice" : trade.orders.loss_order.lmtPrice,
+		"entryLimitPrice" : trade.orders['init']['order'].lmtPrice,
+		"takeProfitLimitPrice" : trade.orders['profit']['order'].lmtPrice,
+		"stopLossLimitPrice" : trade.orders['loss']['order'].lmtPrice,
 		"timePeriod" : trade.time_period,
 		"maturity" : trade.maturity,
 		"numPeriods" : len(trade.data['historical']),

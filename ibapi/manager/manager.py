@@ -12,7 +12,8 @@ import logging
 
 ##############################
 
-ip_address = '192.168.2.26'
+#ip_address = '192.168.2.26'
+ip_address = '127.0.0.1'
 port = 4001
 clientId = 1
 
@@ -31,7 +32,7 @@ class Manager(ManagerClient, ManagerWrapper):
 		self.contracts = contracts
 		self.tick_increments = tick_increments
 
-		## Reserving OrderIDs
+		## OID Offset
 		self.order_id_offset = 0
 
 		## OrderID 2 trade
@@ -73,6 +74,10 @@ class Manager(ManagerClient, ManagerWrapper):
 		## Init message loop
 		thread = Thread(target = self.run)
 		thread.start()
+
+	def get_oid(self):
+		self.order_id += 1
+		return self.order_id
 
 	def on_start(self):
 

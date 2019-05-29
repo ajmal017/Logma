@@ -41,9 +41,6 @@ class ManagerClient(EClient):
 		## Add trade object to index
 		self.trades[symbol] = Trade(manager = self, symbol = symbol, action = action, direction = direction, quantity = quantity, details = details, data = data)
 
-		## Request Live Quotes
-		self.reqMarketDataType(1)
-
 		## Start market data for instrument
 		self.reqMktData(self.ticker2id[symbol], self.contracts[symbol], '', False, False, [])
 

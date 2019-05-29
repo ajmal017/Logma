@@ -10,8 +10,8 @@ from sklearn.preprocessing import StandardScaler
 
 class Model(object):
 
-    model_path = '/home/zquantz/Models/lgbm_2019-04-16'
-    scaling_dir = '/home/zquantz/Scalers'
+    model_path = 'D:/AlgoMLData/Models/lgbm_2019-04-16'
+    scaling_dir = 'D:/AlgoMLData/Scalers'
     log_trim = 7
 
     def __init__(self, ticker, short_num_periods, num_periods):
