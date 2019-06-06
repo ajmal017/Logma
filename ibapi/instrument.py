@@ -34,7 +34,7 @@ class Instrument(Thread):
 
             signal, features, direction, price = self.model.is_trade(list(self.storage.data))
 
-            if True:
+            if False:
 
                 data = {
                     "historical" : list(self.storage.data),

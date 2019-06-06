@@ -44,6 +44,12 @@ class Manager(ManagerClient, ManagerWrapper):
 		## OrderId to Order mapping
 		self.orders = {}
 
+		## Connection Details
+		self.connection = (ip_address, port, clientId)
+
+		## State
+		self.state = "ALIVE"
+
 		## Direction integer mappings
 		self.action2direction = {
 			"BUY" : 1,
@@ -69,13 +75,14 @@ class Manager(ManagerClient, ManagerWrapper):
 		}
 
 		## Connect to gateway
-		self.connect(ip_address, port, clientId)
+		self.connect(*self.connection)
 
 		## Init message loop
 		thread = Thread(target = self.run)
 		thread.start()
 
 	def get_oid(self):
+
 		self.order_id += 1
 		return self.order_id
 

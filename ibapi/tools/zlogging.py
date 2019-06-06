@@ -30,7 +30,7 @@ for ticker in tickers:
 	logger = logging.getLogger(ticker)
 	logger.setLevel(logging.INFO)
 
-	file_handler = logging.FileHandler('{}/{}/{}.log'.format(dir_, 'logs', ticker), 'a')
+	file_handler = logging.FileHandler('{}/{}/{}.log'.format(dir_, 'logs', ticker), 'w')
 	file_handler.setLevel(logging.INFO)
 	file_handler.setFormatter(logging.Formatter(fmt='%(asctime)s %(levelname)s: %(message)s\n', datefmt='%Y-%m-%d  %H:%M:%S'))
 
@@ -41,7 +41,7 @@ for ticker in tickers:
 logger = logging.getLogger('errors')
 logger.setLevel(logging.INFO)
 
-file_handler = logging.FileHandler('{}/{}/{}.log'.format(dir_, 'logs', 'errors'), 'a')
+file_handler = logging.FileHandler('{}/{}/{}.log'.format(dir_, 'logs', 'errors'), 'w')
 file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(logging.Formatter(fmt='%(asctime)s %(levelname)s: %(message)s\n', datefmt='%Y-%m-%d  %H:%M:%S'))
 

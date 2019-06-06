@@ -3,7 +3,7 @@ from tools.zcontracts import forex_contract
 from tools.zlogging import loggers
 from storage import Storage
 
-from datetime import datetime
+from datetime import datetime, timedelta
 import time
 
 import pandas as pd
@@ -17,25 +17,22 @@ class ScannerClient(EClient):
 
 	def init_historical_data(self):
 
-		print('Waiting for next minute')
-		dt = datetime.now()
-		while dt.second != 0:
-			dt = datetime.now()
-
 		for ticker, contract in self.contracts.items():
+
+			loggers[ticker].info('Initializing historical data')
 
 			self.storages[ticker] = Storage(ticker = ticker, num_periods = self.num_periods, time_period = self.time_period)
 			reqId = self.ticker2id[ticker]
-			loggers[ticker].info('Initializing historical data')		
 			self.reqHistoricalData(reqId, contract, '', *self.config, [])
 
-		time.sleep(5)
+		time.sleep(1)
 
 		initialized = True
 		for ticker in self.storages:
-			initialized = self.storages[ticker].is_initialized()
+			initialized = self.storages[ticker].is_initialized() and initialized
 
 		if not initialized:
+			loggers['error'].warning('Re-initializing.')
 			self.cancel_historical_data()
 			time.sleep(1)
 			return self.init_historical_data()
@@ -43,9 +40,9 @@ class ScannerClient(EClient):
 	def cancel_historical_data(self):
 
 		for ticker in self.contracts:
-			loggers[ticker].info('Error. Cancelling historical data')
+
+			loggers[ticker].info('Cancelling historical data.')
+			
 			reqId = self.ticker2id[ticker]
 			del self.storages[ticker]		
 			self.cancelHistoricalData(reqId)
-
-		print(self.storages)

@@ -33,6 +33,13 @@ class Scanner(ScannerClient, ScannerWrapper):
 		self.num_periods = num_periods
 		self.time_period = time_period
 
+		## Book keeping
+		self.connection = (ip_address, port, clientId)
+
+		## Health
+		self.state = "ALIVE"
+		self.data_state = "OK"
+
 		## Data storages
 		self.storages = {}
 
@@ -49,15 +56,13 @@ class Scanner(ScannerClient, ScannerWrapper):
 		print('Config', self.config)
 
 		print('Connecting')
-		self.connect(ip_address, port, clientId)
+		self.connect(*self.connection)
 
 		thread = Thread(target = self.run)
 		thread.start()
 
 	def on_start(self):
 
-		## Initialize Storages for each ticker
-		print('Initializing Historical Data')
 		self.init_historical_data()
 
 	def on_close(self):

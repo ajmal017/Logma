@@ -152,13 +152,14 @@ class Trade(object):
 	def update_and_send(self, order_key, adjusted_price):
 
 		self.orders[order_key]['order'].lmtPrice = adjusted_price
-		self.orders[order_key]['order'].totalQuantity -= self.num_filled_on_close
+		#self.orders[order_key]['order'].totalQuantity = self.quantity - self.num_filled_on_close
 
 		oid = self.orders[order_key]['order_id']
 		oid = oid if oid is not None else self.manager.get_oid()
-		self.manager.placeOrder(oid, self.contract, self.orders['loss']['order'])
+		self.manager.placeOrder(oid, self.contract, self.orders[order_key]['order'])
 		print(order_key, self.symbol, oid)
 
+		## Book keeping
 		self.orders[order_key]['order_id'] = oid
 		self.manager.orders[oid] = self.orders[order_key]['order']
 		self.manager.order2trade[oid] = self

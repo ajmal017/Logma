@@ -1,178 +1,286 @@
-2019-05-29  19:09:00 INFO: Initializing historical data
+2019-06-05  21:13:37 INFO: Initializing historical data
 
-2019-05-29  19:10:00 INFO: TIME: 20190529  19:09:00~-~20190529  19:10:00
+2019-06-05  21:13:38 INFO: Cancelling historical data.
 
-2019-05-29  19:10:00 INFO: Signal 1 - Executing Trade
+2019-06-05  21:13:39 INFO: Initializing historical data
 
-2019-05-29  19:10:00 INFO: JOB: Starting Manager
+2019-06-05  21:14:00 INFO: TIME: 20190605  21:13:00~-~20190605  21:14:00
 
-2019-05-29  19:10:10 INFO: INIT TRADE:20000.0~-~108.71
+2019-06-05  21:14:49 INFO: Cancelling historical data.
 
-2019-05-29  19:10:10 INFO: INIT TRADE:20000.0~-~108.71
+2019-06-05  21:14:50 INFO: Initializing historical data
 
-2019-05-29  19:10:55 INFO: CLOSED TRADE:20000.0~-~108.701
+2019-06-05  21:14:51 INFO: Cancelling historical data.
 
-2019-05-29  19:10:55 INFO: CLOSING LOGIC: HARD STOP
+2019-06-05  21:14:52 INFO: Initializing historical data
 
-2019-05-29  19:10:56 INFO: JOB: Stopping Manager
+2019-06-05  21:14:53 INFO: Cancelling historical data.
 
-2019-05-29  19:11:00 INFO: TIME: 20190529  19:10:00~-~20190529  19:11:00
+2019-06-05  21:14:54 INFO: Initializing historical data
 
-2019-05-29  19:11:00 INFO: Signal 1 - Executing Trade
+2019-06-05  21:14:55 INFO: Cancelling historical data.
 
-2019-05-29  19:11:00 INFO: JOB: Starting Manager
+2019-06-05  21:14:56 INFO: Initializing historical data
 
-2019-05-29  19:12:00 INFO: TIME: 20190529  19:11:00~-~20190529  19:12:00
+2019-06-05  21:14:57 INFO: Cancelling historical data.
 
-2019-05-29  19:12:01 INFO: CLOSING LOGIC: NO FILL
+2019-06-05  21:14:58 INFO: Initializing historical data
 
-2019-05-29  19:12:02 INFO: JOB: Stopping Manager
+2019-06-05  21:14:59 INFO: Cancelling historical data.
 
-2019-05-29  19:13:00 INFO: TIME: 20190529  19:12:00~-~20190529  19:13:00
+2019-06-05  21:15:00 INFO: Initializing historical data
 
-2019-05-29  19:13:00 INFO: Signal 1 - Executing Trade
+2019-06-05  21:15:01 INFO: Cancelling historical data.
 
-2019-05-29  19:13:00 INFO: JOB: Starting Manager
+2019-06-05  21:15:02 INFO: Initializing historical data
 
-2019-05-29  19:14:00 INFO: TIME: 20190529  19:13:00~-~20190529  19:14:00
+2019-06-05  21:15:03 INFO: Cancelling historical data.
 
-2019-05-29  19:14:01 INFO: CLOSING LOGIC: NO FILL
+2019-06-05  21:15:04 INFO: Initializing historical data
 
-2019-05-29  19:14:02 INFO: JOB: Stopping Manager
+2019-06-05  21:15:05 INFO: Cancelling historical data.
 
-2019-05-29  19:15:00 INFO: TIME: 20190529  19:14:00~-~20190529  19:15:00
+2019-06-05  21:15:06 INFO: Initializing historical data
 
-2019-05-29  19:15:00 INFO: Signal 1 - Executing Trade
+2019-06-05  21:15:07 INFO: Cancelling historical data.
 
-2019-05-29  19:15:00 INFO: JOB: Starting Manager
+2019-06-05  21:15:08 INFO: Initializing historical data
 
-2019-05-29  19:16:00 INFO: TIME: 20190529  19:15:00~-~20190529  19:16:00
+2019-06-05  21:15:09 INFO: Cancelling historical data.
 
-2019-05-29  19:16:00 INFO: CLOSING LOGIC: NO FILL
+2019-06-05  21:15:10 INFO: Initializing historical data
 
-2019-05-29  19:16:01 INFO: JOB: Stopping Manager
+2019-06-05  21:15:11 INFO: Cancelling historical data.
 
-2019-05-29  19:17:00 INFO: TIME: 20190529  19:16:00~-~20190529  19:17:00
+2019-06-05  21:15:12 INFO: Initializing historical data
 
-2019-05-29  19:17:00 INFO: Signal 1 - Executing Trade
+2019-06-05  21:15:13 INFO: Cancelling historical data.
 
-2019-05-29  19:34:10 INFO: JOB: Starting Manager
+2019-06-05  21:15:14 INFO: Initializing historical data
 
-2019-05-29  19:34:11 INFO: CLOSING LOGIC: NO FILL
+2019-06-05  21:15:15 INFO: Cancelling historical data.
 
-2019-05-29  19:34:12 INFO: JOB: Stopping Manager
+2019-06-05  21:15:16 INFO: Initializing historical data
 
-2019-05-29  19:35:00 INFO: TIME: 20190529  19:17:00~-~20190529  19:35:00
+2019-06-05  21:15:18 INFO: Cancelling historical data.
 
-2019-05-29  19:35:01 INFO: Signal 1 - Executing Trade
+2019-06-05  21:15:19 INFO: Initializing historical data
 
-2019-05-29  19:35:01 INFO: JOB: Starting Manager
+2019-06-05  21:15:20 INFO: Cancelling historical data.
 
-2019-05-29  19:35:01 INFO: INIT TRADE:20000.0~-~108.684
+2019-06-05  21:15:21 INFO: Initializing historical data
 
-2019-05-29  19:35:01 INFO: INIT TRADE:20000.0~-~108.684
+2019-06-05  21:15:22 INFO: Cancelling historical data.
 
-2019-05-29  19:35:09 INFO: CLOSED TRADE:20000.0~-~108.68
+2019-06-05  21:15:23 INFO: Initializing historical data
 
-2019-05-29  19:35:09 INFO: CLOSING LOGIC: HARD STOP
+2019-06-05  21:15:24 INFO: Cancelling historical data.
 
-2019-05-29  19:35:10 INFO: JOB: Stopping Manager
+2019-06-05  21:15:25 INFO: Initializing historical data
 
-2019-05-29  19:36:00 INFO: TIME: 20190529  19:35:00~-~20190529  19:36:00
+2019-06-05  21:15:26 INFO: Cancelling historical data.
 
-2019-05-29  19:36:00 INFO: Signal 1 - Executing Trade
+2019-06-05  21:15:27 INFO: Initializing historical data
 
-2019-05-29  19:36:00 INFO: JOB: Starting Manager
+2019-06-05  21:15:28 INFO: Cancelling historical data.
 
-2019-05-29  19:37:00 INFO: TIME: 20190529  19:36:00~-~20190529  19:37:00
+2019-06-05  21:15:29 INFO: Initializing historical data
 
-2019-05-29  19:37:01 INFO: CLOSING LOGIC: NO FILL
+2019-06-05  21:15:30 INFO: Cancelling historical data.
 
-2019-05-29  19:37:02 INFO: JOB: Stopping Manager
+2019-06-05  21:15:31 INFO: Initializing historical data
 
-2019-05-29  19:38:00 INFO: TIME: 20190529  19:37:00~-~20190529  19:38:00
+2019-06-05  21:15:32 INFO: Cancelling historical data.
 
-2019-05-29  19:38:00 INFO: Signal 1 - Executing Trade
+2019-06-05  21:15:33 INFO: Initializing historical data
 
-2019-05-29  19:38:00 INFO: JOB: Starting Manager
+2019-06-05  21:15:34 INFO: Cancelling historical data.
 
-2019-05-29  19:39:00 INFO: TIME: 20190529  19:38:00~-~20190529  19:39:00
+2019-06-05  21:15:35 INFO: Initializing historical data
 
-2019-05-29  19:39:01 INFO: CLOSING LOGIC: NO FILL
+2019-06-05  21:15:36 INFO: Cancelling historical data.
 
-2019-05-29  19:39:02 INFO: JOB: Stopping Manager
+2019-06-05  21:15:37 INFO: Initializing historical data
 
-2019-05-29  19:40:00 INFO: TIME: 20190529  19:39:00~-~20190529  19:40:00
+2019-06-05  21:15:38 INFO: Cancelling historical data.
 
-2019-05-29  19:40:00 INFO: Signal 1 - Executing Trade
+2019-06-05  21:15:39 INFO: Initializing historical data
 
-2019-05-29  19:40:00 INFO: JOB: Starting Manager
+2019-06-05  21:15:40 INFO: Cancelling historical data.
 
-2019-05-29  19:40:41 INFO: INIT TRADE:20000.0~-~108.678
+2019-06-05  21:15:41 INFO: Initializing historical data
 
-2019-05-29  19:40:41 INFO: INIT TRADE:20000.0~-~108.678
+2019-06-05  21:15:42 INFO: Cancelling historical data.
 
-2019-05-29  19:41:00 INFO: TIME: 20190529  19:40:00~-~20190529  19:41:00
+2019-06-05  21:15:43 INFO: Initializing historical data
 
-2019-05-29  19:41:25 INFO: CLOSED TRADE:20000.0~-~108.671
+2019-06-05  21:15:44 INFO: Cancelling historical data.
 
-2019-05-29  19:41:25 INFO: CLOSING LOGIC: HARD STOP
+2019-06-05  21:15:45 INFO: Initializing historical data
 
-2019-05-29  19:41:26 INFO: JOB: Stopping Manager
+2019-06-05  21:15:46 INFO: Cancelling historical data.
 
-2019-05-29  19:42:00 INFO: TIME: 20190529  19:41:00~-~20190529  19:42:00
+2019-06-05  21:15:47 INFO: Initializing historical data
 
-2019-05-29  19:42:00 INFO: Signal 1 - Executing Trade
+2019-06-05  21:15:48 INFO: Cancelling historical data.
 
-2019-05-29  19:42:00 INFO: JOB: Starting Manager
+2019-06-05  21:15:49 INFO: Initializing historical data
 
-2019-05-29  19:43:00 INFO: TIME: 20190529  19:42:00~-~20190529  19:43:00
+2019-06-05  21:15:50 INFO: Cancelling historical data.
 
-2019-05-29  19:43:00 INFO: CLOSING LOGIC: NO FILL
+2019-06-05  21:15:51 INFO: Initializing historical data
 
-2019-05-29  19:43:01 INFO: JOB: Stopping Manager
+2019-06-05  21:15:52 INFO: Cancelling historical data.
 
-2019-05-29  19:44:00 INFO: TIME: 20190529  19:43:00~-~20190529  19:44:00
+2019-06-05  21:15:53 INFO: Initializing historical data
 
-2019-05-29  19:44:00 INFO: Signal 1 - Executing Trade
+2019-06-05  21:15:54 INFO: Cancelling historical data.
 
-2019-05-29  19:44:00 INFO: JOB: Starting Manager
+2019-06-05  21:15:55 INFO: Initializing historical data
 
-2019-05-29  19:45:00 INFO: TIME: 20190529  19:44:00~-~20190529  19:45:00
+2019-06-05  21:15:56 INFO: Cancelling historical data.
 
-2019-05-29  19:45:01 INFO: CLOSING LOGIC: NO FILL
+2019-06-05  21:15:57 INFO: Initializing historical data
 
-2019-05-29  19:45:02 INFO: JOB: Stopping Manager
+2019-06-05  21:15:58 INFO: Cancelling historical data.
 
-2019-05-29  19:47:00 INFO: Initializing historical data
+2019-06-05  21:15:59 INFO: Initializing historical data
 
-2019-05-29  19:48:00 INFO: TIME: 20190529  19:47:00~-~20190529  19:48:00
+2019-06-05  21:16:00 INFO: Cancelling historical data.
 
-2019-05-29  19:48:00 INFO: Signal 1 - Executing Trade
+2019-06-05  21:16:01 INFO: Initializing historical data
 
-2019-05-29  19:48:00 INFO: JOB: Starting Manager
+2019-06-05  21:16:02 INFO: Cancelling historical data.
 
-2019-05-29  19:48:01 INFO: INIT TRADE:20000.0~-~108.666
+2019-06-05  21:16:03 INFO: Initializing historical data
 
-2019-05-29  19:48:01 INFO: INIT TRADE:20000.0~-~108.666
+2019-06-05  21:16:04 INFO: Cancelling historical data.
 
-2019-05-29  19:48:04 INFO: CLOSED TRADE:20000.0~-~108.658
+2019-06-05  21:16:05 INFO: Initializing historical data
 
-2019-05-29  19:48:04 INFO: CLOSING LOGIC: HARD STOP
+2019-06-05  21:16:06 INFO: Cancelling historical data.
 
-2019-05-29  19:48:05 INFO: JOB: Stopping Manager
+2019-06-05  21:16:07 INFO: Initializing historical data
 
-2019-05-29  19:49:00 INFO: TIME: 20190529  19:48:00~-~20190529  19:49:00
+2019-06-05  21:16:08 INFO: Cancelling historical data.
 
-2019-05-29  19:49:00 INFO: Signal 1 - Executing Trade
+2019-06-05  21:16:09 INFO: Initializing historical data
 
-2019-05-29  19:49:00 INFO: JOB: Starting Manager
+2019-06-05  21:16:10 INFO: Cancelling historical data.
 
-2019-05-29  19:50:00 INFO: TIME: 20190529  19:49:00~-~20190529  19:50:00
+2019-06-05  21:16:11 INFO: Initializing historical data
 
-2019-05-29  19:50:01 INFO: CLOSING LOGIC: NO FILL
+2019-06-05  21:16:12 INFO: Cancelling historical data.
 
-2019-05-29  19:50:01 INFO: CLOSING LOGIC: NO FILL
+2019-06-05  21:16:13 INFO: Initializing historical data
 
-2019-05-29  19:50:02 INFO: JOB: Stopping Manager
+2019-06-05  21:16:14 INFO: Cancelling historical data.
+
+2019-06-05  21:16:15 INFO: Initializing historical data
+
+2019-06-05  21:16:16 INFO: Cancelling historical data.
+
+2019-06-05  21:16:17 INFO: Initializing historical data
+
+2019-06-05  21:16:18 INFO: Cancelling historical data.
+
+2019-06-05  21:16:19 INFO: Initializing historical data
+
+2019-06-05  21:16:20 INFO: Cancelling historical data.
+
+2019-06-05  21:16:21 INFO: Initializing historical data
+
+2019-06-05  21:16:22 INFO: Cancelling historical data.
+
+2019-06-05  21:16:23 INFO: Initializing historical data
+
+2019-06-05  21:16:24 INFO: Cancelling historical data.
+
+2019-06-05  21:16:25 INFO: Initializing historical data
+
+2019-06-05  21:16:26 INFO: Cancelling historical data.
+
+2019-06-05  21:16:27 INFO: Initializing historical data
+
+2019-06-05  21:16:28 INFO: Cancelling historical data.
+
+2019-06-05  21:16:29 INFO: Initializing historical data
+
+2019-06-05  21:16:30 INFO: Cancelling historical data.
+
+2019-06-05  21:16:32 INFO: Initializing historical data
+
+2019-06-05  21:16:33 INFO: Cancelling historical data.
+
+2019-06-05  21:16:34 INFO: Initializing historical data
+
+2019-06-05  21:16:35 INFO: Cancelling historical data.
+
+2019-06-05  21:16:36 INFO: Initializing historical data
+
+2019-06-05  21:16:37 INFO: Cancelling historical data.
+
+2019-06-05  21:16:38 INFO: Initializing historical data
+
+2019-06-05  21:16:39 INFO: Cancelling historical data.
+
+2019-06-05  21:16:40 INFO: Initializing historical data
+
+2019-06-05  21:16:41 INFO: Cancelling historical data.
+
+2019-06-05  21:16:42 INFO: Initializing historical data
+
+2019-06-05  21:16:43 INFO: Cancelling historical data.
+
+2019-06-05  21:16:44 INFO: Initializing historical data
+
+2019-06-05  21:16:45 INFO: Cancelling historical data.
+
+2019-06-05  21:16:46 INFO: Initializing historical data
+
+2019-06-05  21:16:47 INFO: Cancelling historical data.
+
+2019-06-05  21:16:48 INFO: Initializing historical data
+
+2019-06-05  21:16:49 INFO: Cancelling historical data.
+
+2019-06-05  21:16:50 INFO: Initializing historical data
+
+2019-06-05  21:16:51 INFO: Cancelling historical data.
+
+2019-06-05  21:16:52 INFO: Initializing historical data
+
+2019-06-05  21:16:53 INFO: Cancelling historical data.
+
+2019-06-05  21:16:54 INFO: Initializing historical data
+
+2019-06-05  21:16:55 INFO: Cancelling historical data.
+
+2019-06-05  21:16:56 INFO: Initializing historical data
+
+2019-06-05  21:16:57 INFO: Cancelling historical data.
+
+2019-06-05  21:16:58 INFO: Initializing historical data
+
+2019-06-05  21:16:59 INFO: Cancelling historical data.
+
+2019-06-05  21:17:00 INFO: Initializing historical data
+
+2019-06-05  21:17:01 INFO: Cancelling historical data.
+
+2019-06-05  21:17:02 INFO: Initializing historical data
+
+2019-06-05  21:17:03 INFO: Cancelling historical data.
+
+2019-06-05  21:17:04 INFO: Initializing historical data
+
+2019-06-05  21:17:05 INFO: Cancelling historical data.
+
+2019-06-05  21:17:06 INFO: Initializing historical data
+
+2019-06-05  21:17:07 INFO: Cancelling historical data.
+
+2019-06-05  21:17:08 INFO: Initializing historical data
+
+2019-06-05  21:17:09 INFO: Cancelling historical data.
 

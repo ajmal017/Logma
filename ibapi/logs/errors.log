@@ -1,1400 +1,1816 @@
-2019-05-29  19:08:25 INFO: -1~-~2104~-~Market data farm connection is OK:cashfarm
+2019-06-05  21:13:38 WARNING: Re-initializing.
 
-2019-05-29  19:08:25 INFO: -1~-~2106~-~HMDS data farm connection is OK:cashhmds
+2019-06-05  21:13:38 INFO: 0~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 0
 
-2019-05-29  19:08:25 INFO: -1~-~2104~-~Market data farm connection is OK:cashfarm
+2019-06-05  21:13:38 INFO: 1~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 1
 
-2019-05-29  19:08:25 INFO: -1~-~2106~-~HMDS data farm connection is OK:cashhmds
+2019-06-05  21:13:38 INFO: 2~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 2
 
-2019-05-29  19:10:00 INFO: 13908~-~399~-~Order Message:
-BUY 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:13:38 INFO: 3~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 3
 
-2019-05-29  19:10:00 INFO: 13910~-~399~-~Order Message:
-BUY 20K USD.CHF Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:13:38 INFO: 4~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 4
 
-2019-05-29  19:10:00 INFO: 13913~-~399~-~Order Message:
-BUY 20K NZD.USD Forex
-Warning: Your order size is below the NZD 35000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:13:38 INFO: 5~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 5
 
-2019-05-29  19:10:00 INFO: 13914~-~399~-~Order Message:
-BUY 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:13:38 INFO: 6~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 6
 
-2019-05-29  19:10:00 INFO: 13915~-~399~-~Order Message:
-BUY 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:13:38 INFO: 7~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 7
 
-2019-05-29  19:10:00 INFO: 13917~-~399~-~Order Message:
-BUY 20K USD.JPY Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:13:38 INFO: 8~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 8
 
-2019-05-29  19:10:00 INFO: 13918~-~399~-~Order Message:
-BUY 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:13:38 INFO: 9~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 9
 
-2019-05-29  19:10:00 INFO: 13921~-~399~-~Order Message:
-BUY 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:13:38 INFO: 10~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 10
 
-2019-05-29  19:10:02 INFO: 13922~-~399~-~Order Message:
-SELL 20K NZD.USD Forex
-Warning: Your order size is below the NZD 35000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:13:38 INFO: 11~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 11
 
-2019-05-29  19:10:05 INFO: 13923~-~399~-~Order Message:
-SELL 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:13:38 INFO: 12~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 12
 
-2019-05-29  19:10:05 INFO: 13924~-~399~-~Order Message:
-SELL 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:13:38 INFO: 13~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 13
 
-2019-05-29  19:10:08 INFO: 13926~-~399~-~Order Message:
-SELL 20K USD.JPY Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:13:38 INFO: -1~-~2106~-~HMDS data farm connection is OK:cashhmds
 
-2019-05-29  19:10:10 INFO: 13927~-~399~-~Order Message:
-SELL 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:13:38 INFO: -1~-~2106~-~HMDS data farm connection is OK:cashhmds
 
-2019-05-29  19:10:20 INFO: 13928~-~399~-~Order Message:
-SELL 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:13:39 INFO: -1~-~2119~-~Market data farm is connecting:cashfarm
 
-2019-05-29  19:10:55 INFO: 13931~-~399~-~Order Message:
-SELL 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:13:39 INFO: -1~-~2119~-~Market data farm is connecting:cashfarm
 
-2019-05-29  19:10:55 INFO: 13915~-~10147~-~OrderId 13915 that needs to be cancelled is not found.
+2019-06-05  21:13:39 INFO: -1~-~2104~-~Market data farm connection is OK:cashfarm
 
-2019-05-29  19:10:55 INFO: 13931~-~10148~-~OrderId 13931 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:13:39 INFO: -1~-~2104~-~Market data farm connection is OK:cashfarm
 
-2019-05-29  19:10:55 INFO: 13927~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:48 INFO: -1~-~2105~-~HMDS data farm connection is broken:cashhmds
 
-2019-05-29  19:11:00 INFO: 13932~-~399~-~Order Message:
-SELL 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:48 INFO: -1~-~2105~-~HMDS data farm connection is broken:cashhmds
 
-2019-05-29  19:11:00 INFO: 13933~-~399~-~Order Message:
-BUY 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:48 WARNING: HMDS Broken. Setting Flag
 
-2019-05-29  19:11:00 INFO: 13920~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:48 INFO: 9~-~10182~-~Failed to request live updates (disconnected)
 
-2019-05-29  19:11:01 INFO: 13909~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:48 WARNING: Cancelling Market Data. Broken Connection
 
-2019-05-29  19:11:01 INFO: 13910~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:48 INFO: 9~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 9
 
-2019-05-29  19:11:01 INFO: 13912~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:48 INFO: 3~-~10182~-~Failed to request live updates (disconnected)
 
-2019-05-29  19:11:01 INFO: 13921~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:48 WARNING: Cancelling Market Data. Broken Connection
 
-2019-05-29  19:11:06 INFO: 13908~-~10147~-~OrderId 13908 that needs to be cancelled is not found.
+2019-06-05  21:14:48 INFO: 3~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 3
 
-2019-05-29  19:11:06 INFO: 13932~-~10148~-~OrderId 13932 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:14:48 INFO: 10~-~10182~-~Failed to request live updates (disconnected)
 
-2019-05-29  19:11:06 INFO: 13928~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:48 WARNING: Cancelling Market Data. Broken Connection
 
-2019-05-29  19:11:13 INFO: 13914~-~10147~-~OrderId 13914 that needs to be cancelled is not found.
+2019-06-05  21:14:48 INFO: 13~-~10182~-~Failed to request live updates (disconnected)
 
-2019-05-29  19:11:13 INFO: 13924~-~10148~-~OrderId 13924 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:14:48 WARNING: Cancelling Market Data. Broken Connection
 
-2019-05-29  19:11:13 INFO: 13918~-~10147~-~OrderId 13918 that needs to be cancelled is not found.
+2019-06-05  21:14:48 INFO: 10~-~366~-~No historical data query found for ticker id:10
 
-2019-05-29  19:11:13 INFO: 13923~-~10148~-~OrderId 13923 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:14:48 INFO: 13~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 13
 
-2019-05-29  19:12:00 INFO: 13934~-~399~-~Order Message:
-BUY 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:48 INFO: 1~-~10182~-~Failed to request live updates (disconnected)
 
-2019-05-29  19:12:00 INFO: 13935~-~399~-~Order Message:
-BUY 20K USD.CHF Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:48 WARNING: Cancelling Market Data. Broken Connection
 
-2019-05-29  19:12:00 INFO: 13938~-~399~-~Order Message:
-BUY 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:48 INFO: 1~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 1
 
-2019-05-29  19:12:00 INFO: 13939~-~399~-~Order Message:
-BUY 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:48 INFO: 0~-~10182~-~Failed to request live updates (disconnected)
 
-2019-05-29  19:12:00 INFO: 13940~-~399~-~Order Message:
-BUY 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:48 WARNING: Cancelling Market Data. Broken Connection
 
-2019-05-29  19:12:01 INFO: 13933~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:48 INFO: 2~-~10182~-~Failed to request live updates (disconnected)
 
-2019-05-29  19:13:00 INFO: 13943~-~399~-~Order Message:
-BUY 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:48 WARNING: Cancelling Market Data. Broken Connection
 
-2019-05-29  19:13:01 INFO: 13936~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:48 INFO: 0~-~366~-~No historical data query found for ticker id:0
 
-2019-05-29  19:13:01 INFO: 13940~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:48 INFO: 2~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 2
 
-2019-05-29  19:13:01 INFO: 13939~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:48 INFO: 7~-~10182~-~Failed to request live updates (disconnected)
 
-2019-05-29  19:13:01 INFO: 13934~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:48 WARNING: Cancelling Market Data. Broken Connection
 
-2019-05-29  19:13:01 INFO: 13938~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:48 INFO: 8~-~10182~-~Failed to request live updates (disconnected)
 
-2019-05-29  19:13:01 INFO: 13935~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:48 WARNING: Cancelling Market Data. Broken Connection
 
-2019-05-29  19:13:01 INFO: 13937~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:48 INFO: 7~-~366~-~No historical data query found for ticker id:7
 
-2019-05-29  19:14:00 INFO: 13944~-~399~-~Order Message:
-BUY 20K USD.CHF Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:48 INFO: 8~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 8
 
-2019-05-29  19:14:00 INFO: 13945~-~399~-~Order Message:
-BUY 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:48 INFO: 11~-~10182~-~Failed to request live updates (disconnected)
 
-2019-05-29  19:14:00 INFO: 13947~-~399~-~Order Message:
-BUY 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:48 WARNING: Cancelling Market Data. Broken Connection
 
-2019-05-29  19:14:00 INFO: 13948~-~399~-~Order Message:
-BUY 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:48 INFO: 6~-~10182~-~Failed to request live updates (disconnected)
 
-2019-05-29  19:14:00 INFO: 13950~-~399~-~Order Message:
-BUY 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:48 WARNING: Cancelling Market Data. Broken Connection
 
-2019-05-29  19:14:01 INFO: 13943~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:48 INFO: 11~-~366~-~No historical data query found for ticker id:11
 
-2019-05-29  19:14:08 INFO: 13951~-~399~-~Order Message:
-SELL 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:48 INFO: 6~-~162~-~Historical Market Data Service error message:API historical data query cancelled: 6
 
-2019-05-29  19:14:08 INFO: 13919~-~10147~-~OrderId 13919 that needs to be cancelled is not found.
+2019-06-05  21:14:48 INFO: 12~-~10182~-~Failed to request live updates (disconnected)
 
-2019-05-29  19:14:08 INFO: 13930~-~10148~-~OrderId 13930 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:14:48 WARNING: Cancelling Market Data. Broken Connection
 
-2019-05-29  19:14:13 INFO: 13952~-~399~-~Order Message:
-SELL 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:48 INFO: 5~-~10182~-~Failed to request live updates (disconnected)
 
-2019-05-29  19:15:00 INFO: 13956~-~399~-~Order Message:
-BUY 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:48 WARNING: Cancelling Market Data. Broken Connection
 
-2019-05-29  19:15:00 INFO: 13955~-~399~-~Order Message:
-SELL 20K USD.JPY Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:48 INFO: 12~-~366~-~No historical data query found for ticker id:12
 
-2019-05-29  19:15:00 INFO: 13917~-~10147~-~OrderId 13917 that needs to be cancelled is not found.
+2019-06-05  21:14:48 INFO: 4~-~10182~-~Failed to request live updates (disconnected)
 
-2019-05-29  19:15:00 INFO: 13955~-~10148~-~OrderId 13955 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:14:48 WARNING: Cancelling Market Data. Broken Connection
 
-2019-05-29  19:15:00 INFO: 13926~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:48 INFO: 5~-~366~-~No historical data query found for ticker id:5
 
-2019-05-29  19:15:00 INFO: 13949~-~10148~-~OrderId 13949 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:14:48 INFO: 4~-~366~-~No historical data query found for ticker id:4
 
-2019-05-29  19:15:00 INFO: 13954~-~10148~-~OrderId 13954 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:14:49 INFO: -1~-~2106~-~HMDS data farm connection is OK:cashhmds
 
-2019-05-29  19:15:00 INFO: 13953~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:49 INFO: -1~-~2106~-~HMDS data farm connection is OK:cashhmds
 
-2019-05-29  19:15:01 INFO: 13945~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:49 WARNING: Restoring Market Data from Broken Connection
 
-2019-05-29  19:15:01 INFO: 13950~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:51 WARNING: Re-initializing.
 
-2019-05-29  19:15:01 INFO: 13946~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:53 WARNING: Re-initializing.
 
-2019-05-29  19:15:01 INFO: 13944~-~202~-~Order Canceled - reason:
+2019-06-05  21:14:55 WARNING: Re-initializing.
 
-2019-05-29  19:15:32 INFO: 13959~-~399~-~Order Message:
-SELL 20K NZD.USD Forex
-Warning: Your order size is below the NZD 35000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:14:57 WARNING: Re-initializing.
 
-2019-05-29  19:15:34 INFO: 13913~-~10147~-~OrderId 13913 that needs to be cancelled is not found.
+2019-06-05  21:14:59 WARNING: Re-initializing.
 
-2019-05-29  19:15:34 INFO: 13959~-~10148~-~OrderId 13959 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:15:01 WARNING: Re-initializing.
 
-2019-05-29  19:15:34 INFO: 13922~-~202~-~Order Canceled - reason:
+2019-06-05  21:15:03 WARNING: Re-initializing.
 
-2019-05-29  19:16:00 INFO: 13956~-~202~-~Order Canceled - reason:
+2019-06-05  21:15:05 WARNING: Re-initializing.
 
-2019-05-29  19:16:00 INFO: 13960~-~399~-~Order Message:
-BUY 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:15:07 WARNING: Re-initializing.
 
-2019-05-29  19:16:00 INFO: 13962~-~399~-~Order Message:
-BUY 20K USD.CHF Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:15:09 WARNING: Re-initializing.
 
-2019-05-29  19:16:00 INFO: 13963~-~399~-~Order Message:
-BUY 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:15:11 WARNING: Re-initializing.
 
-2019-05-29  19:16:00 INFO: 13964~-~399~-~Order Message:
-BUY 20K NZD.USD Forex
-Warning: Your order size is below the NZD 35000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:15:13 WARNING: Re-initializing.
 
-2019-05-29  19:16:00 INFO: 13965~-~399~-~Order Message:
-BUY 20K USD.JPY Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:15:15 WARNING: Re-initializing.
 
-2019-05-29  19:16:00 INFO: 13967~-~399~-~Order Message:
-SELL 20K USD.JPY Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:15:18 WARNING: Re-initializing.
 
-2019-05-29  19:16:01 INFO: 13968~-~399~-~Order Message:
-SELL 20K NZD.USD Forex
-Warning: Your order size is below the NZD 35000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:15:20 WARNING: Re-initializing.
 
-2019-05-29  19:17:00 INFO: 13969~-~399~-~Order Message:
-SELL 20K NZD.USD Forex
-Warning: Your order size is below the NZD 35000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:15:22 WARNING: Re-initializing.
 
-2019-05-29  19:34:14 INFO: 13952~-~399~-~Order Message:
-SELL 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:15:24 WARNING: Re-initializing.
 
-2019-05-29  19:34:14 INFO: 13960~-~399~-~Order Message:
-BUY 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:15:26 WARNING: Re-initializing.
 
-2019-05-29  19:34:14 INFO: 13951~-~399~-~Order Message:
-SELL 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:15:28 WARNING: Re-initializing.
 
-2019-05-29  19:34:14 INFO: 13967~-~399~-~Order Message:
-SELL 20K USD.JPY Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:15:30 WARNING: Re-initializing.
 
-2019-05-29  19:34:14 INFO: 13968~-~399~-~Order Message:
-SELL 20K NZD.USD Forex
-Warning: Your order size is below the NZD 35000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:15:32 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13972~-~399~-~Order Message:
-SELL 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:15:34 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13970~-~103~-~Duplicate order id
+2019-06-05  21:15:36 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13960~-~10147~-~OrderId 13960 that needs to be cancelled is not found.
+2019-06-05  21:15:38 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13963~-~10147~-~OrderId 13963 that needs to be cancelled is not found.
+2019-06-05  21:15:40 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13962~-~10147~-~OrderId 13962 that needs to be cancelled is not found.
+2019-06-05  21:15:42 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13961~-~10147~-~OrderId 13961 that needs to be cancelled is not found.
+2019-06-05  21:15:44 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13966~-~10147~-~OrderId 13966 that needs to be cancelled is not found.
+2019-06-05  21:15:46 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13971~-~103~-~Duplicate order id
+2019-06-05  21:15:48 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13971~-~103~-~Duplicate order id
+2019-06-05  21:15:50 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13973~-~2102~-~Unable to modify this order as its still being processed.
+2019-06-05  21:15:52 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13971~-~103~-~Duplicate order id
+2019-06-05  21:15:54 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13971~-~103~-~Duplicate order id
+2019-06-05  21:15:56 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13974~-~2102~-~Unable to modify this order as its still being processed.
+2019-06-05  21:15:58 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13971~-~103~-~Duplicate order id
+2019-06-05  21:16:00 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13971~-~103~-~Duplicate order id
+2019-06-05  21:16:02 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13975~-~2102~-~Unable to modify this order as its still being processed.
+2019-06-05  21:16:04 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13974~-~399~-~Order Message:
-SELL 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:06 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13975~-~201~-~Order rejected - reason:Cannot modify the filled order
+2019-06-05  21:16:08 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13970~-~10147~-~OrderId 13970 that needs to be cancelled is not found.
+2019-06-05  21:16:10 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13964~-~10147~-~OrderId 13964 that needs to be cancelled is not found.
+2019-06-05  21:16:12 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13969~-~10147~-~OrderId 13969 that needs to be cancelled is not found.
+2019-06-05  21:16:14 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13968~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:14 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~399~-~Order Message:
-SELL 20K USD.JPY Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:14 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:14 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:14 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:14 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:14 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:14 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:14 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~201~-~Order rejected - reason:Cannot modify the filled order
+2019-06-05  21:16:14 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:14 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:14 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:14 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:14 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:14 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:15 INFO: 0~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:15 INFO: 1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:15 INFO: 2~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:15 INFO: 3~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13971~-~103~-~Duplicate order id
+2019-06-05  21:16:15 INFO: 4~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13971~-~103~-~Duplicate order id
+2019-06-05  21:16:15 INFO: 5~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13971~-~103~-~Duplicate order id
+2019-06-05  21:16:15 INFO: 6~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:15 INFO: 7~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:15 INFO: 8~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:15 INFO: 9~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:15 INFO: 10~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:15 INFO: 11~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:15 INFO: 12~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:15 INFO: 13~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:16 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13971~-~103~-~Duplicate order id
+2019-06-05  21:16:16 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:16 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:16 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:16 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:16 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:16 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:16 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:16 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:16 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:16 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:16 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:16 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:16 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:16 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:17 INFO: 0~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:17 INFO: 1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:17 INFO: 2~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:17 INFO: 3~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:17 INFO: 4~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:17 INFO: 5~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:17 INFO: 6~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13972~-~201~-~Order rejected - reason:Cannot modify the filled order
+2019-06-05  21:16:17 INFO: 7~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13972~-~104~-~Can't modify a filled order
+2019-06-05  21:16:17 INFO: 8~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:17 INFO: 9~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:17 INFO: 10~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:17 INFO: 11~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:17 INFO: 12~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:17 INFO: 13~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:18 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:18 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:18 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:18 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:18 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:18 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:18 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:18 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:18 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:18 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:18 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:18 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:18 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:18 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:18 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:19 INFO: 0~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:19 INFO: 1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:19 INFO: 2~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:19 INFO: 3~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:19 INFO: 4~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:19 INFO: 5~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:19 INFO: 6~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:19 INFO: 7~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:19 INFO: 8~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:19 INFO: 9~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:19 INFO: 10~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:19 INFO: 11~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:19 INFO: 12~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:19 INFO: 13~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:20 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:20 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:20 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:20 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:20 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:20 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:20 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:20 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:20 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13972~-~104~-~Can't modify a filled order
+2019-06-05  21:16:20 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13972~-~104~-~Can't modify a filled order
+2019-06-05  21:16:20 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13972~-~104~-~Can't modify a filled order
+2019-06-05  21:16:20 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13972~-~104~-~Can't modify a filled order
+2019-06-05  21:16:20 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13972~-~104~-~Can't modify a filled order
+2019-06-05  21:16:20 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:20 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:21 INFO: 0~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:21 INFO: 1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:21 INFO: 2~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:21 INFO: 3~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:21 INFO: 4~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 3~-~100~-~Max rate of messages per second has been exceeded:max=50 rec=56 (1)
+2019-06-05  21:16:21 INFO: 5~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:21 INFO: 6~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:21 INFO: 7~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:21 INFO: 8~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:21 INFO: 9~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~201~-~Order rejected - reason:Cannot modify the filled order
+2019-06-05  21:16:21 INFO: 10~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:21 INFO: 11~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:21 INFO: 12~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:21 INFO: 13~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:22 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13911~-~10147~-~OrderId 13911 that needs to be cancelled is not found.
+2019-06-05  21:16:22 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13971~-~10147~-~OrderId 13971 that needs to be cancelled is not found.
+2019-06-05  21:16:22 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:22 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:22 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:22 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13925~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:22 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:22 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:22 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:22 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:22 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:22 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:22 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:22 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~104~-~Can't modify a filled order
+2019-06-05  21:16:22 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:23 INFO: 0~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:23 INFO: 1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:23 INFO: 2~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:23 INFO: 3~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:23 INFO: 4~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:23 INFO: 5~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:23 INFO: 6~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:23 INFO: 7~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:23 INFO: 8~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:23 INFO: 9~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:23 INFO: 10~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:23 INFO: 11~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:23 INFO: 12~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:23 INFO: 13~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:24 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:24 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:24 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:24 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:24 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:24 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13972~-~104~-~Can't modify a filled order
+2019-06-05  21:16:24 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:24 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:24 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:24 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:24 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13957~-~10147~-~OrderId 13957 that needs to be cancelled is not found.
+2019-06-05  21:16:24 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13958~-~10147~-~OrderId 13958 that needs to be cancelled is not found.
+2019-06-05  21:16:24 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13941~-~10147~-~OrderId 13941 that needs to be cancelled is not found.
+2019-06-05  21:16:24 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13942~-~10147~-~OrderId 13942 that needs to be cancelled is not found.
+2019-06-05  21:16:24 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~10148~-~OrderId 13975 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:25 INFO: 0~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:25 INFO: 1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:25 INFO: 2~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:25 INFO: 3~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:25 INFO: 4~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:25 INFO: 5~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:25 INFO: 6~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:25 INFO: 7~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13972~-~104~-~Can't modify a filled order
+2019-06-05  21:16:25 INFO: 8~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:25 INFO: 9~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13975~-~201~-~Order rejected - reason:Cannot modify the filled order
+2019-06-05  21:16:25 INFO: 10~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13972~-~104~-~Can't modify a filled order
+2019-06-05  21:16:25 INFO: 11~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13972~-~104~-~Can't modify a filled order
+2019-06-05  21:16:25 INFO: 12~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:25 INFO: 13~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:26 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:26 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:26 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:26 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:26 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:26 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:26 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:26 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13972~-~104~-~Can't modify a filled order
+2019-06-05  21:16:26 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13972~-~104~-~Can't modify a filled order
+2019-06-05  21:16:26 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:26 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:26 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:26 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:26 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:26 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:27 INFO: 0~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:27 INFO: 1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:27 INFO: 2~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:27 INFO: 3~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:27 INFO: 4~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:27 INFO: 5~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:27 INFO: 6~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:27 INFO: 7~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13972~-~104~-~Can't modify a filled order
+2019-06-05  21:16:27 INFO: 8~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:27 INFO: 9~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:27 INFO: 10~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:27 INFO: 11~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:27 INFO: 12~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:27 INFO: 13~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:28 WARNING: Re-initializing.
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:28 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~104~-~Can't modify a filled order
+2019-06-05  21:16:28 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~104~-~Can't modify a filled order
+2019-06-05  21:16:28 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:28 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~104~-~Can't modify a filled order
+2019-06-05  21:16:28 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13916~-~10147~-~OrderId 13916 that needs to be cancelled is not found.
+2019-06-05  21:16:28 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13973~-~10148~-~OrderId 13973 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:28 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13929~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:28 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13965~-~10147~-~OrderId 13965 that needs to be cancelled is not found.
+2019-06-05  21:16:28 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13976~-~10148~-~OrderId 13976 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:28 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13947~-~10147~-~OrderId 13947 that needs to be cancelled is not found.
+2019-06-05  21:16:28 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13972~-~10148~-~OrderId 13972 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:28 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13967~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:28 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13948~-~10147~-~OrderId 13948 that needs to be cancelled is not found.
+2019-06-05  21:16:28 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13974~-~10148~-~OrderId 13974 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:29 INFO: 0~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13952~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:29 INFO: 1~-~504~-~Not connected
 
-2019-05-29  19:34:17 INFO: 13951~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:29 INFO: 2~-~504~-~Not connected
 
-2019-05-29  19:34:18 INFO: 13972~-~201~-~Order rejected - reason:Cannot modify the filled order
+2019-06-05  21:16:29 INFO: 3~-~504~-~Not connected
 
-2019-05-29  19:35:00 INFO: 13979~-~399~-~Order Message:
-BUY 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:29 INFO: 4~-~504~-~Not connected
 
-2019-05-29  19:35:00 INFO: 13983~-~399~-~Order Message:
-BUY 20K USD.CHF Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:29 INFO: 5~-~504~-~Not connected
 
-2019-05-29  19:35:00 INFO: 13985~-~399~-~Order Message:
-BUY 20K USD.JPY Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:29 INFO: 6~-~504~-~Not connected
 
-2019-05-29  19:35:01 INFO: 13986~-~399~-~Order Message:
-BUY 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:29 INFO: 7~-~504~-~Not connected
 
-2019-05-29  19:35:01 INFO: 13989~-~103~-~Duplicate order id
+2019-06-05  21:16:29 INFO: 8~-~504~-~Not connected
 
-2019-05-29  19:35:01 INFO: 13987~-~399~-~Order Message:
-BUY 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:29 INFO: 9~-~504~-~Not connected
 
-2019-05-29  19:35:01 INFO: 13988~-~399~-~Order Message:
-BUY 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:29 INFO: 10~-~504~-~Not connected
 
-2019-05-29  19:35:01 INFO: 13992~-~399~-~Order Message:
-BUY 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:29 INFO: 11~-~504~-~Not connected
 
-2019-05-29  19:35:01 INFO: 13993~-~399~-~Order Message:
-SELL 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:29 INFO: 12~-~504~-~Not connected
 
-2019-05-29  19:35:01 INFO: 13994~-~399~-~Order Message:
-SELL 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:29 INFO: 13~-~504~-~Not connected
 
-2019-05-29  19:35:07 INFO: 13977~-~10148~-~OrderId 13977 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:30 WARNING: Re-initializing.
 
-2019-05-29  19:35:07 INFO: 13990~-~10148~-~OrderId 13990 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:30 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:35:07 INFO: 13980~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:30 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:35:07 INFO: 13978~-~10148~-~OrderId 13978 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:30 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:35:07 INFO: 13996~-~10148~-~OrderId 13996 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:30 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:35:07 INFO: 13995~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:30 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:35:08 INFO: 13997~-~399~-~Order Message:
-SELL 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:30 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:35:09 INFO: 13992~-~10148~-~OrderId 13992 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:30 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:35:09 INFO: 13997~-~10148~-~OrderId 13997 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:30 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:35:09 INFO: 13994~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:30 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:35:43 INFO: 14001~-~399~-~Order Message:
-SELL 20K USD.JPY Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:30 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:36:00 INFO: 14002~-~399~-~Order Message:
-SELL 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:30 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:36:00 INFO: 14003~-~399~-~Order Message:
-BUY 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:30 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:36:00 INFO: 13988~-~10147~-~OrderId 13988 that needs to be cancelled is not found.
+2019-06-05  21:16:30 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:36:00 INFO: 14002~-~10148~-~OrderId 14002 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:30 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:36:00 INFO: 13993~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:32 INFO: 0~-~504~-~Not connected
 
-2019-05-29  19:36:01 INFO: 13986~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:32 INFO: 1~-~504~-~Not connected
 
-2019-05-29  19:36:01 INFO: 13984~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:32 INFO: 2~-~504~-~Not connected
 
-2019-05-29  19:36:01 INFO: 13979~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:32 INFO: 3~-~504~-~Not connected
 
-2019-05-29  19:36:01 INFO: 13983~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:32 INFO: 4~-~504~-~Not connected
 
-2019-05-29  19:36:01 INFO: 13987~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:32 INFO: 5~-~504~-~Not connected
 
-2019-05-29  19:36:02 INFO: 13989~-~10147~-~OrderId 13989 that needs to be cancelled is not found.
+2019-06-05  21:16:32 INFO: 6~-~504~-~Not connected
 
-2019-05-29  19:36:25 INFO: 13991~-~10147~-~OrderId 13991 that needs to be cancelled is not found.
+2019-06-05  21:16:32 INFO: 7~-~504~-~Not connected
 
-2019-05-29  19:36:25 INFO: 14006~-~10148~-~OrderId 14006 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:32 INFO: 8~-~504~-~Not connected
 
-2019-05-29  19:36:25 INFO: 14000~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:32 INFO: 9~-~504~-~Not connected
 
-2019-05-29  19:37:00 INFO: 14008~-~399~-~Order Message:
-BUY 20K NZD.USD Forex
-Warning: Your order size is below the NZD 35000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:32 INFO: 10~-~504~-~Not connected
 
-2019-05-29  19:37:00 INFO: 14009~-~399~-~Order Message:
-BUY 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:32 INFO: 11~-~504~-~Not connected
 
-2019-05-29  19:37:00 INFO: 14010~-~399~-~Order Message:
-BUY 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:32 INFO: 12~-~504~-~Not connected
 
-2019-05-29  19:37:00 INFO: 14011~-~399~-~Order Message:
-BUY 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:32 INFO: 13~-~504~-~Not connected
 
-2019-05-29  19:37:00 INFO: 14012~-~399~-~Order Message:
-BUY 20K USD.CHF Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:33 WARNING: Re-initializing.
 
-2019-05-29  19:37:00 INFO: 14014~-~399~-~Order Message:
-BUY 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:33 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:37:01 INFO: 14005~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:33 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:37:01 INFO: 14004~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:33 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:37:01 INFO: 14003~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:33 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:37:04 INFO: 14015~-~399~-~Order Message:
-SELL 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:33 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:37:04 INFO: 14016~-~399~-~Order Message:
-SELL 20K NZD.USD Forex
-Warning: Your order size is below the NZD 35000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:33 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:37:28 INFO: 14015~-~105~-~Order being modified does not match original order
+2019-06-05  21:16:33 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:37:57 INFO: 14017~-~399~-~Order Message:
-SELL 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:33 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:38:00 INFO: 14018~-~399~-~Order Message:
-SELL 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:33 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:38:00 INFO: 14020~-~399~-~Order Message:
-BUY 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:33 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:38:00 INFO: 13981~-~10147~-~OrderId 13981 that needs to be cancelled is not found.
+2019-06-05  21:16:33 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:38:00 INFO: 14022~-~10148~-~OrderId 14022 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:33 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:38:00 INFO: 14011~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:33 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:38:00 INFO: 13998~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:33 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:38:01 INFO: 14010~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:34 INFO: 0~-~504~-~Not connected
 
-2019-05-29  19:38:01 INFO: 14007~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:34 INFO: 1~-~504~-~Not connected
 
-2019-05-29  19:38:01 INFO: 14013~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:34 INFO: 2~-~504~-~Not connected
 
-2019-05-29  19:38:01 INFO: 14012~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:34 INFO: 3~-~504~-~Not connected
 
-2019-05-29  19:38:10 INFO: 13922~-~103~-~Duplicate order id
+2019-06-05  21:16:34 INFO: 4~-~504~-~Not connected
 
-2019-05-29  19:38:12 INFO: 13922~-~103~-~Duplicate order id
+2019-06-05  21:16:34 INFO: 5~-~504~-~Not connected
 
-2019-05-29  19:38:28 INFO: 14014~-~10147~-~OrderId 14014 that needs to be cancelled is not found.
+2019-06-05  21:16:34 INFO: 6~-~504~-~Not connected
 
-2019-05-29  19:38:28 INFO: 14018~-~10148~-~OrderId 14018 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:34 INFO: 7~-~504~-~Not connected
 
-2019-05-29  19:38:28 INFO: 14015~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:34 INFO: 8~-~504~-~Not connected
 
-2019-05-29  19:39:00 INFO: 13982~-~10147~-~OrderId 13982 that needs to be cancelled is not found.
+2019-06-05  21:16:34 INFO: 9~-~504~-~Not connected
 
-2019-05-29  19:39:00 INFO: 13999~-~10148~-~OrderId 13999 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:34 INFO: 10~-~504~-~Not connected
 
-2019-05-29  19:39:00 INFO: 14024~-~399~-~Order Message:
-BUY 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:34 INFO: 11~-~504~-~Not connected
 
-2019-05-29  19:39:00 INFO: 14028~-~399~-~Order Message:
-BUY 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:34 INFO: 12~-~504~-~Not connected
 
-2019-05-29  19:39:00 INFO: 14029~-~399~-~Order Message:
-BUY 20K USD.CHF Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:34 INFO: 13~-~504~-~Not connected
 
-2019-05-29  19:39:00 INFO: 14030~-~399~-~Order Message:
-BUY 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:35 WARNING: Re-initializing.
 
-2019-05-29  19:39:00 INFO: 14021~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:35 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:39:01 INFO: 14020~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:35 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:39:19 INFO: 14034~-~399~-~Order Message:
-SELL 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:35 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:39:22 INFO: 14035~-~399~-~Order Message:
-SELL 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:35 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:39:24 INFO: 14030~-~10148~-~OrderId 14030 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:35 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:39:24 INFO: 14035~-~10148~-~OrderId 14035 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:35 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:39:24 INFO: 14036~-~399~-~Order Message:
-SELL 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:35 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:39:24 INFO: 14009~-~10147~-~OrderId 14009 that needs to be cancelled is not found.
+2019-06-05  21:16:35 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:39:24 INFO: 14036~-~10148~-~OrderId 14036 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:35 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:39:24 INFO: 14017~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:35 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:40:00 INFO: 14038~-~399~-~Order Message:
-BUY 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:35 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:40:00 INFO: 14039~-~399~-~Order Message:
-BUY 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:35 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:40:00 INFO: 14040~-~399~-~Order Message:
-BUY 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:35 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:40:00 INFO: 14041~-~399~-~Order Message:
-SELL 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:35 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:40:01 INFO: 14029~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:36 INFO: 0~-~504~-~Not connected
 
-2019-05-29  19:40:01 INFO: 14027~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:36 INFO: 1~-~504~-~Not connected
 
-2019-05-29  19:40:01 INFO: 14024~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:36 INFO: 2~-~504~-~Not connected
 
-2019-05-29  19:40:01 INFO: 14025~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:36 INFO: 3~-~504~-~Not connected
 
-2019-05-29  19:40:39 INFO: 14026~-~10147~-~OrderId 14026 that needs to be cancelled is not found.
+2019-06-05  21:16:36 INFO: 4~-~504~-~Not connected
 
-2019-05-29  19:40:39 INFO: 14042~-~10148~-~OrderId 14042 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:36 INFO: 5~-~504~-~Not connected
 
-2019-05-29  19:40:39 INFO: 14033~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:36 INFO: 6~-~504~-~Not connected
 
-2019-05-29  19:40:40 INFO: 14028~-~10147~-~OrderId 14028 that needs to be cancelled is not found.
+2019-06-05  21:16:36 INFO: 7~-~504~-~Not connected
 
-2019-05-29  19:40:40 INFO: 14034~-~10148~-~OrderId 14034 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:36 INFO: 8~-~504~-~Not connected
 
-2019-05-29  19:40:41 INFO: 14043~-~399~-~Order Message:
-SELL 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:36 INFO: 9~-~504~-~Not connected
 
-2019-05-29  19:40:54 INFO: 14038~-~10147~-~OrderId 14038 that needs to be cancelled is not found.
+2019-06-05  21:16:36 INFO: 10~-~504~-~Not connected
 
-2019-05-29  19:40:54 INFO: 14041~-~10148~-~OrderId 14041 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:36 INFO: 11~-~504~-~Not connected
 
-2019-05-29  19:41:00 INFO: 14044~-~399~-~Order Message:
-BUY 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:36 INFO: 12~-~504~-~Not connected
 
-2019-05-29  19:41:00 INFO: 14037~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:36 INFO: 13~-~504~-~Not connected
 
-2019-05-29  19:41:00 INFO: 14045~-~399~-~Order Message:
-BUY 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:37 WARNING: Re-initializing.
 
-2019-05-29  19:41:00 INFO: 14048~-~399~-~Order Message:
-BUY 20K USD.CHF Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:37 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:41:00 INFO: 14039~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:37 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:41:00 INFO: 14049~-~399~-~Order Message:
-BUY 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:37 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:41:00 INFO: 14050~-~399~-~Order Message:
-SELL 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:37 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:41:13 INFO: 13985~-~10147~-~OrderId 13985 that needs to be cancelled is not found.
+2019-06-05  21:16:37 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:41:13 INFO: 14001~-~10148~-~OrderId 14001 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:37 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:41:25 INFO: 14053~-~399~-~Order Message:
-SELL 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:37 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:41:25 INFO: 14040~-~10147~-~OrderId 14040 that needs to be cancelled is not found.
+2019-06-05  21:16:37 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:41:25 INFO: 14053~-~10148~-~OrderId 14053 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:37 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:41:25 INFO: 14043~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:37 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:41:37 INFO: 14019~-~10147~-~OrderId 14019 that needs to be cancelled is not found.
+2019-06-05  21:16:37 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:41:37 INFO: 14023~-~10148~-~OrderId 14023 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:37 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:42:00 INFO: 14055~-~399~-~Order Message:
-BUY 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:37 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:42:00 INFO: 14056~-~399~-~Order Message:
-BUY 20K USD.JPY Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:37 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:42:00 INFO: 14057~-~399~-~Order Message:
-BUY 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:38 INFO: 0~-~504~-~Not connected
 
-2019-05-29  19:42:01 INFO: 14047~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:38 INFO: 1~-~504~-~Not connected
 
-2019-05-29  19:42:01 INFO: 14049~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:38 INFO: 2~-~504~-~Not connected
 
-2019-05-29  19:42:01 INFO: 14048~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:38 INFO: 3~-~504~-~Not connected
 
-2019-05-29  19:42:01 INFO: 14045~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:38 INFO: 4~-~504~-~Not connected
 
-2019-05-29  19:42:26 INFO: 14059~-~10148~-~OrderId 14059 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:38 INFO: 5~-~504~-~Not connected
 
-2019-05-29  19:42:26 INFO: 14060~-~10148~-~OrderId 14060 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:38 INFO: 6~-~504~-~Not connected
 
-2019-05-29  19:43:00 INFO: 14063~-~399~-~Order Message:
-BUY 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:38 INFO: 7~-~504~-~Not connected
 
-2019-05-29  19:43:00 INFO: 14066~-~103~-~Duplicate order id
+2019-06-05  21:16:38 INFO: 8~-~504~-~Not connected
 
-2019-05-29  19:43:00 INFO: 14064~-~399~-~Order Message:
-BUY 20K USD.CHF Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:38 INFO: 9~-~504~-~Not connected
 
-2019-05-29  19:43:00 INFO: 14057~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:38 INFO: 10~-~504~-~Not connected
 
-2019-05-29  19:43:00 INFO: 14056~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:38 INFO: 11~-~504~-~Not connected
 
-2019-05-29  19:43:01 INFO: 14058~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:38 INFO: 12~-~504~-~Not connected
 
-2019-05-29  19:43:01 INFO: 14055~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:38 INFO: 13~-~504~-~Not connected
 
-2019-05-29  19:43:01 INFO: 14031~-~10147~-~OrderId 14031 that needs to be cancelled is not found.
+2019-06-05  21:16:39 WARNING: Re-initializing.
 
-2019-05-29  19:43:01 INFO: 14061~-~10148~-~OrderId 14061 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:39 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:43:01 INFO: 14032~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:39 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:44:00 INFO: 14068~-~399~-~Order Message:
-BUY 20K USD.JPY Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:39 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:44:00 INFO: 14069~-~399~-~Order Message:
-BUY 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:39 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:44:00 INFO: 14072~-~399~-~Order Message:
-BUY 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:39 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:44:01 INFO: 14066~-~10147~-~OrderId 14066 that needs to be cancelled is not found.
+2019-06-05  21:16:39 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:44:01 INFO: 14064~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:39 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:44:01 INFO: 14063~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:39 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:44:01 INFO: 14065~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:39 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:44:38 INFO: 14073~-~399~-~Order Message:
-SELL 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:39 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:44:40 INFO: 14046~-~10147~-~OrderId 14046 that needs to be cancelled is not found.
+2019-06-05  21:16:39 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:44:40 INFO: 14052~-~10148~-~OrderId 14052 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:39 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:44:47 INFO: 14008~-~10147~-~OrderId 14008 that needs to be cancelled is not found.
+2019-06-05  21:16:39 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:44:47 INFO: 14016~-~10148~-~OrderId 14016 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:39 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:45:00 INFO: 14074~-~399~-~Order Message:
-BUY 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:40 INFO: 0~-~504~-~Not connected
 
-2019-05-29  19:45:00 INFO: 14075~-~399~-~Order Message:
-BUY 20K USD.CHF Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:40 INFO: 1~-~504~-~Not connected
 
-2019-05-29  19:45:00 INFO: 14078~-~399~-~Order Message:
-BUY 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:40 INFO: 2~-~504~-~Not connected
 
-2019-05-29  19:45:00 INFO: 14079~-~399~-~Order Message:
-BUY 20K NZD.USD Forex
-Warning: Your order size is below the NZD 35000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:40 INFO: 3~-~504~-~Not connected
 
-2019-05-29  19:45:01 INFO: 14071~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:40 INFO: 4~-~504~-~Not connected
 
-2019-05-29  19:45:01 INFO: 14070~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:40 INFO: 5~-~504~-~Not connected
 
-2019-05-29  19:45:01 INFO: 14068~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:40 INFO: 6~-~504~-~Not connected
 
-2019-05-29  19:45:01 INFO: 14069~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:40 INFO: 7~-~504~-~Not connected
 
-2019-05-29  19:45:02 INFO: 14080~-~399~-~Order Message:
-SELL 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:40 INFO: 8~-~504~-~Not connected
 
-2019-05-29  19:45:13 INFO: 14044~-~10147~-~OrderId 14044 that needs to be cancelled is not found.
+2019-06-05  21:16:40 INFO: 9~-~504~-~Not connected
 
-2019-05-29  19:45:13 INFO: 14050~-~10148~-~OrderId 14050 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:40 INFO: 10~-~504~-~Not connected
 
-2019-05-29  19:45:27 INFO: 14082~-~399~-~Order Message:
-SELL 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:40 INFO: 11~-~504~-~Not connected
 
-2019-05-29  19:45:27 INFO: 14072~-~10147~-~OrderId 14072 that needs to be cancelled is not found.
+2019-06-05  21:16:40 INFO: 12~-~504~-~Not connected
 
-2019-05-29  19:45:27 INFO: 14082~-~10148~-~OrderId 14082 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:40 INFO: 13~-~504~-~Not connected
 
-2019-05-29  19:45:27 INFO: 14073~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:41 WARNING: Re-initializing.
 
-2019-05-29  19:46:15 INFO: -1~-~2104~-~Market data farm connection is OK:cashfarm
+2019-06-05  21:16:41 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:46:15 INFO: -1~-~2106~-~HMDS data farm connection is OK:cashhmds
+2019-06-05  21:16:41 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:46:15 INFO: -1~-~2104~-~Market data farm connection is OK:cashfarm
+2019-06-05  21:16:41 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:46:15 INFO: -1~-~2106~-~HMDS data farm connection is OK:cashhmds
+2019-06-05  21:16:41 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:48:00 INFO: 14086~-~399~-~Order Message:
-BUY 20K USD.CHF Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:41 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:48:00 INFO: 14087~-~399~-~Order Message:
-BUY 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:41 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:48:00 INFO: 14089~-~399~-~Order Message:
-BUY 20K NZD.USD Forex
-Warning: Your order size is below the NZD 35000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:41 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:48:01 INFO: 14092~-~399~-~Order Message:
-BUY 20K USD.JPY Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:41 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:48:01 INFO: 14095~-~399~-~Order Message:
-BUY 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:41 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:48:01 INFO: 14097~-~399~-~Order Message:
-BUY 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:41 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:48:01 INFO: 14098~-~399~-~Order Message:
-BUY 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:41 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:48:01 INFO: 14099~-~399~-~Order Message:
-SELL 20K USD.JPY Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:41 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:48:01 INFO: 14084~-~10148~-~OrderId 14084 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:41 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:48:01 INFO: 14100~-~10148~-~OrderId 14100 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:41 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:48:01 INFO: 14101~-~399~-~Order Message:
-BUY 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:42 INFO: 0~-~504~-~Not connected
 
-2019-05-29  19:48:01 INFO: 14102~-~399~-~Order Message:
-SELL 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:42 INFO: 1~-~504~-~Not connected
 
-2019-05-29  19:48:01 INFO: 14096~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:42 INFO: 2~-~504~-~Not connected
 
-2019-05-29  19:48:01 INFO: 14103~-~399~-~Order Message:
-SELL 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:42 INFO: 3~-~504~-~Not connected
 
-2019-05-29  19:48:02 INFO: 14088~-~10148~-~OrderId 14088 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:42 INFO: 4~-~504~-~Not connected
 
-2019-05-29  19:48:02 INFO: 14104~-~10148~-~OrderId 14104 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:42 INFO: 5~-~504~-~Not connected
 
-2019-05-29  19:48:02 INFO: 14093~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:42 INFO: 6~-~504~-~Not connected
 
-2019-05-29  19:48:02 INFO: 14105~-~399~-~Order Message:
-SELL 20K USD.JPY Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:42 INFO: 7~-~504~-~Not connected
 
-2019-05-29  19:48:02 INFO: 14092~-~10148~-~OrderId 14092 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:42 INFO: 8~-~504~-~Not connected
 
-2019-05-29  19:48:02 INFO: 14105~-~10148~-~OrderId 14105 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:42 INFO: 9~-~504~-~Not connected
 
-2019-05-29  19:48:02 INFO: 14099~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:42 INFO: 10~-~504~-~Not connected
 
-2019-05-29  19:48:03 INFO: 14106~-~399~-~Order Message:
-SELL 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:42 INFO: 11~-~504~-~Not connected
 
-2019-05-29  19:48:04 INFO: 14095~-~10148~-~OrderId 14095 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:42 INFO: 12~-~504~-~Not connected
 
-2019-05-29  19:48:04 INFO: 14106~-~10148~-~OrderId 14106 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:42 INFO: 13~-~504~-~Not connected
 
-2019-05-29  19:48:04 INFO: 14106~-~201~-~Order rejected - reason:Cannot modify the filled order
+2019-06-05  21:16:43 WARNING: Re-initializing.
 
-2019-05-29  19:48:04 INFO: 14102~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:43 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:48:20 INFO: 14107~-~399~-~Order Message:
-SELL 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:43 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:48:28 INFO: 14108~-~399~-~Order Message:
-SELL 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:43 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:48:37 INFO: 14109~-~399~-~Order Message:
-SELL 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:43 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:48:37 INFO: 14098~-~10147~-~OrderId 14098 that needs to be cancelled is not found.
+2019-06-05  21:16:43 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:48:37 INFO: 14109~-~10148~-~OrderId 14109 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:43 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:48:37 INFO: 14103~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:43 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:49:00 INFO: 14111~-~399~-~Order Message:
-BUY 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:43 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:49:00 INFO: 14112~-~399~-~Order Message:
-BUY 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:43 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:49:00 INFO: 14113~-~399~-~Order Message:
-BUY 20K USD.JPY Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:43 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:49:01 INFO: 14086~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:43 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:49:01 INFO: 14087~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:43 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:49:01 INFO: 14091~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:43 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:49:01 INFO: 14090~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:43 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:49:01 INFO: 14094~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:44 INFO: 0~-~504~-~Not connected
 
-2019-05-29  19:49:01 INFO: 14085~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:44 INFO: 1~-~504~-~Not connected
 
-2019-05-29  19:49:01 INFO: 14089~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:44 INFO: 2~-~504~-~Not connected
 
-2019-05-29  19:49:02 INFO: 14115~-~399~-~Order Message:
-SELL 20K USD.JPY Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:44 INFO: 3~-~504~-~Not connected
 
-2019-05-29  19:49:35 INFO: 14118~-~399~-~Order Message:
-SELL 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:44 INFO: 4~-~504~-~Not connected
 
-2019-05-29  19:49:35 INFO: 14114~-~10148~-~OrderId 14114 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:44 INFO: 5~-~504~-~Not connected
 
-2019-05-29  19:49:35 INFO: 14119~-~10148~-~OrderId 14119 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:44 INFO: 6~-~504~-~Not connected
 
-2019-05-29  19:49:36 INFO: 14117~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:44 INFO: 7~-~504~-~Not connected
 
-2019-05-29  19:49:41 INFO: 14101~-~10147~-~OrderId 14101 that needs to be cancelled is not found.
+2019-06-05  21:16:44 INFO: 8~-~504~-~Not connected
 
-2019-05-29  19:49:41 INFO: 14107~-~10148~-~OrderId 14107 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:44 INFO: 9~-~504~-~Not connected
 
-2019-05-29  19:49:41 INFO: 14110~-~10147~-~OrderId 14110 that needs to be cancelled is not found.
+2019-06-05  21:16:44 INFO: 10~-~504~-~Not connected
 
-2019-05-29  19:49:41 INFO: 14116~-~10148~-~OrderId 14116 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:44 INFO: 11~-~504~-~Not connected
 
-2019-05-29  19:49:57 INFO: 14118~-~105~-~Order being modified does not match original order
+2019-06-05  21:16:44 INFO: 12~-~504~-~Not connected
 
-2019-05-29  19:50:00 INFO: 14112~-~10148~-~OrderId 14112 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:44 INFO: 13~-~504~-~Not connected
 
-2019-05-29  19:50:00 INFO: 14118~-~10148~-~OrderId 14118 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:45 WARNING: Re-initializing.
 
-2019-05-29  19:50:00 INFO: 14120~-~399~-~Order Message:
-BUY 20K NZD.USD Forex
-Warning: Your order size is below the NZD 35000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:45 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:50:00 INFO: 14121~-~399~-~Order Message:
-BUY 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:45 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:50:00 INFO: 14122~-~399~-~Order Message:
-BUY 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:45 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:50:00 INFO: 14124~-~399~-~Order Message:
-BUY 20K USD.CHF Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:45 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:50:00 INFO: 14130~-~399~-~Order Message:
-SELL 20K USD.CHF Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:45 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:50:01 INFO: 11~-~300~-~Can't find EId with tickerId:11
+2019-06-05  21:16:45 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:50:01 INFO: 14111~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:45 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:50:09 INFO: 14113~-~10147~-~OrderId 14113 that needs to be cancelled is not found.
+2019-06-05  21:16:45 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:50:09 INFO: 14115~-~10148~-~OrderId 14115 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:45 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:50:33 INFO: 14129~-~10148~-~OrderId 14129 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:45 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:50:33 INFO: 14134~-~10148~-~OrderId 14134 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:45 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:50:33 INFO: 14132~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:45 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:50:52 INFO: 14125~-~10147~-~OrderId 14125 that needs to be cancelled is not found.
+2019-06-05  21:16:45 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:50:52 INFO: 14135~-~10148~-~OrderId 14135 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:45 INFO: -1~-~504~-~Not connected
 
-2019-05-29  19:50:52 INFO: 14131~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:46 INFO: 0~-~504~-~Not connected
 
-2019-05-29  19:50:56 INFO: 14136~-~399~-~Order Message:
-SELL 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:46 INFO: 1~-~504~-~Not connected
 
-2019-05-29  19:50:56 INFO: 14137~-~399~-~Order Message:
-SELL 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
+2019-06-05  21:16:46 INFO: 2~-~504~-~Not connected
 
-2019-05-29  19:50:56 INFO: 14122~-~10148~-~OrderId 14122 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:46 INFO: 3~-~504~-~Not connected
 
-2019-05-29  19:50:56 INFO: 14137~-~10148~-~OrderId 14137 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-05  21:16:46 INFO: 4~-~504~-~Not connected
 
-2019-05-29  19:50:56 INFO: 14136~-~202~-~Order Canceled - reason:
+2019-06-05  21:16:46 INFO: 5~-~504~-~Not connected
+
+2019-06-05  21:16:46 INFO: 6~-~504~-~Not connected
+
+2019-06-05  21:16:46 INFO: 7~-~504~-~Not connected
+
+2019-06-05  21:16:46 INFO: 8~-~504~-~Not connected
+
+2019-06-05  21:16:46 INFO: 9~-~504~-~Not connected
+
+2019-06-05  21:16:46 INFO: 10~-~504~-~Not connected
+
+2019-06-05  21:16:46 INFO: 11~-~504~-~Not connected
+
+2019-06-05  21:16:46 INFO: 12~-~504~-~Not connected
+
+2019-06-05  21:16:46 INFO: 13~-~504~-~Not connected
+
+2019-06-05  21:16:47 WARNING: Re-initializing.
+
+2019-06-05  21:16:47 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:47 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:47 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:47 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:47 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:47 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:47 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:47 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:47 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:47 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:47 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:47 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:47 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:47 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:48 INFO: 0~-~504~-~Not connected
+
+2019-06-05  21:16:48 INFO: 1~-~504~-~Not connected
+
+2019-06-05  21:16:48 INFO: 2~-~504~-~Not connected
+
+2019-06-05  21:16:48 INFO: 3~-~504~-~Not connected
+
+2019-06-05  21:16:48 INFO: 4~-~504~-~Not connected
+
+2019-06-05  21:16:48 INFO: 5~-~504~-~Not connected
+
+2019-06-05  21:16:48 INFO: 6~-~504~-~Not connected
+
+2019-06-05  21:16:48 INFO: 7~-~504~-~Not connected
+
+2019-06-05  21:16:48 INFO: 8~-~504~-~Not connected
+
+2019-06-05  21:16:48 INFO: 9~-~504~-~Not connected
+
+2019-06-05  21:16:48 INFO: 10~-~504~-~Not connected
+
+2019-06-05  21:16:48 INFO: 11~-~504~-~Not connected
+
+2019-06-05  21:16:48 INFO: 12~-~504~-~Not connected
+
+2019-06-05  21:16:48 INFO: 13~-~504~-~Not connected
+
+2019-06-05  21:16:49 WARNING: Re-initializing.
+
+2019-06-05  21:16:49 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:49 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:49 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:49 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:49 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:49 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:49 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:49 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:49 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:49 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:49 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:49 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:49 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:49 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:50 INFO: 0~-~504~-~Not connected
+
+2019-06-05  21:16:50 INFO: 1~-~504~-~Not connected
+
+2019-06-05  21:16:50 INFO: 2~-~504~-~Not connected
+
+2019-06-05  21:16:50 INFO: 3~-~504~-~Not connected
+
+2019-06-05  21:16:50 INFO: 4~-~504~-~Not connected
+
+2019-06-05  21:16:50 INFO: 5~-~504~-~Not connected
+
+2019-06-05  21:16:50 INFO: 6~-~504~-~Not connected
+
+2019-06-05  21:16:50 INFO: 7~-~504~-~Not connected
+
+2019-06-05  21:16:50 INFO: 8~-~504~-~Not connected
+
+2019-06-05  21:16:50 INFO: 9~-~504~-~Not connected
+
+2019-06-05  21:16:50 INFO: 10~-~504~-~Not connected
+
+2019-06-05  21:16:50 INFO: 11~-~504~-~Not connected
+
+2019-06-05  21:16:50 INFO: 12~-~504~-~Not connected
+
+2019-06-05  21:16:50 INFO: 13~-~504~-~Not connected
+
+2019-06-05  21:16:51 WARNING: Re-initializing.
+
+2019-06-05  21:16:51 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:51 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:51 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:51 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:51 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:51 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:51 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:51 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:51 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:51 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:51 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:51 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:51 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:51 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:52 INFO: 0~-~504~-~Not connected
+
+2019-06-05  21:16:52 INFO: 1~-~504~-~Not connected
+
+2019-06-05  21:16:52 INFO: 2~-~504~-~Not connected
+
+2019-06-05  21:16:52 INFO: 3~-~504~-~Not connected
+
+2019-06-05  21:16:52 INFO: 4~-~504~-~Not connected
+
+2019-06-05  21:16:52 INFO: 5~-~504~-~Not connected
+
+2019-06-05  21:16:52 INFO: 6~-~504~-~Not connected
+
+2019-06-05  21:16:52 INFO: 7~-~504~-~Not connected
+
+2019-06-05  21:16:52 INFO: 8~-~504~-~Not connected
+
+2019-06-05  21:16:52 INFO: 9~-~504~-~Not connected
+
+2019-06-05  21:16:52 INFO: 10~-~504~-~Not connected
+
+2019-06-05  21:16:52 INFO: 11~-~504~-~Not connected
+
+2019-06-05  21:16:52 INFO: 12~-~504~-~Not connected
+
+2019-06-05  21:16:52 INFO: 13~-~504~-~Not connected
+
+2019-06-05  21:16:53 WARNING: Re-initializing.
+
+2019-06-05  21:16:53 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:53 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:53 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:53 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:53 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:53 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:53 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:53 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:53 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:53 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:53 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:53 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:53 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:53 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:54 INFO: 0~-~504~-~Not connected
+
+2019-06-05  21:16:54 INFO: 1~-~504~-~Not connected
+
+2019-06-05  21:16:54 INFO: 2~-~504~-~Not connected
+
+2019-06-05  21:16:54 INFO: 3~-~504~-~Not connected
+
+2019-06-05  21:16:54 INFO: 4~-~504~-~Not connected
+
+2019-06-05  21:16:54 INFO: 5~-~504~-~Not connected
+
+2019-06-05  21:16:54 INFO: 6~-~504~-~Not connected
+
+2019-06-05  21:16:54 INFO: 7~-~504~-~Not connected
+
+2019-06-05  21:16:54 INFO: 8~-~504~-~Not connected
+
+2019-06-05  21:16:54 INFO: 9~-~504~-~Not connected
+
+2019-06-05  21:16:54 INFO: 10~-~504~-~Not connected
+
+2019-06-05  21:16:54 INFO: 11~-~504~-~Not connected
+
+2019-06-05  21:16:54 INFO: 12~-~504~-~Not connected
+
+2019-06-05  21:16:54 INFO: 13~-~504~-~Not connected
+
+2019-06-05  21:16:55 WARNING: Re-initializing.
+
+2019-06-05  21:16:55 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:55 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:55 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:55 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:55 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:55 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:55 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:55 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:55 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:55 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:55 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:55 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:55 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:55 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:56 INFO: 0~-~504~-~Not connected
+
+2019-06-05  21:16:56 INFO: 1~-~504~-~Not connected
+
+2019-06-05  21:16:56 INFO: 2~-~504~-~Not connected
+
+2019-06-05  21:16:56 INFO: 3~-~504~-~Not connected
+
+2019-06-05  21:16:56 INFO: 4~-~504~-~Not connected
+
+2019-06-05  21:16:56 INFO: 5~-~504~-~Not connected
+
+2019-06-05  21:16:56 INFO: 6~-~504~-~Not connected
+
+2019-06-05  21:16:56 INFO: 7~-~504~-~Not connected
+
+2019-06-05  21:16:56 INFO: 8~-~504~-~Not connected
+
+2019-06-05  21:16:56 INFO: 9~-~504~-~Not connected
+
+2019-06-05  21:16:56 INFO: 10~-~504~-~Not connected
+
+2019-06-05  21:16:56 INFO: 11~-~504~-~Not connected
+
+2019-06-05  21:16:56 INFO: 12~-~504~-~Not connected
+
+2019-06-05  21:16:56 INFO: 13~-~504~-~Not connected
+
+2019-06-05  21:16:57 WARNING: Re-initializing.
+
+2019-06-05  21:16:57 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:57 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:57 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:57 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:57 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:57 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:57 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:57 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:57 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:57 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:57 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:57 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:57 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:57 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:58 INFO: 0~-~504~-~Not connected
+
+2019-06-05  21:16:58 INFO: 1~-~504~-~Not connected
+
+2019-06-05  21:16:58 INFO: 2~-~504~-~Not connected
+
+2019-06-05  21:16:58 INFO: 3~-~504~-~Not connected
+
+2019-06-05  21:16:58 INFO: 4~-~504~-~Not connected
+
+2019-06-05  21:16:58 INFO: 5~-~504~-~Not connected
+
+2019-06-05  21:16:58 INFO: 6~-~504~-~Not connected
+
+2019-06-05  21:16:58 INFO: 7~-~504~-~Not connected
+
+2019-06-05  21:16:58 INFO: 8~-~504~-~Not connected
+
+2019-06-05  21:16:58 INFO: 9~-~504~-~Not connected
+
+2019-06-05  21:16:58 INFO: 10~-~504~-~Not connected
+
+2019-06-05  21:16:58 INFO: 11~-~504~-~Not connected
+
+2019-06-05  21:16:58 INFO: 12~-~504~-~Not connected
+
+2019-06-05  21:16:58 INFO: 13~-~504~-~Not connected
+
+2019-06-05  21:16:59 WARNING: Re-initializing.
+
+2019-06-05  21:16:59 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:59 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:59 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:59 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:59 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:59 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:59 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:59 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:59 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:59 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:59 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:59 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:59 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:16:59 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:00 INFO: 0~-~504~-~Not connected
+
+2019-06-05  21:17:00 INFO: 1~-~504~-~Not connected
+
+2019-06-05  21:17:00 INFO: 2~-~504~-~Not connected
+
+2019-06-05  21:17:00 INFO: 3~-~504~-~Not connected
+
+2019-06-05  21:17:00 INFO: 4~-~504~-~Not connected
+
+2019-06-05  21:17:00 INFO: 5~-~504~-~Not connected
+
+2019-06-05  21:17:00 INFO: 6~-~504~-~Not connected
+
+2019-06-05  21:17:00 INFO: 7~-~504~-~Not connected
+
+2019-06-05  21:17:00 INFO: 8~-~504~-~Not connected
+
+2019-06-05  21:17:00 INFO: 9~-~504~-~Not connected
+
+2019-06-05  21:17:00 INFO: 10~-~504~-~Not connected
+
+2019-06-05  21:17:00 INFO: 11~-~504~-~Not connected
+
+2019-06-05  21:17:00 INFO: 12~-~504~-~Not connected
+
+2019-06-05  21:17:00 INFO: 13~-~504~-~Not connected
+
+2019-06-05  21:17:01 WARNING: Re-initializing.
+
+2019-06-05  21:17:01 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:01 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:01 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:01 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:01 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:01 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:01 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:01 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:01 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:01 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:01 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:01 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:01 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:01 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:02 INFO: 0~-~504~-~Not connected
+
+2019-06-05  21:17:02 INFO: 1~-~504~-~Not connected
+
+2019-06-05  21:17:02 INFO: 2~-~504~-~Not connected
+
+2019-06-05  21:17:02 INFO: 3~-~504~-~Not connected
+
+2019-06-05  21:17:02 INFO: 4~-~504~-~Not connected
+
+2019-06-05  21:17:02 INFO: 5~-~504~-~Not connected
+
+2019-06-05  21:17:02 INFO: 6~-~504~-~Not connected
+
+2019-06-05  21:17:02 INFO: 7~-~504~-~Not connected
+
+2019-06-05  21:17:02 INFO: 8~-~504~-~Not connected
+
+2019-06-05  21:17:02 INFO: 9~-~504~-~Not connected
+
+2019-06-05  21:17:02 INFO: 10~-~504~-~Not connected
+
+2019-06-05  21:17:02 INFO: 11~-~504~-~Not connected
+
+2019-06-05  21:17:02 INFO: 12~-~504~-~Not connected
+
+2019-06-05  21:17:02 INFO: 13~-~504~-~Not connected
+
+2019-06-05  21:17:03 WARNING: Re-initializing.
+
+2019-06-05  21:17:03 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:03 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:03 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:03 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:03 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:03 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:03 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:03 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:03 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:03 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:03 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:03 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:03 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:03 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:04 INFO: 0~-~504~-~Not connected
+
+2019-06-05  21:17:04 INFO: 1~-~504~-~Not connected
+
+2019-06-05  21:17:04 INFO: 2~-~504~-~Not connected
+
+2019-06-05  21:17:04 INFO: 3~-~504~-~Not connected
+
+2019-06-05  21:17:04 INFO: 4~-~504~-~Not connected
+
+2019-06-05  21:17:04 INFO: 5~-~504~-~Not connected
+
+2019-06-05  21:17:04 INFO: 6~-~504~-~Not connected
+
+2019-06-05  21:17:04 INFO: 7~-~504~-~Not connected
+
+2019-06-05  21:17:04 INFO: 8~-~504~-~Not connected
+
+2019-06-05  21:17:04 INFO: 9~-~504~-~Not connected
+
+2019-06-05  21:17:04 INFO: 10~-~504~-~Not connected
+
+2019-06-05  21:17:04 INFO: 11~-~504~-~Not connected
+
+2019-06-05  21:17:04 INFO: 12~-~504~-~Not connected
+
+2019-06-05  21:17:04 INFO: 13~-~504~-~Not connected
+
+2019-06-05  21:17:05 WARNING: Re-initializing.
+
+2019-06-05  21:17:05 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:05 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:05 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:05 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:05 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:05 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:05 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:05 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:05 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:05 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:05 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:05 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:05 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:05 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:06 INFO: 0~-~504~-~Not connected
+
+2019-06-05  21:17:06 INFO: 1~-~504~-~Not connected
+
+2019-06-05  21:17:06 INFO: 2~-~504~-~Not connected
+
+2019-06-05  21:17:06 INFO: 3~-~504~-~Not connected
+
+2019-06-05  21:17:06 INFO: 4~-~504~-~Not connected
+
+2019-06-05  21:17:06 INFO: 5~-~504~-~Not connected
+
+2019-06-05  21:17:06 INFO: 6~-~504~-~Not connected
+
+2019-06-05  21:17:06 INFO: 7~-~504~-~Not connected
+
+2019-06-05  21:17:06 INFO: 8~-~504~-~Not connected
+
+2019-06-05  21:17:06 INFO: 9~-~504~-~Not connected
+
+2019-06-05  21:17:06 INFO: 10~-~504~-~Not connected
+
+2019-06-05  21:17:06 INFO: 11~-~504~-~Not connected
+
+2019-06-05  21:17:06 INFO: 12~-~504~-~Not connected
+
+2019-06-05  21:17:06 INFO: 13~-~504~-~Not connected
+
+2019-06-05  21:17:07 WARNING: Re-initializing.
+
+2019-06-05  21:17:07 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:07 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:07 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:07 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:07 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:07 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:07 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:07 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:07 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:07 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:07 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:07 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:07 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:07 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:08 INFO: 0~-~504~-~Not connected
+
+2019-06-05  21:17:08 INFO: 1~-~504~-~Not connected
+
+2019-06-05  21:17:08 INFO: 2~-~504~-~Not connected
+
+2019-06-05  21:17:08 INFO: 3~-~504~-~Not connected
+
+2019-06-05  21:17:08 INFO: 4~-~504~-~Not connected
+
+2019-06-05  21:17:08 INFO: 5~-~504~-~Not connected
+
+2019-06-05  21:17:08 INFO: 6~-~504~-~Not connected
+
+2019-06-05  21:17:08 INFO: 7~-~504~-~Not connected
+
+2019-06-05  21:17:08 INFO: 8~-~504~-~Not connected
+
+2019-06-05  21:17:08 INFO: 9~-~504~-~Not connected
+
+2019-06-05  21:17:08 INFO: 10~-~504~-~Not connected
+
+2019-06-05  21:17:08 INFO: 11~-~504~-~Not connected
+
+2019-06-05  21:17:08 INFO: 12~-~504~-~Not connected
+
+2019-06-05  21:17:08 INFO: 13~-~504~-~Not connected
+
+2019-06-05  21:17:09 WARNING: Re-initializing.
+
+2019-06-05  21:17:09 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:09 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:09 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:09 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:09 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:09 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:09 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:09 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:09 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:09 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:09 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:09 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:09 INFO: -1~-~504~-~Not connected
+
+2019-06-05  21:17:09 INFO: -1~-~504~-~Not connected
 

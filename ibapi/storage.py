@@ -42,5 +42,8 @@ class Storage(object):
     
     def is_initialized(self):
         
-        self.current_candle = self.data[-1]
-        return len(self.data) == self.num_periods
+        try:
+            self.current_candle = self.data[-1]
+            return len(self.data) == self.num_periods
+        except:
+            return False

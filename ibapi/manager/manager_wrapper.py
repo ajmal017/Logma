@@ -20,12 +20,45 @@ class ManagerWrapper(EWrapper):
 		if error_code == 103:
 
 			loggers['error'].warning("Duplicate OID - Rerouting")
+			
 			order, trade = self.orders[id_], self.order2trade[id_]
-			oid = self.get_oid()
-			trade.orders[order.key]['order_id'] = oid
+			trade.orders[order.key]['order_id'] = self.get_oid()
 			trade.update_and_send(order.key, order.lmtPrice)
 
+			## Book keeping
+			del self.order2trade[id_]
+			del self.orders[id_]
+
+		elif error_code == 1100 and self.state == "ALIVE":
+
+			loggers['error'].warning("Manager Connection Lost - Waiting for reconnection message")
+
+			self.state = "DEAD"
+
+			for ticker in self.trades:
+
+				self.cancelMktData(self.ticker2id[ticker])
+				self.instruments[ticker].blocker.pause_job("manager_job")
+
+		elif error_code == 1102 and self.state == "DEAD":
+
+			loggers['error'].warning("Manager Connection Regained - Waiting for initialization ")
+
+			self.state = "ALIVE"
+			self.disconnect()
+
+			time.sleep(1)
+
+			self.connect(*self.connection)
+
+			for ticker in self.trades:
+
+				self.reqMktData(self.ticker2id[ticker], self.contracts[ticker], '', False, False, [])
+				self.instruments[ticker].blocker.resume_job("manager_job")
+
+
 	def nextValidId(self, orderId):
+		
 		self.order_id = orderId
 
 	def orderStatus(self, orderId, status, filled, remaining, avgFilledPrice, 
@@ -67,6 +100,7 @@ class ManagerWrapper(EWrapper):
 					trade.on_close()
 
 		except Exception as e:
+			
 			print('Im here - Order Status: {}'.format(status))
 			print(e)
 
