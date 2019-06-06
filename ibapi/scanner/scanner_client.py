@@ -15,7 +15,7 @@ class ScannerClient(EClient):
 
 		EClient.__init__(self, wrapper = wrapper)
 
-	def init_historical_data(self):
+	def init_data(self):
 
 		for ticker, contract in self.contracts.items():
 
@@ -23,26 +23,11 @@ class ScannerClient(EClient):
 
 			self.storages[ticker] = Storage(ticker = ticker, num_periods = self.num_periods, time_period = self.time_period)
 			reqId = self.ticker2id[ticker]
-			self.reqHistoricalData(reqId, contract, '', *self.config, [])
+			self.reqHistoricalData(reqId, contract, datetime.now().strftime('%Y%m%d %H:%M:%S'), *self.config, [])
 
-		time.sleep(1)
+	def cancel_data(self):
 
-		initialized = True
-		for ticker in self.storages:
-			initialized = self.storages[ticker].is_initialized() and initialized
+		for ticker in self.contracts.items():
 
-		if not initialized:
-			loggers['error'].warning('Re-initializing.')
-			self.cancel_historical_data()
-			time.sleep(1)
-			return self.init_historical_data()
-
-	def cancel_historical_data(self):
-
-		for ticker in self.contracts:
-
-			loggers[ticker].info('Cancelling historical data.')
-			
 			reqId = self.ticker2id[ticker]
-			del self.storages[ticker]		
-			self.cancelHistoricalData(reqId)
+			self.cancelRealTimeBars(reqId)

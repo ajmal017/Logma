@@ -1,7 +1,7 @@
 from ibapi.wrapper import EWrapper
 from tools.zlogging import loggers
 
-from datetime import datetime
+from datetime import datetime, timedelta
 import queue, time
 
 import numpy as np
@@ -28,13 +28,13 @@ class ScannerWrapper(EWrapper):
 
 			self.state = "ALIVE"
 
-			self.cancel_historical_data()
+			self.cancel_data()
 			self.disconnect()
 
 			time.sleep(1)
 
 			self.connect(*self.connection)
-			self.init_historical_data()
+			self.init_data()
 
 			## Repoint with fresh data
 			for ticker in self.instruments:
@@ -42,9 +42,24 @@ class ScannerWrapper(EWrapper):
 				self.instruments[ticker].blocker.resume_job('scanner_job')
 
 	def historicalData(self, reqId, bar):
-		ticker = self.id2ticker[reqId]
-		self.storages[ticker].append(bar)
 
-	def historicalDataUpdate(self, reqId, bar):
 		ticker = self.id2ticker[reqId]
-		self.storages[ticker].update(bar)
+		self.storages[ticker].data.append((bar.date, bar.open, bar.high, bar.low, bar.close))
+
+	def historicalDataEnd(self, reqId, start, end):
+
+		ticker = self.id2ticker[reqId]
+		storage = self.storages[ticker]
+
+		storage.current_candle_time = storage.candle_time()
+		storage.current_candle = storage.data[49]
+
+		self.reqRealTimeBars(reqId, self.contracts[ticker], 5, "MIDPOINT", False, [])
+
+	def realtimeBar(self, reqId, date, open_, high, low, close, volume, WAP, count):
+
+		ticker = self.id2ticker[reqId]
+		storage = self.storages[ticker]
+
+		date = (datetime.utcfromtimestamp(date) - timedelta(hours=4)).strftime("%Y%m%d  %H:%M:00")
+		storage.update((date, open_, high, low, close))

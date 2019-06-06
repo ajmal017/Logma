@@ -50,7 +50,7 @@ class Scanner(ScannerClient, ScannerWrapper):
 				whatToShow = "MIDPOINT",
 				useRTH = 0,
 				formatDate = 1,
-				keepUpToDate = True
+				keepUpToDate = False
 			)
 
 		print('Config', self.config)
@@ -63,7 +63,7 @@ class Scanner(ScannerClient, ScannerWrapper):
 
 	def on_start(self):
 
-		self.init_historical_data()
+		self.init_data()
 
 	def on_close(self):
 

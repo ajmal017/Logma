@@ -14,10 +14,7 @@ class Storage(object):
         self.time_period = time_period
         
         self.fmt = '%Y%m%d  %H:%M:00'
-        
-        self.current_candle_time = self.candle_time()
         self.current_candle = None
-
         self.logger = loggers[ticker]
         
     def candle_time(self):
@@ -27,18 +24,26 @@ class Storage(object):
         return dt.strftime(self.fmt)
     
     def update(self, bar):
-        if self.current_candle_time == bar.date:
-            self.current_candle = bar
+
+        n_date, n_open, n_high, n_low, n_close = bar
+
+        if self.current_candle_time == n_date:
+            print()
+            print("Agg Candle")
+            print(datetime.now().strftime(self.fmt[:-2]+'%S'), self.current_candle_time, n_date)
+            c_date, c_open, c_high, c_low, c_close = self.current_candle
+            self.current_candle = (self.current_candle_time, c_open, max(c_high, n_high), min(c_low, n_low), n_close)
+        else:
+            print()
+            print("New Candle")
+            print(datetime.now().strftime(self.fmt[:-2]+'%S'), self.current_candle_time, n_date)
+            self.data.append(self.current_candle)
+            self.current_candle_time = self.candle_time()
+            self.current_candle = (self.current_candle_time, n_open, n_high, n_low, n_close)
             
     def on_period(self):
         
-        self.append(self.current_candle)
-        self.current_candle_time = self.candle_time()
-        self.logger.info('TIME: {}~-~{}'.format(self.current_candle.date, self.current_candle_time))
-
-    def append(self, bar):
-
-        self.data.append((bar.date, bar.open, bar.high, bar.low, bar.close))
+        self.logger.info('TIME: {}~-~{}'.format(self.current_candle[0], self.current_candle_time))
     
     def is_initialized(self):
         

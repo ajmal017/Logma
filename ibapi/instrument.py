@@ -56,7 +56,6 @@ class Instrument(Thread):
 
             self.logger.info('JOB: Stopping Manager')
             self.blocker.pause_job('manager_job')
-
             
     def microsecond_job(self, job_func, params):
         
