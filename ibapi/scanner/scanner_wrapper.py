@@ -13,7 +13,7 @@ class ScannerWrapper(EWrapper):
 		msg = '{}~-~{}~-~{}'.format(reqId, error_code, error_msg)
 		loggers['error'].info(msg)
 
-		if error_code == 1100 and self.state == 'ALIVE':
+		if (error_code == 1100 or error_code == 2105) and self.state == 'ALIVE':
 
 			loggers['error'].warning("Scanner Connection Lost - Waiting for reconnection message")
 
@@ -22,7 +22,7 @@ class ScannerWrapper(EWrapper):
 			for ticker in self.instruments:
 				self.instruments[ticker].blocker.pause_job('scanner_job')
 
-		elif (error_code == 1102 or error_code == 1101) and self.state == "DEAD":
+		elif (error_code == 1102 or error_code == 1101 or error_code == 2106) and self.state == "DEAD":
 
 			loggers['error'].warning("Scanner Connection Regained - Waiting for initialization")
 
@@ -30,8 +30,6 @@ class ScannerWrapper(EWrapper):
 
 			self.cancel_data()
 			self.disconnect()
-
-			time.sleep(1)
 
 			self.connect(*self.connection)
 			self.init_data()

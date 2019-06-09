@@ -28,15 +28,9 @@ class Storage(object):
         n_date, n_open, n_high, n_low, n_close = bar
 
         if self.current_candle_time == n_date:
-            print()
-            print("Agg Candle")
-            print(datetime.now().strftime(self.fmt[:-2]+'%S'), self.current_candle_time, n_date)
             c_date, c_open, c_high, c_low, c_close = self.current_candle
             self.current_candle = (self.current_candle_time, c_open, max(c_high, n_high), min(c_low, n_low), n_close)
         else:
-            print()
-            print("New Candle")
-            print(datetime.now().strftime(self.fmt[:-2]+'%S'), self.current_candle_time, n_date)
             self.data.append(self.current_candle)
             self.current_candle_time = self.candle_time()
             self.current_candle = (self.current_candle_time, n_open, n_high, n_low, n_close)

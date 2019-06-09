@@ -27,7 +27,7 @@ class ScannerClient(EClient):
 
 	def cancel_data(self):
 
-		for ticker in self.contracts.items():
+		for ticker in self.contracts:
 
 			reqId = self.ticker2id[ticker]
 			self.cancelRealTimeBars(reqId)
