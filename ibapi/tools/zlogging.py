@@ -1,5 +1,5 @@
 from elasticsearch import Elasticsearch, helpers
-from datetime import datetime
+from datetime import datetime, timedelta
 import logging
 import os
 
@@ -54,7 +54,42 @@ loggers['error'] = logger
 fmt = '%Y-%m-%dT%H:%M:%S'
 es = Elasticsearch([{"host" : "localhost", "port" : 9200}])
 
-def post_doc(trade):
+def post_market_data_doc(ticker, time_period, data_time, data_type, data, dates = None):
+
+	dt = datetime.now()
+	dt -= timedelta(minutes = dt.minute % time_period)
+
+	if type(data_time) == str:
+		data_time = datetime.strptime(data_time, '%Y%m%d  %H:%M:%S').strftime(fmt)
+	else:
+		data_time = (datetime.utcfromtimestamp(data_time) - timedelta(hours=4)).strftime(fmt)
+
+	data = {
+		"historical" : data,
+	}
+	if dates is not None:
+		data['dates'] = dates
+
+	doc_ = {
+		"ticker" : ticker,
+		"candleTime" : dt.strftime(fmt),
+		"dataTime" : data_time,
+		"dataType" : data_type,
+		"data" : data
+	}
+
+	doc_ = {
+		"_index" : "marketdata",
+		"_type" : "_doc",
+		"_source" : doc_
+	}
+
+	try:
+		helpers.bulk(es, [doc_])
+	except Exception as e:
+		loggers['error'].info(e)
+
+def post_trade_doc(trade):
 
 	trade.data['dates'] = [x[0] for x in trade.data['historical']]
 	trade.data['historical'] = [x[1:] for x in trade.data['historical']]
@@ -74,7 +109,8 @@ def post_doc(trade):
 		"maturity" : trade.maturity,
 		"numPeriods" : len(trade.data['historical']),
 		"executionLogic" : trade.execution_logic,
-		"tickIncrement" : trade.tick_incr
+		"tickIncrement" : trade.tick_incr,
+		"numUpdates" : trade.num_updates
 	}
 
 	if trade.status != 'PENDING':
@@ -94,4 +130,7 @@ def post_doc(trade):
 		"_source" : doc_
 	}
 
-	helpers.bulk(es, [doc_])
+	try:
+		helpers.bulk(es, [doc_])
+	except Exception as e:
+		loggers['error'].info(e)

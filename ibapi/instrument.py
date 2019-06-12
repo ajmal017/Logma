@@ -11,7 +11,7 @@ class Instrument(Thread):
 
     n_times_per_second = 10
     
-    def __init__(self, ticker, time_period, short_num_periods, num_periods, manager, storage):
+    def __init__(self, ticker, time_period, short_num_periods, num_periods, manager):
 
         Thread.__init__(self)
         
@@ -22,26 +22,25 @@ class Instrument(Thread):
         self.n_micros = int(1e6 / self.n_times_per_second)
 
         self.model = Model(ticker = ticker, short_num_periods = short_num_periods, num_periods = num_periods)
-        self.storage = storage
         self.manager = manager
         self.logger = loggers[ticker]
+
+        self.state = "ACTIVE"
         
     def scanner_job(self):
-    
-        self.storage.on_period()
 
-        if self.ticker not in self.manager.trades:
+        if self.ticker not in self.manager.trades and self.state == 'ACTIVE':
 
-            signal, features, direction, price = self.model.is_trade(list(self.storage.data))
+            signal, features, direction, price = self.model.is_trade(list(self.storage.data).copy())
 
-            if False:
+            if True:
 
                 data = {
                     "historical" : list(self.storage.data),
                     "features" : features
                 }
 
-                self.manager.on_signal(direction = 1, quantity = 20000, symbol = self.ticker, price = self.storage.data[-1][-1], data = data)
+                self.manager.on_signal(direction = 1, quantity = 20000, symbol = self.ticker, price = self.storage.data[-1][-1], data = data.copy())
 
                 self.logger.info('JOB: Starting Manager')
                 self.blocker.resume_job('manager_job')
@@ -77,7 +76,6 @@ class Instrument(Thread):
         }
         self.blocker = BlockingScheduler(job_defaults = job_defaults)
         self.blocker.add_job(self.manager_job, 'cron', second='*', id='manager_job', next_run_time=None)
-        self.blocker.add_job(self.scanner_job, 'cron', minute='*/{}'.format(self.time_period), id='scanner_job')
         
         self.blocker.start()
 

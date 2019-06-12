@@ -80,10 +80,6 @@ class Strategy(object):
 
 	def on_start(self):
 
-		## Start data collection threads
-		self.scanner.on_start()
-		self.manager.on_start()
-
 		## Initialize instrument threads
 		for ticker in self.contracts:
 			self.instruments[ticker] = Instrument(
@@ -91,14 +87,17 @@ class Strategy(object):
 					time_period = self.time_period,
 					short_num_periods = self.short_num_periods,
 					num_periods = self.num_periods,
-					manager = self.manager,
-					storage = self.scanner.storages[ticker]
+					manager = self.manager
 				)
 			self.instruments[ticker].start()
 
 		## Pass objects to scanner/manager to handle market data errors
 		self.scanner.instruments = self.instruments
 		self.manager.instruments = self.instruments
+
+		## Start data collection threads
+		self.scanner.on_start()
+		self.manager.on_start()
 
 	def on_close(self):
 

@@ -21,7 +21,7 @@ class ScannerClient(EClient):
 
 			loggers[ticker].info('Initializing historical data')
 
-			self.storages[ticker] = Storage(ticker = ticker, num_periods = self.num_periods, time_period = self.time_period)
+			self.instruments[ticker].storage = Storage(ticker = ticker, num_periods = self.num_periods, time_period = self.time_period, scanner_job = self.instruments[ticker].scanner_job)
 			reqId = self.ticker2id[ticker]
 			self.reqHistoricalData(reqId, contract, datetime.now().strftime('%Y%m%d %H:%M:%S'), *self.config, [])
 

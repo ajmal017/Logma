@@ -1,7 +1,7 @@
 from datetime import datetime
 from tools.zorders import limit_order, limit_if_touched
 from tools.utils import adjust_price
-from tools.zlogging import loggers, post_doc
+from tools.zlogging import loggers, post_trade_doc
 
 from collections import namedtuple
 
@@ -20,6 +20,7 @@ class Trade(object):
 		self.direction = direction
 		self.action = action
 		self.closing_action = manager.closing_actions[action]
+		self.num_updates = []
 		self.data = data
 
 		## Manager stuff
@@ -145,7 +146,8 @@ class Trade(object):
 			del self.manager.trades[self.symbol]
 
 			## Logging
-			#post_doc(self)
+			post_trade_doc(self)
+			print('POSTED')
 
 			self.status == 'CLOSED'
 
@@ -157,7 +159,6 @@ class Trade(object):
 		oid = self.orders[order_key]['order_id']
 		oid = oid if oid is not None else self.manager.get_oid()
 		self.manager.placeOrder(oid, self.contract, self.orders[order_key]['order'])
-		print(order_key, self.symbol, oid)
 
 		## Book keeping
 		self.orders[order_key]['order_id'] = oid
@@ -165,6 +166,14 @@ class Trade(object):
 		self.manager.order2trade[oid] = self
 
 	def on_period(self):
+
+		## log the number of updates per minute
+		dt = (datetime.now() - self.init_time)
+		idx = int(dt.seconds / 60)
+		try:
+			self.num_updates[idx] += 1
+		except:
+			self.num_updates.append(1)
 		
 		if self.status == 'ACTIVE':
 

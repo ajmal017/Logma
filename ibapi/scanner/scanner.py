@@ -38,10 +38,10 @@ class Scanner(ScannerClient, ScannerWrapper):
 
 		## Health
 		self.state = "ALIVE"
-		self.data_state = "OK"
 
 		## Data storages
 		self.storages = {}
+		self.instruments = {}
 
 		## Historical data configuration
 		self.config = DataConfig(

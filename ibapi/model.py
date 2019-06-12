@@ -65,7 +65,7 @@ class Model(object):
         
     def is_trade(self, data):
 
-        dfe = pd.DataFrame(data.copy(), columns=['Datetime', 'Open', 'High', 'Low', 'Close'])
+        dfe = pd.DataFrame(data, columns=['Datetime', 'Open', 'High', 'Low', 'Close'])
         dfe.describe()
         df = dfe.iloc[1:, :].copy()
         

@@ -27,7 +27,7 @@ class ManagerWrapper(EWrapper):
 			del self.order2trade[id_]
 			del self.orders[id_]
 
-		elif error_code == 1100 and self.state == "ALIVE":
+		elif (error_code == 1100 or error_code == 2103) and self.state == "ALIVE":
 
 			loggers['error'].warning("Manager Connection Lost - Waiting for reconnection message")
 
@@ -38,7 +38,7 @@ class ManagerWrapper(EWrapper):
 				self.cancelMktData(self.ticker2id[ticker])
 				self.instruments[ticker].blocker.pause_job("manager_job")
 
-		elif error_code == 1102 and self.state == "DEAD":
+		elif (error_code == 1102 or error_code == 1102 or error_code == 2104) and self.state == "DEAD":
 
 			loggers['error'].warning("Manager Connection Regained - Waiting for initialization ")
 
@@ -104,6 +104,7 @@ class ManagerWrapper(EWrapper):
 
 	def tickPrice(self, tickerId, field, price, attribs):
 
+		## To avoid concurrent deletion of trade + receiving mkt data
 		try:
 
 			trade = self.trades[self.id2ticker[tickerId]]
@@ -112,5 +113,4 @@ class ManagerWrapper(EWrapper):
 				trade.on_period()
 
 		except Exception as e:
-			
 			print(e)
