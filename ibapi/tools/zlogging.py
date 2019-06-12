@@ -32,7 +32,7 @@ for ticker in tickers:
 
 	file_handler = logging.FileHandler('{}/{}/{}.log'.format(dir_, 'logs', ticker), 'w')
 	file_handler.setLevel(logging.INFO)
-	file_handler.setFormatter(logging.Formatter(fmt='%(asctime)s %(levelname)s: %(message)s\n', datefmt='%Y-%m-%d  %H:%M:%S'))
+	file_handler.setFormatter(logging.Formatter(fmt='%(asctime)s %(levelname)s: %(message)s', datefmt='%Y-%m-%d  %H:%M:%S'))
 
 	logger.addHandler(file_handler)
 
@@ -43,7 +43,7 @@ logger.setLevel(logging.INFO)
 
 file_handler = logging.FileHandler('{}/{}/{}.log'.format(dir_, 'logs', 'errors'), 'w')
 file_handler.setLevel(logging.INFO)
-file_handler.setFormatter(logging.Formatter(fmt='%(asctime)s %(levelname)s: %(message)s\n', datefmt='%Y-%m-%d  %H:%M:%S'))
+file_handler.setFormatter(logging.Formatter(fmt='%(asctime)s %(levelname)s: %(message)s', datefmt='%Y-%m-%d  %H:%M:%S'))
 
 logger.addHandler(file_handler)
 
@@ -53,6 +53,8 @@ loggers['error'] = logger
 
 fmt = '%Y-%m-%dT%H:%M:%S'
 es = Elasticsearch([{"host" : "localhost", "port" : 9200}])
+
+actions = []
 
 def post_market_data_doc(ticker, time_period, data_time, data_type, data, dates = None):
 
@@ -84,10 +86,17 @@ def post_market_data_doc(ticker, time_period, data_time, data_type, data, dates 
 		"_source" : doc_
 	}
 
-	try:
-		helpers.bulk(es, [doc_])
-	except Exception as e:
-		loggers['error'].info(e)
+	actions.append(doc_)
+
+	## Aliasing with our 5 minute time frame
+	if len(actions) % 107 == 0:
+
+		try:
+			helpers.bulk(es, [doc_])
+		except Exception as e:
+			loggers['error'].info(e)
+
+		actions = []
 
 def post_trade_doc(trade):
 

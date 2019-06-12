@@ -69,7 +69,6 @@ class ManagerWrapper(EWrapper):
 			trade = self.order2trade[orderId]
 
 			## Get the order itself
-			print('orders', self.orders.keys())
 			order = self.orders[orderId]
 
 			if order.purpose == 'initiate':
@@ -98,9 +97,7 @@ class ManagerWrapper(EWrapper):
 					trade.on_close()
 
 		except Exception as e:
-			
-			print('Im here - Order Status: {}'.format(status))
-			print(e)
+			pass
 
 	def tickPrice(self, tickerId, field, price, attribs):
 
@@ -113,4 +110,4 @@ class ManagerWrapper(EWrapper):
 				trade.on_period()
 
 		except Exception as e:
-			print(e)
+			pass
