@@ -12,12 +12,27 @@ import joblib
 
 from consts import dir_
 
+###################################################################
+## This scales and transforms all the features to tame them. 
+## Markets are wild so ordinary standard scaling produces 13+ standard deviations
+###################################################################
+
+###################################################################
+### GLOBAL VARIABLES
+###################################################################
+
 upper = 0.99
 lower = 0.01
+
+log_trim = 5
 
 n_jobs = 6
 
 input_dir_ = 'D:/TickData_UZ'.format(dir_)
+
+###################################################################
+### GLOBAL FUNCTIONS
+###################################################################
 
 def log_trimming(x, cutoff_gt, cutoff_lt):
 
@@ -43,11 +58,21 @@ def scale_it(ticker):
 
 	scaling_dict = {}
 
-	features = pd.read_csv('{}/Features_new/{}_clean.csv'.format(dir_, ticker))
+	features = pd.read_csv('{}/Features/{}_clean.csv'.format(dir_, ticker))
 	trades =  pd.read_csv('{}/AddTrades/{}_trades.csv'.format(dir_, ticker))
 
-	features.LongKurtosis = log_trimming(features.LongKurtosis.values.copy(), 10, -10)
-	features.ShortKurtosis = log_trimming(features.ShortKurtosis.values.copy(), 10, -10)
+	## Filter out double feature entries (is a really rare case)
+	unique_dts = features.Datetime.value_counts()
+	unique_dts = unique_dts[unique_dts == 1].index.values
+	trades = trades[trades.Datetime.isin(unique_dts)]
+	## Scale w.r.t the trades alone. The live algo only runs through those examples that have a signal.
+	## Previously was w.r.t to all candles. Therefore need to scale over all signals.
+	features = features[features.Datetime.isin(trades.Datetime)]
+
+	print(features.shape, trades.shape)
+
+	features.LongKurtosis = log_trimming(features.LongKurtosis.values.copy(), log_trim, -log_trim)
+	features.ShortKurtosis = log_trimming(features.ShortKurtosis.values.copy(), log_trim, -log_trim)
 
 	x = features.Change.values.copy()
 	features.Change, lf, uf = iqr_trimming(x, upper, lower)
@@ -69,6 +94,18 @@ def scale_it(ticker):
 	features.ShortProg, lf, uf = iqr_trimming(x, upper, lower)
 	scaling_dict['shortprog'] = (lf, uf)
 
+	x = features.ShortApproximateEntropy.values.copy()
+	features.ShortApproximateEntropy, lf, uf = iqr_trimming(x, upper, lower)
+	scaling_dict['shortappentropy'] = (lf, uf)
+
+	x = features.LongApproximateEntropy.values.copy()
+	features.LongApproximateEntropy, lf, uf = iqr_trimming(x, upper, lower)
+	scaling_dict['longappentropy'] = (lf, uf)
+
+	x = features.LongSpectralEntropy.values.copy()
+	features.LongSpectralEntropy, lf, uf = iqr_trimming(x, upper, lower)
+	scaling_dict['longspecentropy'] = (lf, uf)
+
 	### SCALING
 	drop = ['ShortSpectralEntropy']
 	no_scale = ['LongStationarity', 'ShortStationarity', 'Asia', 'Amer', 'Eur']
@@ -85,21 +122,30 @@ def scale_it(ticker):
 	scaling_dict['scaled_features'] = cols
 	features.loc[:, cols] = X_scale
 
-	features['Change'] = log_trimming(features.Change.values.copy(), 7, -7)
-	features['LongProg'] = log_trimming(features.LongProg.values.copy(), 7, -7)
-	features['ShortProg'] = log_trimming(features.ShortProg.values.copy(), 7, -7)
-	features['DLongSMA'] = log_trimming(features.DLongSMA.values.copy(), 7, -7)
-	features['DShortSMA'] = log_trimming(features.DShortSMA.values.copy(), 7, -7)
+	features['Change'] = log_trimming(features.Change.values.copy(), log_trim, -log_trim)
+
+	features['LongProg'] = log_trimming(features.LongProg.values.copy(), log_trim, -log_trim)
+	features['ShortProg'] = log_trimming(features.ShortProg.values.copy(), log_trim, -log_trim)
+
+	features['DLongSMA'] = log_trimming(features.DLongSMA.values.copy(), log_trim, -log_trim)
+	features['DShortSMA'] = log_trimming(features.DShortSMA.values.copy(), log_trim, -log_trim)
+
+	features['ShortApproximateEntropy'] = log_trimming(features.ShortApproximateEntropy.values.copy(), log_trim, -log_trim)
+	features['LongApproximateEntropy'] = log_trimming(features.LongApproximateEntropy.values.copy(), log_trim, -log_trim)
+	
+	features['LongSpectralEntropy'] = log_trimming(features.LongSpectralEntropy.values.copy(), log_trim, -log_trim)
 
 	trades = trades.merge(features, on='Datetime', how='outer').dropna().drop('ShortSpectralEntropy', axis=1)
 
 	print()
 	print(trades[['LongKurtosis', 'ShortKurtosis', 'LongProg', 'ShortProg', 'DShortSMA']].describe())
 	print()
+	print(trades.head())
+	print()
 
 	## Save
 	trades.to_csv('{}/Scaled/{}_scaled.csv'.format(dir_, ticker), index=False)
-	with open('{}/scalers/{}'.format(dir_, ticker), 'wb') as file:
+	with open('{}/Scalers/{}'.format(dir_, ticker), 'wb') as file:
 		joblib.dump(scaling_dict, file)
 
 def get_tickers():

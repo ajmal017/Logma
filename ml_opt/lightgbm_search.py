@@ -29,7 +29,10 @@ def get_main_df():
 		df['Ticker'] = ticker
 		main.append(df)
 
-	main = pd.concat(main, axis=0).iloc[:, 1:].reset_index(drop=True)
+	main = pd.concat(main, axis=0).reset_index(drop=True)
+
+	print(main.head())
+	print(main.columns)
 
 	main.loc[main.TTC <= 20, 'TTC'] = 1
 	main.loc[main.TTC > 20, 'TTC'] = 0
@@ -50,11 +53,11 @@ def eval_fold(idct, idcv, X_train, y_train, param_grid, i):
 	for j, param in enumerate(ParameterGrid(param_grid)):
 		
 		gbm = lgbm.LGBMClassifier(objective='binary', **param)
-		gbm = gbm.fit(xt, yt, eval_set=[(xv, yv)], eval_metric='auc',
+		gbm = gbm.fit(xt, yt, eval_set=[(xv, yv)], eval_metric=evalerror,
 					  early_stopping_rounds=10, verbose=250)
 
 		key1 = list(gbm.best_score_)[0]
-		best_params.append([param, gbm.best_score_[key1]['binary_logloss'], gbm.best_score_[key1]['auc']])
+		best_params.append([param, gbm.best_score_[key1]['binary_logloss'], gbm.best_score_[key1]['accuracy']])
 
 		print(j, '\n')
 
@@ -65,9 +68,9 @@ def go_parallel():
 
 	main = get_main_df()
 
-	train_pct = 0.7
+	train_pct = 0.5
 	test_pct = 1 - train_pct
-	validation_pct = 0.1
+	validation_pct = 0.15
 
 	idc = np.random.permutation(main.shape[0])
 	train_len = int(train_pct * main.shape[0])
@@ -83,6 +86,7 @@ def go_parallel():
 	y_train = train.TTC.values
 	idx = train.columns.tolist().index('sig20')-1
 	X_train = train.iloc[:, idx:-1]
+	print(X_train.columns)
 
 	test_tickers = test.Ticker.values
 	test_drawdown = test.Drawdown.values
@@ -90,6 +94,7 @@ def go_parallel():
 	y_test = test.TTC.values
 	idx = test.columns.tolist().index('sig20')-1
 	X_test = test.iloc[:, idx:-1]
+	print(X_train.columns)
 
 	print(X_train.head())
 	print(X_test.head())
@@ -117,7 +122,7 @@ def go_parallel():
 
 	np.random.seed(72)
 
-	Parallel(n_jobs=5)(delayed(eval_fold)(idct, idcv, X_train, y_train, param_grid, i)
+	Parallel(n_jobs=1)(delayed(eval_fold)(idct, idcv, X_train, y_train, param_grid, i)
 					for i, (idct, idcv) in enumerate(kfold.split(X_train, y_train)))
 
 if __name__ == '__main__':

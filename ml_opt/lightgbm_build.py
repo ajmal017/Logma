@@ -31,7 +31,7 @@ def get_main_df():
 		df['Ticker'] = ticker
 		main.append(df)
 
-	main = pd.concat(main, axis=0).iloc[:, 1:].reset_index(drop=True)
+	main = pd.concat(main, axis=0).reset_index(drop=True)
 
 	main.loc[main.TTC <= 20, 'TTC'] = 1
 	main.loc[main.TTC > 20, 'TTC'] = 0
@@ -63,20 +63,29 @@ def eval_fold(idct, idcv, X_train, y_train, param_grid, i):
 	with open('%s/results_%s.pkl' % (dir_,i), 'wb') as file:
 		joblib.dump(best_params, file)
 
-def go_parallel():
+def main():
 
-	main = get_main_df()
+	main = []
+	for file in os.listdir('D:/AlgoMLData/Scaled/'):
+	    print(file)
+	    ticker = file.split('_')[0]
+	    df = pd.read_csv('D:/AlgoMLData/Scaled/{}'.format(file))
+	    df['Ticker'] = ticker
+	    main.append(df)
+
+	main = pd.concat(main, axis=0).reset_index(drop=True)
+	main = main[(main.sig30 == 1) & (main.sig50 == 1)]
+	main.loc[main.TTC <= 20, 'TTC'] = 1
+	main.loc[main.TTC > 20, 'TTC'] = 0
+
+	print(main.TTC.value_counts())
 
 	train_pct = 0.5
 	test_pct = 1 - train_pct
-	validation_pct = 0.2
+	validation_pct = 0.1
 
 	idc = np.random.permutation(main.shape[0])
 	train_len = int(train_pct * main.shape[0])
-
-	print(main.shape)
-
-	print(main.head())
 
 	train = main.iloc[idc[:train_len], :]
 	test = main.iloc[idc[train_len:], :]
@@ -85,45 +94,43 @@ def go_parallel():
 	train_drawdowns = train.Drawdown.values
 	train_directions = train.Direction.values
 	y_train = train.TTC.values
-	idx = train.columns.tolist().index('sig20')-1
+	idx = train.columns.tolist().index('Direction')
 	X_train = train.iloc[:, idx:-1]
+	print(X_train.columns)
+
+	idc = np.random.permutation(X_train.shape[0])
+	pct = int(0.2*X_train.shape[0])
+	idc_train = idc[pct:]
+	idc_val = idc[:pct]
+	X_val, y_val = X_train.values[idc_val, :], y_train[idc_val]
+	X_train, y_train = X_train.values[idc_train, :], y_train[idc_train]
 
 	test_tickers = test.Ticker.values
 	test_drawdown = test.Drawdown.values
 	test_directions = test.Direction.values
 	y_test = test.TTC.values
-	idx = test.columns.tolist().index('sig20')-1
+	idx = test.columns.tolist().index('Direction')
 	X_test = test.iloc[:, idx:-1]
+	print(X_test.columns)
 
-	## X-val
-	idx = int(X_test.shape[0]*validation_pct)
-	idc = np.random.permutation(X_test.shape[0])
-	X_val = X_test.values[idc[:idx]]
-	y_val = y_test[idc[:idx]]
-	X_test = X_test.values[idc[idx:]]
-	y_test = y_test[idc[idx:]]
+	gbm = lgbm.LGBMClassifier(
+	    num_leaves=21,
+	    max_depth=5,
+	    learning_rate=0.1,
+	    min_child_weight=0.0001,
+	    n_estimators=10000
+	)
 
-	params = {
-		'learning_rate': 0.05,
-		'max_depth': 10,
-		'min_child_weight': 0.0001,
-		'n_estimators': 10000,
-		'num_leaves': 19,
-		'objective' : 'binary'
-		}
+	gbm = gbm.fit(X_train, y_train, eval_set=[(X_val, y_val)], eval_metric='auc', early_stopping_rounds=50)
+	y_pred = gbm.predict_proba(X_test)
 
-	gbm = lgbm.LGBMClassifier(**params)
-	gbm = gbm.fit(X_train, y_train, early_stopping_rounds=10, eval_set=[(X_val, y_val)], eval_metric='auc')
-
-	## Check model accuracy
-	y_pred = gbm.predict(X_test)
-	print('Testing .. {} Trades .. Accuracy : {}'.format(X_train.shape[0], accuracy_score(y_pred, y_test)))
+	print('Testing .. {} Trades .. Accuracy : {}'.format(X_train.shape[0], accuracy_score(y_pred.argmax(axis=1), y_test)))
 
 	## Save Model
-	with open('models/lgbm_{}'.format(datetime.now().strftime('%Y-%m-%d')), 'wb') as file:
+	with open('../models/lgbm_{}'.format(datetime.now().strftime('%Y-%m-%d')), 'wb') as file:
 		joblib.dump(gbm, file)
 
-	with open('models/lgbm_{}'.format(datetime.now().strftime('%Y-%m-%d')), 'rb') as file:
+	with open('../models/lgbm_{}'.format(datetime.now().strftime('%Y-%m-%d')), 'rb') as file:
 		gbm = joblib.load(file)
 
 	## Check model accuracy
@@ -132,5 +139,5 @@ def go_parallel():
 
 if __name__ == '__main__':
 
-	go_parallel()
+	main()
 

@@ -8,11 +8,16 @@ from entropy import *
 from statsmodels.tsa.stattools import adfuller
 from sklearn.preprocessing import StandardScaler
 
+###################################################################
+## The model class computes a prediction given a signal has occured.
+## A model object is referenced by the instrument class.
+###################################################################
+
 class Model(object):
 
-    model_path = 'D:/AlgoMLData/Models/lgbm_2019-04-16'
+    model_path = 'D:/AlgoMLData/Models/lgbm_2019-06-16'
     scaling_dir = 'D:/AlgoMLData/Scalers'
-    log_trim = 7
+    log_trim = 5
 
     def __init__(self, ticker, short_num_periods, num_periods):
         
@@ -66,7 +71,6 @@ class Model(object):
     def is_trade(self, data):
 
         dfe = pd.DataFrame(data, columns=['Datetime', 'Open', 'High', 'Low', 'Close'])
-        dfe.describe()
         df = dfe.iloc[1:, :].copy()
         
         df['Hour'] = pd.to_datetime(df.Datetime).dt.hour
@@ -100,8 +104,8 @@ class Model(object):
             long_skew = df.Change.skew()
             short_skew = dfs.Change.skew()
 
-            long_kurtosis = kurtosis(df.Change.values)
-            short_kurtosis = kurtosis(dfs.Change.values)
+            long_kurtosis = self.log_trimming(kurtosis(df.Change.values))
+            short_kurtosis = self.log_trimming(kurtosis(dfs.Change.values))
             
             dlongsma = dfe.Close / dfe.Close.rolling(window=self.num_periods, min_periods=1).mean()
             dlongsma = dlongsma.values[-1]
@@ -126,9 +130,13 @@ class Model(object):
             shortprog = self.log_trimming(self.iqr_trimming(shortprog, 'shortprog'))
 
             longspec = spectral_entropy(df.Change.values, sf=self.num_periods, method='welch', nperseg=(self.num_periods/8), normalize=True)
-            
+            longspec = self.log_trimming(self.iqr_trimming(longspec, 'longspecentropy'))
+
             longape = app_entropy(df.Change.values.copy(), order=2, metric='chebyshev')
+            longape = self.log_trimming(self.iqr_trimming(longape, 'longappentropy'))
+
             shortape = app_entropy(dfs.Change.values.copy(), order=2, metric='chebyshev')
+            shortape = self.log_trimming(self.iqr_trimming(shortape, 'shortappentropy'))
 
             long_ac = df.Change.autocorr(11)
             short_ac = dfs.Change.autocorr(11)
