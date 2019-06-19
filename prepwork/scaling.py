@@ -71,8 +71,9 @@ def scale_it(ticker):
 
 	print(features.shape, trades.shape)
 
-	features.LongKurtosis = log_trimming(features.LongKurtosis.values.copy(), log_trim, -log_trim)
-	features.ShortKurtosis = log_trimming(features.ShortKurtosis.values.copy(), log_trim, -log_trim)
+	#####################
+	## IQR TRIMMING
+	#####################
 
 	x = features.Change.values.copy()
 	features.Change, lf, uf = iqr_trimming(x, upper, lower)
@@ -106,6 +107,10 @@ def scale_it(ticker):
 	features.LongSpectralEntropy, lf, uf = iqr_trimming(x, upper, lower)
 	scaling_dict['longspecentropy'] = (lf, uf)
 
+	#####################
+	## Standard Scaling
+	#####################
+
 	drop = ['ShortSpectralEntropy']
 	no_scale = ['LongStationarity', 'ShortStationarity', 'Asia', 'Amer', 'Eur']
 
@@ -121,7 +126,14 @@ def scale_it(ticker):
 	scaling_dict['scaled_features'] = cols
 	features.loc[:, cols] = X_scale
 
+	#####################
+	## LOG TRIMMING
+	#####################
+
 	features['Change'] = log_trimming(features.Change.values.copy(), log_trim, -log_trim)
+
+	features['LongKurtosis'] = log_trimming(features.LongKurtosis.values.copy(), log_trim, -log_trim)
+	features['ShortKurtosis'] = log_trimming(features.ShortKurtosis.values.copy(), log_trim, -log_trim)
 
 	features['LongProg'] = log_trimming(features.LongProg.values.copy(), log_trim, -log_trim)
 	features['ShortProg'] = log_trimming(features.ShortProg.values.copy(), log_trim, -log_trim)
@@ -133,6 +145,10 @@ def scale_it(ticker):
 	features['LongApproximateEntropy'] = log_trimming(features.LongApproximateEntropy.values.copy(), log_trim, -log_trim)
 	
 	features['LongSpectralEntropy'] = log_trimming(features.LongSpectralEntropy.values.copy(), log_trim, -log_trim)
+
+	#####################
+	## MERGE & SAVE
+	#####################
 
 	trades = trades.merge(features, on='Datetime', how='outer').dropna().drop('ShortSpectralEntropy', axis=1)
 

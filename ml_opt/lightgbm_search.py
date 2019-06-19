@@ -57,7 +57,7 @@ def eval_fold(idct, idcv, X_train, y_train, param_grid, i):
 					  early_stopping_rounds=10, verbose=250)
 
 		key1 = list(gbm.best_score_)[0]
-		best_params.append([param, gbm.best_score_[key1]['binary_logloss'], gbm.best_score_[key1]['accuracy']])
+		best_params.append([param, gbm.best_score_[key1]['binary_logloss'], gbm.best_score_[key1]['auc']])
 
 		print(j, '\n')
 

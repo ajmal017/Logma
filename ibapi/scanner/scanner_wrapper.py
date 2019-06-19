@@ -48,7 +48,8 @@ class ScannerWrapper(EWrapper):
 		storage = self.instruments[ticker].storage
 
 		storage.current_candle_time = storage.candle_time()
-		storage.current_candle = storage.data[49]
+		## Get the last candle (Remember we add an extra candle for cummulative product calculations)
+		storage.current_candle = storage.data[self.num_periods + 1]
 
 		self.instruments[ticker].state = "ACTIVE"
 		self.reqRealTimeBars(reqId, self.contracts[ticker], 5, "MIDPOINT", False, [])

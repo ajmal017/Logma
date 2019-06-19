@@ -130,6 +130,8 @@ def main():
 	with open('../models/lgbm_{}'.format(datetime.now().strftime('%Y-%m-%d')), 'wb') as file:
 		joblib.dump(gbm, file)
 
+	## Reload model and predict on same set.
+	## Ensure model correctness 
 	with open('../models/lgbm_{}'.format(datetime.now().strftime('%Y-%m-%d')), 'rb') as file:
 		gbm = joblib.load(file)
 

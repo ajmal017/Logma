@@ -45,7 +45,8 @@ class Scanner(ScannerClient, ScannerWrapper):
 
 		## Historical data configuration
 		self.config = DataConfig(
-				durationStr = "{} S".format(int(time_period * num_periods * 60)),
+				## Add one for the cummulative product calculation for Long & Short Progressions
+				durationStr = "{} S".format((num_periods + 1) * 60 * time_period),
 				barSizeSetting = "{} min".format(time_period),
 				whatToShow = "MIDPOINT",
 				useRTH = 0,

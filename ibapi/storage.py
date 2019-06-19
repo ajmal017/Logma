@@ -7,7 +7,8 @@ class Storage(object):
     
     def __init__(self, ticker, num_periods, time_period, scanner_job):
         
-        self.data = deque([], maxlen=num_periods)
+        ## Add one for the cummulative product calculation for Long & Short Progressions
+        self.data = deque([], maxlen=num_periods + 1)
 
         self.ticker = ticker
         self.num_periods = num_periods

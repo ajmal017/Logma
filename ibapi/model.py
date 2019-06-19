@@ -81,8 +81,9 @@ class Model(object):
         
     def is_trade(self, data):
 
-        dfe = pd.DataFrame(data, columns=['Datetime', 'Open', 'High', 'Low', 'Close'])
+        dfe = pd.DataFrame(data.copy(), columns=['Datetime', 'Open', 'High', 'Low', 'Close'])
         df = dfe.iloc[1:, :].copy()
+        dfs = df.iloc[-self.short_num_periods:, :].copy()
         
         df['Hour'] = pd.to_datetime(df.Datetime).dt.hour
         df['Change'] = (df.Close - df.Open) / df.Open
@@ -102,56 +103,66 @@ class Model(object):
         
         if self.is_signal(sig20, sig30, sig50):
             
+            ## Trade Direction
             direction = np.sign(change)*-1
             
+            ## Open-Close Price Change
             change = self.log_trimming(self.iqr_trimming(change, 'change'))
 
-            dfs = df.iloc[-self.short_num_periods:, :]
-
-            ## Distribution Statistics
+            ## Volatility
             long_vol = np.log(1e-8+(df.Change.std() / np.sqrt(self.num_periods)))
             short_vol = np.log(1e-8+(dfs.Change.std() / np.sqrt(self.short_num_periods)))
 
+            ## Skewness
             long_skew = np.nan_to_num(df.Change.skew())
             short_skew = np.nan_to_num(dfs.Change.skew())
 
+            ## Kurtosis
             long_kurtosis = np.nan_to_num(self.log_trimming(kurtosis(df.Change.values)))
             short_kurtosis = np.nan_to_num(self.log_trimming(kurtosis(dfs.Change.values)))
             
-            dlongsma = dfe.Close / dfe.Close.rolling(window=self.num_periods, min_periods=1).mean()
+            ## SMA Price Distance
+            dlongsma = df.Close / df.Close.rolling(window=self.num_periods, min_periods=1).mean()
             dlongsma = dlongsma.values[-1]
             dlongsma = self.log_trimming(self.iqr_trimming(dlongsma, 'dlongsma'))
-
-            dshortsma = dfe.Close / dfe.Close.rolling(window=self.short_num_periods, min_periods=1).mean()
+            #
+            dshortsma = df.Close / df.Close.rolling(window=self.short_num_periods, min_periods=1).mean()
             dshortsma = dshortsma.values[-1]
             dshortsma = self.log_trimming(self.iqr_trimming(dshortsma, 'dshortsma'))
-
-            dfe.Close = dfe.Close.pct_change() + 1
 
             # Market Sessions
             hour = df.Hour.values[-1]
             us_time = self.us[hour] if hour in self.us else 0
             eur_time = self.eur[hour] if hour in self.eur else 0
             asia_time = self.asia[hour] if hour in self.asia else 0
+
+            ## DFE - Extended dataframe to maintain 50 datapoints when calculating the % Change.
+            ## Close now in Pct Change Format. Use the second value to exclude the NaN value.
+            dfe.Close = dfe.Close.pct_change() + 1
             
+            ## Cummulative Price Progression
             longprog = dfe.Close.values[1:].cumprod()[-1]
             longprog = self.log_trimming(self.iqr_trimming(longprog, 'longprog'))
-
+            #
             shortprog = dfe.Close.values[-self.short_num_periods:].cumprod()[-1]
             shortprog = self.log_trimming(self.iqr_trimming(shortprog, 'shortprog'))
 
+            ## Spectral Entropy
             longspec = spectral_entropy(df.Change.values, sf=self.num_periods, method='welch', nperseg=(self.num_periods/8), normalize=True)
             longspec = np.nan_to_num(self.log_trimming(self.iqr_trimming(longspec, 'longspecentropy')))
 
+            ## Approximate Entropy
             longape = app_entropy(df.Change.values.copy(), order=2, metric='chebyshev')
             longape = np.nan_to_num(self.log_trimming(self.iqr_trimming(longape, 'longappentropy')))
-
+            #
             shortape = app_entropy(dfs.Change.values.copy(), order=2, metric='chebyshev')
             shortape = np.nan_to_num(self.log_trimming(self.iqr_trimming(shortape, 'shortappentropy')))
 
+            ## Autocorrelation
             long_ac = np.nan_to_num(df.Change.autocorr(11))
             short_ac = np.nan_to_num(dfs.Change.autocorr(11))
 
+            ## Stationarity Test
             t, _, _, _, t_crit, _ = adfuller(df.Change.values, autolag = 'AIC')
             t_crit = list(t_crit.values())[1]
             long_stat =  0 if (t < t_crit or np.isnan(t)) else 1
