@@ -106,7 +106,6 @@ def scale_it(ticker):
 	features.LongSpectralEntropy, lf, uf = iqr_trimming(x, upper, lower)
 	scaling_dict['longspecentropy'] = (lf, uf)
 
-	### SCALING
 	drop = ['ShortSpectralEntropy']
 	no_scale = ['LongStationarity', 'ShortStationarity', 'Asia', 'Amer', 'Eur']
 
