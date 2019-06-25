@@ -1,5 +1,5 @@
 from elasticsearch import Elasticsearch
-es = Elasticsearch([{"host" : "localhost", "port" : 9200}])
+es = Elasticsearch([{"host" : "192.168.2.38", "port" : 9200}])
 
 def query(filters):
     if len(filters) == 0:

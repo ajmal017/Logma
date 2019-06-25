@@ -13,7 +13,7 @@ class DashThread(Thread):
 	def run(self):
 
 		try:
-			self.app.run_server()
+			self.app.run_server(host='0.0.0.0', debug=False)
 		except:
 			print('App closed.')
 

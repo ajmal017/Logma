@@ -10,8 +10,8 @@ from sklearn.preprocessing import StandardScaler
 
 class Model(object):
 
-    model_path = 'D:/AlgoMLData/Models/lgbm_2019-04-16'
-    scaling_dir = 'D:/AlgoMLData/Scalers'
+    model_path = '/home/zquantz/Documents/Models/lgbm_2019-04-16'
+    scaling_dir = '/home/zquantz/Documents/Scalers'
     log_trim = 7
 
     def __init__(self, ticker, short_num_periods, num_periods):
@@ -150,7 +150,7 @@ class Model(object):
 
             feats[include] = self.scalers['ss'].transform([feats[include]])
 
-            return self.predict([feats])[0], feats, 1, df.Close.values[-1]
+            return self.predict([feats])[0], feats.tolist(), 1, df.Close.values[-1]
 
         else:
 

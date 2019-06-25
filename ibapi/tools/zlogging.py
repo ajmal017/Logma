@@ -1,10 +1,11 @@
 from elasticsearch import Elasticsearch, helpers
 from datetime import datetime, timedelta
+import numpy as np
 import logging
 import os
 
 dir_ = os.path.dirname(os.path.realpath(__name__))
-es = Elasticsearch([{"host" : "localhost", "port" : 9200}])
+es = Elasticsearch([{"host" : "192.168.2.38", "port" : 9200}])
 
 tickers = [	"EURCHF",
 			"USDCHF",
@@ -54,9 +55,12 @@ loggers['error'] = logger
 fmt = '%Y-%m-%dT%H:%M:%S'
 es = Elasticsearch([{"host" : "localhost", "port" : 9200}])
 
+global actions
 actions = []
 
 def post_market_data_doc(ticker, time_period, data_time, data_type, data, dates = None):
+
+	global actions
 
 	dt = datetime.now()
 	dt -= timedelta(minutes = dt.minute % time_period)
@@ -88,14 +92,8 @@ def post_market_data_doc(ticker, time_period, data_time, data_type, data, dates 
 
 	actions.append(doc_)
 
-	## Aliasing with our 5 minute time frame
-	if len(actions) % 107 == 0:
-
-		try:
-			helpers.bulk(es, [doc_])
-		except Exception as e:
-			loggers['error'].info(e)
-
+	if len(actions) % 1007 == 0:
+		np.save('db/dumps/marketdata_{}.npy'.format(data_time), actions)
 		actions = []
 
 def post_trade_doc(trade):
@@ -119,7 +117,8 @@ def post_trade_doc(trade):
 		"numPeriods" : len(trade.data['historical']),
 		"executionLogic" : trade.execution_logic,
 		"tickIncrement" : trade.tick_incr,
-		"numUpdates" : trade.num_updates
+		"numUpdates" : trade.num_updates,
+		'closingTime' : datetime.now().strftime(fmt)
 	}
 
 	if trade.status != 'PENDING':
@@ -131,7 +130,6 @@ def post_trade_doc(trade):
 		doc_['executionTime'] = trade.execution_time.strftime(fmt)
 		doc_['drawdown'] = trade.drawdown
 		doc_['runUp'] = trade.run_up
-		doc_['closingTime'] = datetime.now().strftime(fmt)
 
 	doc_ = {
 		"_index" : "retracements",
@@ -139,7 +137,4 @@ def post_trade_doc(trade):
 		"_source" : doc_
 	}
 
-	try:
-		helpers.bulk(es, [doc_])
-	except Exception as e:
-		loggers['error'].info(e)
+	np.save('db/dumps/{}_{}'.format(trade.symbol, doc_['_source']['closingTime']), [doc_])
