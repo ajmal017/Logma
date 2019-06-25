@@ -184,11 +184,8 @@ class Model(object):
 
             feats[include] = self.scalers['ss'].transform([feats[include]])
 
-<<<<<<< HEAD
-            return self.predict([feats])[0], feats.tolist(), 1, df.Close.values[-1]
-=======
             return self.predict([feats])[0], feats, direction, df.Open.values[-1], df.Close.values[-1]
->>>>>>> 242937a2533df78b66bdd2d163638c3b0594577d
+
 
         else:
 

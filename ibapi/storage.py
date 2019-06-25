@@ -61,7 +61,7 @@ class Storage(object):
 
             data_type = 'aggCandle'
 
-        #post_market_data_doc(self.ticker, self.time_period, n_date, data_type, (n_open, n_high, n_low, n_close))
+        post_market_data_doc(self.ticker, self.time_period, n_date, data_type, (n_open, n_high, n_low, n_close))
             
     def candle_time(self):
         

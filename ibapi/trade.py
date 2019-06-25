@@ -167,13 +167,13 @@ class Trade(object):
 			del self.manager.trades[self.symbol]
 
 			## Logging
-			#post_trade_doc(self)
-			#print('POSTED')
+			post_trade_doc(self)
+			print('POSTED')
 
 			self.status = 'CLOSED'
 
 	def update_and_send(self, order_key, adjusted_price):
-		print('Order price', self.orders[order_key]['order'].lmtPrice, 'Adjusted Price', adjusted_price)
+		
 		self.orders[order_key]['order'].lmtPrice = adjusted_price
 		#self.orders[order_key]['order'].totalQuantity = self.quantity - self.num_filled_on_close
 

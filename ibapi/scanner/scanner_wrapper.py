@@ -67,8 +67,8 @@ class ScannerWrapper(EWrapper):
 		data = [tuple(row[1:]) for row in storage.data]
 		dates = [row[0] for row in storage.data]
 
-		#post_market_data_doc(ticker, self.time_period, storage.current_candle[0], 'initCandle',
-        #                     [tuple(row[1:]) for row in storage.data], dates)
+		post_market_data_doc(ticker, self.time_period, storage.current_candle[0], 'initCandle',
+                             [tuple(row[1:]) for row in storage.data], dates)
 
 	def realtimeBar(self, reqId, date, open_, high, low, close, volume, WAP, count):
 

@@ -93,7 +93,7 @@ if __name__ == '__main__':
 		bg_sched.add_job(get_table, 'cron', second='*/11', id='dashboard')
 		bg_sched.start()
 
-		http_server = WSGIServer(('127.0.0.1', 5000), app)
+		http_server = WSGIServer(('0.0.0.0', 5000), app)
 		http_server.serve_forever()
 
 		## Call functions to end without hanging threads
