@@ -38,6 +38,8 @@ class Scanner(ScannerClient, ScannerWrapper):
 
 		## Health
 		self.state = "ALIVE"
+		self.last_data_code = 2106
+		self.last_api_code = 1100
 
 		## Data storages
 		self.storages = {}

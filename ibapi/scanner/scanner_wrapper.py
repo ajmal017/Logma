@@ -10,6 +10,13 @@ import pandas as pd
 class ScannerWrapper(EWrapper):
 
 	def error(self, reqId, error_code, error_msg):
+
+		## Data health
+		if error_code in [2105, 2106, 2107]:
+			self.last_data_code = error_code
+		elif error_code in [1100, 1101, 1102]:
+			self.last_api_code = error_code
+
 		msg = '{}~-~{}~-~{}'.format(reqId, error_code, error_msg)
 		loggers['error'].info(msg)
 
@@ -49,7 +56,7 @@ class ScannerWrapper(EWrapper):
 
 		storage.current_candle_time = storage.candle_time()
 		## Get the last candle (Remember we add an extra candle for cummulative product calculations)
-		storage.current_candle = storage.data[self.num_periods + 1]
+		storage.current_candle = storage.data[self.num_periods]
 
 		self.instruments[ticker].state = "ACTIVE"
 		self.reqRealTimeBars(reqId, self.contracts[ticker], 5, "MIDPOINT", False, [])
@@ -60,8 +67,8 @@ class ScannerWrapper(EWrapper):
 		data = [tuple(row[1:]) for row in storage.data]
 		dates = [row[0] for row in storage.data]
 
-		post_market_data_doc(ticker, self.time_period, storage.current_candle[0], 'initCandle',
-                             [tuple(row[1:]) for row in storage.data], dates)
+		#post_market_data_doc(ticker, self.time_period, storage.current_candle[0], 'initCandle',
+        #                     [tuple(row[1:]) for row in storage.data], dates)
 
 	def realtimeBar(self, reqId, date, open_, high, low, close, volume, WAP, count):
 

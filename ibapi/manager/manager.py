@@ -74,6 +74,12 @@ class Manager(ManagerClient, ManagerWrapper):
 			"SELL" : "BUY"
 		}
 
+		## Max risk
+		self.risk = 2.5
+
+		## Data health
+		self.last_error_code = 2104
+
 		## Connect to gateway
 		self.connect(*self.connection)
 

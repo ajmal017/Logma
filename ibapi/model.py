@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import joblib
+import joblib, warnings
 
 from scipy.stats import kurtosis
 from scipy.stats import skew
@@ -26,11 +26,13 @@ from sklearn.preprocessing import StandardScaler
 
 class Model(object):
 
-    model_path = 'D:/AlgoMLData/Models/lgbm_2019-06-16'
+    model_path = 'D:/AlgoMLData/Models/lgbm_2019-06-19'
     scaling_dir = 'D:/AlgoMLData/Scalers'
     log_trim = 5
 
     def __init__(self, ticker, short_num_periods, num_periods):
+
+        warnings.filterwarnings("ignore")
         
         self.ticker = ticker
         self.short_num_periods = short_num_periods
@@ -83,10 +85,11 @@ class Model(object):
 
         dfe = pd.DataFrame(data.copy(), columns=['Datetime', 'Open', 'High', 'Low', 'Close'])
         df = dfe.iloc[1:, :].copy()
+
+        df['Change'] = (df.Close - df.Open) / df.Open
+        df['Hour'] = pd.to_datetime(df.Datetime).dt.hour
         dfs = df.iloc[-self.short_num_periods:, :].copy()
         
-        df['Hour'] = pd.to_datetime(df.Datetime).dt.hour
-        df['Change'] = (df.Close - df.Open) / df.Open
         change = df.Change.values[-1]
         
         sig50std = df.Change.std()
@@ -101,7 +104,7 @@ class Model(object):
         sig30 = 1 if change > sig30mean + 3*sig30std else 1 if change < sig30mean - 3*sig30std else 0
         sig50 = 1 if change > sig50mean + 3*sig50std else 1 if change < sig50mean - 3*sig50std else 0
         
-        if self.is_signal(sig20, sig30, sig50):
+        if True or self.is_signal(sig20, sig30, sig50):
             
             ## Trade Direction
             direction = np.sign(change)*-1
@@ -180,8 +183,8 @@ class Model(object):
 
             feats[include] = self.scalers['ss'].transform([feats[include]])
 
-            return self.predict([feats])[0], feats, 1, df.Close.values[-1]
+            return self.predict([feats])[0], feats, direction, df.Open.values[-1], df.Close.values[-1]
 
         else:
 
-            return 0, [], 0, 0
+            return 0, [], 0, 0, 0

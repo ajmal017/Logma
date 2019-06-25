@@ -1,98 +1,152 @@
-2019-06-12  18:06:59 INFO: -1~-~2104~-~Market data farm connection is OK:cashfarm
-
-2019-06-12  18:06:59 INFO: -1~-~2106~-~HMDS data farm connection is OK:cashhmds
-
-2019-06-12  18:07:00 INFO: -1~-~2104~-~Market data farm connection is OK:cashfarm
-
-2019-06-12  18:07:00 INFO: -1~-~2106~-~HMDS data farm connection is OK:cashhmds
-
-2019-06-12  18:07:01 INFO: 323~-~399~-~Order Message:
-BUY 20K USD.CHF Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
-
-2019-06-12  18:07:01 INFO: 325~-~399~-~Order Message:
-BUY 20K USD.JPY Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
-
-2019-06-12  18:07:01 INFO: 328~-~399~-~Order Message:
-BUY 20K USD.CAD Forex
-Warning: Your order size is below the USD 25000 IdealPro minimum and will be routed as an odd lot order.
-
-2019-06-12  18:07:01 INFO: 329~-~399~-~Order Message:
-BUY 20K NZD.USD Forex
-Warning: Your order size is below the NZD 35000 IdealPro minimum and will be routed as an odd lot order.
-
-2019-06-12  18:07:02 INFO: 332~-~399~-~Order Message:
-BUY 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
-
-2019-06-12  18:07:02 INFO: 334~-~399~-~Order Message:
-BUY 20K CHF.JPY Forex
-Warning: Your order size is below the CHF 25000 IdealPro minimum and will be routed as an odd lot order.
-
-2019-06-12  18:07:02 INFO: 335~-~399~-~Order Message:
-SELL 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
-
-2019-06-12  18:07:02 INFO: 336~-~399~-~Order Message:
-BUY 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
-
-2019-06-12  18:07:02 INFO: 337~-~399~-~Order Message:
-BUY 20K CAD.JPY Forex
-Warning: Your order size is below the CAD 25000 IdealPro minimum and will be routed as an odd lot order.
-
-2019-06-12  18:07:12 INFO: 333~-~10148~-~OrderId 333 that needs to be cancelled can not be cancelled, state: Filled.
-
-2019-06-12  18:07:12 INFO: 340~-~10148~-~OrderId 340 that needs to be cancelled can not be cancelled, state: Filled.
-
-2019-06-12  18:07:12 INFO: 339~-~202~-~Order Canceled - reason:
-
-2019-06-12  18:07:58 INFO: 341~-~399~-~Order Message:
-SELL 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
-
-2019-06-12  18:08:00 INFO: 342~-~399~-~Order Message:
-SELL 20K AUD.USD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
-
-2019-06-12  18:08:00 INFO: 324~-~10147~-~OrderId 324 that needs to be cancelled is not found.
-
-2019-06-12  18:08:00 INFO: 343~-~10148~-~OrderId 343 that needs to be cancelled can not be cancelled, state: Filled.
-
-2019-06-12  18:08:00 INFO: 338~-~202~-~Order Canceled - reason:
-
-2019-06-12  18:08:01 INFO: 325~-~202~-~Order Canceled - reason:
-
-2019-06-12  18:08:01 INFO: 331~-~202~-~Order Canceled - reason:
-
-2019-06-12  18:08:02 INFO: 329~-~202~-~Order Canceled - reason:
-
-2019-06-12  18:08:02 INFO: 323~-~202~-~Order Canceled - reason:
-
-2019-06-12  18:08:02 INFO: 322~-~202~-~Order Canceled - reason:
-
-2019-06-12  18:08:02 INFO: 328~-~202~-~Order Canceled - reason:
-
-2019-06-12  18:08:02 INFO: 327~-~202~-~Order Canceled - reason:
-
-2019-06-12  18:08:03 INFO: 337~-~202~-~Order Canceled - reason:
-
-2019-06-12  18:08:03 INFO: 334~-~202~-~Order Canceled - reason:
-
-2019-06-12  18:08:18 INFO: 346~-~399~-~Order Message:
-SELL 20K AUD.NZD Forex
-Warning: Your order size is below the AUD 25000 IdealPro minimum and will be routed as an odd lot order.
-
-2019-06-12  18:08:18 INFO: 336~-~10148~-~OrderId 336 that needs to be cancelled can not be cancelled, state: Filled.
-
-2019-06-12  18:08:18 INFO: 346~-~10148~-~OrderId 346 that needs to be cancelled can not be cancelled, state: Filled.
-
-2019-06-12  18:08:18 INFO: 341~-~202~-~Order Canceled - reason:
-
-2019-06-12  18:08:45 INFO: 332~-~10147~-~OrderId 332 that needs to be cancelled is not found.
-
-2019-06-12  18:08:45 INFO: 342~-~10148~-~OrderId 342 that needs to be cancelled can not be cancelled, state: Filled.
-
-2019-06-12  18:08:45 INFO: 335~-~202~-~Order Canceled - reason:
-
+2019-06-24  19:44:10 INFO: -1~-~2104~-~Market data farm connection is OK:cashfarm
+2019-06-24  19:44:10 INFO: -1~-~2106~-~HMDS data farm connection is OK:cashhmds
+2019-06-24  19:44:10 INFO: -1~-~2104~-~Market data farm connection is OK:cashfarm
+2019-06-24  19:44:10 INFO: -1~-~2106~-~HMDS data farm connection is OK:cashhmds
+2019-06-24  19:47:05 INFO: 1460~-~104~-~Can't modify a filled order
+2019-06-24  19:47:05 INFO: 1453~-~10147~-~OrderId 1453 that needs to be cancelled is not found.
+2019-06-24  19:47:05 INFO: 1460~-~10148~-~OrderId 1460 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  19:48:36 INFO: 1456~-~10147~-~OrderId 1456 that needs to be cancelled is not found.
+2019-06-24  19:48:36 INFO: 1462~-~10148~-~OrderId 1462 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  19:48:57 INFO: 1446~-~10147~-~OrderId 1446 that needs to be cancelled is not found.
+2019-06-24  19:48:57 INFO: 1463~-~10148~-~OrderId 1463 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  19:50:00 INFO: 1466~-~104~-~Can't modify a filled order
+2019-06-24  19:50:00 INFO: 1448~-~10147~-~OrderId 1448 that needs to be cancelled is not found.
+2019-06-24  19:50:00 INFO: 1466~-~10148~-~OrderId 1466 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  19:50:03 INFO: 6~-~300~-~Can't find EId with tickerId:6
+2019-06-24  19:50:03 INFO: 1452~-~202~-~Order Canceled - reason:
+2019-06-24  19:51:02 INFO: 1458~-~202~-~Order Canceled - reason:
+2019-06-24  19:52:02 INFO: 1459~-~202~-~Order Canceled - reason:
+2019-06-24  19:52:51 INFO: 1470~-~104~-~Can't modify a filled order
+2019-06-24  19:52:51 INFO: 1467~-~10148~-~OrderId 1467 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  19:52:51 INFO: 1470~-~10148~-~OrderId 1470 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  19:53:02 INFO: 1472~-~2137~-~The closing order quantity is greater than your current position. 
+2019-06-24  19:54:02 INFO: 1465~-~202~-~Order Canceled - reason:
+2019-06-24  19:54:02 INFO: 1464~-~202~-~Order Canceled - reason:
+2019-06-24  19:54:09 INFO: 1469~-~10148~-~OrderId 1469 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  19:54:09 INFO: 1473~-~10148~-~OrderId 1473 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  19:55:00 INFO: 1457~-~10147~-~OrderId 1457 that needs to be cancelled is not found.
+2019-06-24  19:55:00 INFO: 1474~-~10148~-~OrderId 1474 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  19:55:04 INFO: 1476~-~10148~-~OrderId 1476 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  19:55:04 INFO: 1477~-~10148~-~OrderId 1477 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  19:56:02 INFO: 1468~-~202~-~Order Canceled - reason:
+2019-06-24  19:58:03 INFO: 1472~-~202~-~Order Canceled - reason:
+2019-06-24  19:58:54 INFO: 1449~-~10147~-~OrderId 1449 that needs to be cancelled is not found.
+2019-06-24  19:58:54 INFO: 1482~-~10148~-~OrderId 1482 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  19:58:56 INFO: 1480~-~10148~-~OrderId 1480 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  19:58:56 INFO: 1483~-~10148~-~OrderId 1483 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  19:58:56 INFO: 1484~-~104~-~Can't modify a filled order
+2019-06-24  19:58:56 INFO: 1475~-~10147~-~OrderId 1475 that needs to be cancelled is not found.
+2019-06-24  19:58:56 INFO: 1484~-~10148~-~OrderId 1484 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  19:59:01 INFO: 1488~-~2137~-~The closing order quantity is greater than your current position. 
+2019-06-24  19:59:36 INFO: 1489~-~104~-~Can't modify a filled order
+2019-06-24  19:59:36 INFO: 1461~-~10147~-~OrderId 1461 that needs to be cancelled is not found.
+2019-06-24  19:59:36 INFO: 1489~-~10148~-~OrderId 1489 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:00:00 INFO: 1492~-~104~-~Can't modify a filled order
+2019-06-24  20:00:00 INFO: 1478~-~10147~-~OrderId 1478 that needs to be cancelled is not found.
+2019-06-24  20:00:00 INFO: 1492~-~10148~-~OrderId 1492 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:00:00 INFO: 1491~-~104~-~Can't modify a filled order
+2019-06-24  20:00:00 INFO: 1447~-~10147~-~OrderId 1447 that needs to be cancelled is not found.
+2019-06-24  20:00:00 INFO: 1491~-~10148~-~OrderId 1491 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:00:00 INFO: 1471~-~10147~-~OrderId 1471 that needs to be cancelled is not found.
+2019-06-24  20:00:00 INFO: 1493~-~10148~-~OrderId 1493 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:00:00 INFO: 1491~-~201~-~Order rejected - reason:Cannot modify the filled order
+2019-06-24  20:00:00 INFO: 1490~-~104~-~Can't modify a filled order
+2019-06-24  20:00:00 INFO: 1479~-~10147~-~OrderId 1479 that needs to be cancelled is not found.
+2019-06-24  20:00:00 INFO: 1490~-~10148~-~OrderId 1490 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:00:01 INFO: 1498~-~2102~-~Unable to modify this order as its still being processed.
+2019-06-24  20:00:01 INFO: 1455~-~10147~-~OrderId 1455 that needs to be cancelled is not found.
+2019-06-24  20:00:01 INFO: 1496~-~10148~-~OrderId 1496 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:00:01 INFO: 1494~-~10148~-~OrderId 1494 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:00:01 INFO: 1498~-~10148~-~OrderId 1498 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:00:21 INFO: 1495~-~10148~-~OrderId 1495 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:00:21 INFO: 1499~-~10148~-~OrderId 1499 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:00:22 INFO: 1486~-~10147~-~OrderId 1486 that needs to be cancelled is not found.
+2019-06-24  20:00:22 INFO: 1500~-~10148~-~OrderId 1500 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:00:22 INFO: 1502~-~2137~-~The closing order quantity is greater than your current position. 
+2019-06-24  20:00:22 INFO: 1497~-~10148~-~OrderId 1497 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:00:22 INFO: 1501~-~10148~-~OrderId 1501 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:00:22 INFO: 1502~-~104~-~Can't modify a filled order
+2019-06-24  20:00:22 INFO: 1488~-~10148~-~OrderId 1488 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:00:22 INFO: 1502~-~10148~-~OrderId 1502 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:01:01 INFO: 1510~-~2137~-~The closing order quantity is greater than your current position. 
+2019-06-24  20:01:06 INFO: 1511~-~104~-~Can't modify a filled order
+2019-06-24  20:01:06 INFO: 1504~-~10148~-~OrderId 1504 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:01:06 INFO: 1511~-~10148~-~OrderId 1511 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:02:28 INFO: 1487~-~10147~-~OrderId 1487 that needs to be cancelled is not found.
+2019-06-24  20:02:28 INFO: 1513~-~10148~-~OrderId 1513 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:04:06 INFO: 1506~-~10147~-~OrderId 1506 that needs to be cancelled is not found.
+2019-06-24  20:04:06 INFO: 1515~-~10148~-~OrderId 1515 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:05:00 INFO: 1505~-~10147~-~OrderId 1505 that needs to be cancelled is not found.
+2019-06-24  20:05:00 INFO: 1516~-~10148~-~OrderId 1516 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:05:00 INFO: 1508~-~10147~-~OrderId 1508 that needs to be cancelled is not found.
+2019-06-24  20:05:00 INFO: 1517~-~10148~-~OrderId 1517 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:05:00 INFO: 1481~-~10147~-~OrderId 1481 that needs to be cancelled is not found.
+2019-06-24  20:05:00 INFO: 1518~-~10148~-~OrderId 1518 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:07:42 INFO: 1523~-~201~-~Order rejected - reason:Cannot modify the filled order
+2019-06-24  20:07:42 INFO: 1507~-~10147~-~OrderId 1507 that needs to be cancelled is not found.
+2019-06-24  20:07:42 INFO: 1523~-~10148~-~OrderId 1523 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:07:44 INFO: 1450~-~10147~-~OrderId 1450 that needs to be cancelled is not found.
+2019-06-24  20:07:44 INFO: 1524~-~10148~-~OrderId 1524 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:07:48 INFO: 1525~-~104~-~Can't modify a filled order
+2019-06-24  20:07:48 INFO: 1519~-~10147~-~OrderId 1519 that needs to be cancelled is not found.
+2019-06-24  20:07:48 INFO: 1525~-~10148~-~OrderId 1525 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:07:50 INFO: 1521~-~10147~-~OrderId 1521 that needs to be cancelled is not found.
+2019-06-24  20:07:50 INFO: 1526~-~10148~-~OrderId 1526 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:08:45 INFO: 1451~-~10147~-~OrderId 1451 that needs to be cancelled is not found.
+2019-06-24  20:08:45 INFO: 1531~-~10148~-~OrderId 1531 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:10:00 INFO: 1534~-~104~-~Can't modify a filled order
+2019-06-24  20:10:00 INFO: 1514~-~10147~-~OrderId 1514 that needs to be cancelled is not found.
+2019-06-24  20:10:00 INFO: 1534~-~10148~-~OrderId 1534 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:10:00 INFO: 1454~-~10147~-~OrderId 1454 that needs to be cancelled is not found.
+2019-06-24  20:10:00 INFO: 1535~-~10148~-~OrderId 1535 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:10:00 INFO: 1503~-~10147~-~OrderId 1503 that needs to be cancelled is not found.
+2019-06-24  20:10:00 INFO: 1536~-~10148~-~OrderId 1536 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:10:01 INFO: 1533~-~104~-~Can't modify a filled order
+2019-06-24  20:10:01 INFO: 1512~-~10147~-~OrderId 1512 that needs to be cancelled is not found.
+2019-06-24  20:10:01 INFO: 1533~-~10148~-~OrderId 1533 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:12:13 INFO: 1541~-~104~-~Can't modify a filled order
+2019-06-24  20:12:13 INFO: 1540~-~10147~-~OrderId 1540 that needs to be cancelled is not found.
+2019-06-24  20:12:13 INFO: 1541~-~10148~-~OrderId 1541 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:12:16 INFO: 1520~-~10147~-~OrderId 1520 that needs to be cancelled is not found.
+2019-06-24  20:12:16 INFO: 1542~-~10148~-~OrderId 1542 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:13:01 INFO: 1529~-~202~-~Order Canceled - reason:
+2019-06-24  20:13:02 INFO: 1528~-~202~-~Order Canceled - reason:
+2019-06-24  20:14:27 INFO: 1546~-~2102~-~Unable to modify this order as its still being processed.
+2019-06-24  20:14:36 INFO: 1485~-~10147~-~OrderId 1485 that needs to be cancelled is not found.
+2019-06-24  20:14:36 INFO: 1547~-~10148~-~OrderId 1547 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:14:42 INFO: 1546~-~104~-~Can't modify a filled order
+2019-06-24  20:14:42 INFO: 1544~-~10147~-~OrderId 1544 that needs to be cancelled is not found.
+2019-06-24  20:14:42 INFO: 1546~-~10148~-~OrderId 1546 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:15:00 INFO: 1548~-~104~-~Can't modify a filled order
+2019-06-24  20:15:00 INFO: 1522~-~10147~-~OrderId 1522 that needs to be cancelled is not found.
+2019-06-24  20:15:00 INFO: 1548~-~10148~-~OrderId 1548 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:18:02 INFO: 1543~-~202~-~Order Canceled - reason:
+2019-06-24  20:18:02 INFO: 1545~-~202~-~Order Canceled - reason:
+2019-06-24  20:20:00 INFO: 1539~-~10147~-~OrderId 1539 that needs to be cancelled is not found.
+2019-06-24  20:20:00 INFO: 1555~-~10148~-~OrderId 1555 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:24:52 INFO: 1557~-~104~-~Can't modify a filled order
+2019-06-24  20:24:52 INFO: 1557~-~104~-~Can't modify a filled order
+2019-06-24  20:24:52 INFO: 1557~-~201~-~Order rejected - reason:Cannot modify the filled order
+2019-06-24  20:24:52 INFO: 1532~-~10147~-~OrderId 1532 that needs to be cancelled is not found.
+2019-06-24  20:24:52 INFO: 1557~-~10148~-~OrderId 1557 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:24:52 INFO: 1551~-~10147~-~OrderId 1551 that needs to be cancelled is not found.
+2019-06-24  20:24:52 INFO: 1558~-~10148~-~OrderId 1558 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:25:00 INFO: 1563~-~2137~-~The closing order quantity is greater than your current position. 
+2019-06-24  20:25:00 INFO: 1554~-~10147~-~OrderId 1554 that needs to be cancelled is not found.
+2019-06-24  20:25:00 INFO: 1559~-~10148~-~OrderId 1559 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:25:00 INFO: 1550~-~10147~-~OrderId 1550 that needs to be cancelled is not found.
+2019-06-24  20:25:00 INFO: 1560~-~10148~-~OrderId 1560 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:25:00 INFO: 1509~-~10147~-~OrderId 1509 that needs to be cancelled is not found.
+2019-06-24  20:25:00 INFO: 1562~-~10148~-~OrderId 1562 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:25:00 INFO: 1553~-~10147~-~OrderId 1553 that needs to be cancelled is not found.
+2019-06-24  20:25:00 INFO: 1561~-~10148~-~OrderId 1561 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:25:00 INFO: 1563~-~104~-~Can't modify a filled order
+2019-06-24  20:25:00 INFO: 1510~-~10147~-~OrderId 1510 that needs to be cancelled is not found.
+2019-06-24  20:25:00 INFO: 1563~-~10148~-~OrderId 1563 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:25:01 INFO: 1564~-~104~-~Can't modify a filled order
+2019-06-24  20:25:01 INFO: 1552~-~10147~-~OrderId 1552 that needs to be cancelled is not found.
+2019-06-24  20:25:01 INFO: 1564~-~10148~-~OrderId 1564 that needs to be cancelled can not be cancelled, state: Filled.
+2019-06-24  20:25:01 INFO: 1568~-~2137~-~The closing order quantity is greater than your current position. 
+2019-06-24  20:26:38 INFO: 1573~-~201~-~Order rejected - reason:Cannot modify the filled order
+2019-06-24  20:26:38 INFO: 1556~-~10147~-~OrderId 1556 that needs to be cancelled is not found.
+2019-06-24  20:26:38 INFO: 1573~-~10148~-~OrderId 1573 that needs to be cancelled can not be cancelled, state: Filled.

@@ -1,3 +1,4 @@
+from copy import deepcopy
 from datetime import datetime
 from tools.zorders import limit_order, limit_if_touched
 from tools.utils import adjust_price
@@ -33,7 +34,7 @@ class Trade(object):
 		## Trade status
 		self.status = 'PENDING'
 		self.state = 'NORMAL'
-		self.execution_logic = 'TAKE PROFIT'
+		self.execution_logic = 'NONE'
 
 		## Initial order quantity
 		self.quantity = quantity
@@ -42,9 +43,11 @@ class Trade(object):
 		self.setup()
 
 		## Switches
-		self.soft_stop_switch = True
-		self.take_profit_switch = True
-		self.hard_stop_switch = True
+		self.wick_switch = True
+		self.maturity_switch = True
+		self.soft_stop_switch = False
+		self.take_profit_switch = False
+		self.hard_stop_switch = False
 
 		## Placeholders
 		self.num_filled = 0
@@ -56,10 +59,33 @@ class Trade(object):
 		self.execution_time = -1
 
 		## Period details
-		self.time_period = 1
+		self.time_period = 5
 		self.maturity = 20
 
 		self.logger = loggers[symbol]
+
+	def simple_view(self):
+
+		return deepcopy({
+			"Ticker" : self.symbol,
+			"Initiated Time" : self.init_time,
+			"Execution Time" : self.execution_time,
+			"Direction" : int(self.direction),
+			"Trade Length" : len(self.num_updates),
+			"Status" : self.status,
+			"State" : self.state,
+			"Execution Logic" : self.execution_logic,
+			"Quantity" : self.quantity,
+			"Drawdown" : self.drawdown,
+			"Run Up" : self.run_up,
+			"Filled Position" : self.num_filled,
+			"Avg Filled Price" : self.avg_filled_price,
+			"Take Profit Price" : self.details['take_profit'],
+			"Soft Stop Price" : self.details['soft_stop'],
+			"Hard Stop Price" : self.details['hard_stop'],
+			"Last Update" : getattr(self, 'last_update', 0),
+			"Candle Size" : self.details['candle_size']
+		})
 
 	def setup(self):
 
@@ -105,7 +131,6 @@ class Trade(object):
 
 		print('Init', self.symbol, init_oid)
 
-
 	def on_fill(self):
 
 		if self.status == 'PENDING':
@@ -113,16 +138,12 @@ class Trade(object):
 			self.status = 'ACTIVE'
 			self.execution_time = datetime.now()
 
-			## Send closing orders
-			profit_oid = self.manager.get_oid()
-			self.manager.placeOrder(profit_oid, self.contract, self.orders['profit']['order'])
-
 			## Book keeping
 			self.orders['profit']['order_id'] = profit_oid
 			self.manager.orders[profit_oid] = self.orders['profit']['order']
 			self.manager.order2trade[profit_oid] = self
 
-			print('Profit', self.symbol, profit_oid)
+			print('Filled', self.symbol)
 
 	def on_close(self):
 
@@ -146,13 +167,13 @@ class Trade(object):
 			del self.manager.trades[self.symbol]
 
 			## Logging
-			post_trade_doc(self)
-			print('POSTED')
+			#post_trade_doc(self)
+			#print('POSTED')
 
-			self.status == 'CLOSED'
+			self.status = 'CLOSED'
 
 	def update_and_send(self, order_key, adjusted_price):
-
+		print('Order price', self.orders[order_key]['order'].lmtPrice, 'Adjusted Price', adjusted_price)
 		self.orders[order_key]['order'].lmtPrice = adjusted_price
 		#self.orders[order_key]['order'].totalQuantity = self.quantity - self.num_filled_on_close
 
@@ -165,46 +186,74 @@ class Trade(object):
 		self.manager.orders[oid] = self.orders[order_key]['order']
 		self.manager.order2trade[oid] = self
 
+	def on_event(self, order_key, margin = 1):
+
+		adjusted_price = adjust_price(self.last_update, self.tick_incr, self.direction, margin = 1)
+		## Send if not sent before
+		if self.orders[order_key]['order_id'] is None:
+			self.update_and_send(order_key, adjusted_price)
+		## Chase the price to exit
+		elif self.orders[order_key]['order'].lmtPrice != adjusted_price:
+			self.update_and_send(order_key, adjusted_price)
+
 	def on_period(self):
 
-		## log the number of updates per minute
+		## Log the number of updates per minute
 		dt = (datetime.now() - self.init_time)
 		idx = int(dt.seconds / 60)
+
 		try:
 			self.num_updates[idx] += 1
 		except:
 			self.num_updates.append(1)
 		
+		## If the trade was filled
 		if self.status == 'ACTIVE':
+
+			## Reduce the risk on events
+			## On maturity
+			if self.maturity_switch and self.is_matured():
+				self.logger.info('MATURITY State reached.')
+				self.state = 'MATURITY'
+				self.details['soft_stop'] = self.details['reduced_soft']
+				self.details['hard_stop'] = self.details['reduced_hard']
+				self.maturity_switch = False
+
+			## On wick in profit
+			if self.wick_switch and self.is_in_profit():
+				self.logger.info('WICK State reached.')
+				self.state = 'WICK'
+				self.details['soft_stop'] = self.details['reduced_soft']
+				self.details['hard_stop'] = self.details['reduced_hard']
+				self.wick_switch = False
 
 			## Calculate drawdown/runup
 			self.drawdown = min(self.direction * (self.last_update - self.avg_filled_price), self.drawdown)
 			self.run_up = max(self.direction * (self.last_update - self.avg_filled_price), self.run_up)
 
-			if self.is_hard_stop() and self.hard_stop_switch:
+			if self.is_take_profit() or self.take_profit_switch:
+
+				self.execution_logic = 'TAKE PROFIT'
+
+				self.on_event('profit', margin = 2)
+
+				self.take_profit_switch = True
+
+			elif self.is_hard_stop() or self.hard_stop_switch:
 
 				self.execution_logic = 'HARD STOP'
 
-				adjusted_price = adjust_price(self.last_update, self.tick_incr, self.direction, margin = 1)
-				if self.orders['loss']['order'].lmtPrice != adjusted_price:
-					self.update_and_send('loss', adjusted_price)
+				self.on_event('loss', margin = 0)
 
-			elif self.is_soft_stop() and self.soft_stop_switch: 
+				self.hard_stop_switch = True
+
+			elif self.is_soft_stop() or self.soft_stop_switch:
 
 				self.execution_logic = 'SOFT STOP'
 
-				adjusted_price = adjust_price(self.last_update, self.tick_incr, self.direction, margin = 1)
-				if self.orders['loss']['order'].lmtPrice != adjusted_price:
-					self.update_and_send('loss', adjusted_price)
+				self.on_event('loss', margin = 0)
 
-			elif self.is_matured():
-
-				self.logger.info('MATURITY State reached.')
-				self.state = 'MATURITY'
-
-				factor = 1 if self.is_in_profit() else -1
-				self.details['hard_stop'] = adjust_price(self.last_update, self.tick_incr, factor * self.direction, margin = 1)
-				self.soft_stop_switch = False
+				self.soft_stop_switch = True
 
 		elif self.status == 'PENDING':
 			
@@ -218,6 +267,11 @@ class Trade(object):
 			pass
 
 	## Action logic
+	def is_candle_close(self):
+
+		dt = datetime.now()
+		return dt.minute % self.time_period == 0 and dt.second <= 1
+
 	def is_in_profit(self):
 
 		target = self.details['entry_price']
@@ -226,7 +280,7 @@ class Trade(object):
 	def is_take_profit(self):
 		
 		target = self.details['take_profit']
-		return self.direction * (self.last_update - target) > 0
+		return self.direction * (self.last_update - target) > 0 and self.is_candle_close()
 
 	def is_hard_stop(self):
 
@@ -237,7 +291,7 @@ class Trade(object):
 
 		dt = datetime.now()
 		target = self.details['soft_stop']
-		return dt.minute % 1 == 0 and dt.second == 0 and self.direction * (target - self.last_update) > 0
+		return self.direction * (target - self.last_update) > 0 and self.is_candle_close()
 
 	def is_matured(self):
 

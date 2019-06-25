@@ -31,16 +31,17 @@ class Instrument(Thread):
 
         if self.ticker not in self.manager.trades and self.state == 'ACTIVE':
 
-            signal, features, direction, price = self.model.is_trade(list(self.storage.data).copy())
+            signal, features, direction, open_, close = self.model.is_trade(list(self.storage.data).copy())
+            cs = abs(close - open_) / (self.manager.tick_increments[self.ticker] / 5)
 
-            if True:
+            if True and cs >= 1:
 
                 data = {
                     "historical" : list(self.storage.data),
                     "features" : features
                 }
 
-                self.manager.on_signal(direction = 1, quantity = 20000, symbol = self.ticker, price = self.storage.data[-1][-1], data = data.copy())
+                self.manager.on_signal(direction = direction, quantity = 100000, symbol = self.ticker, prices = (open_, close), data = data.copy())
 
                 self.logger.info('JOB: Starting Manager')
                 self.blocker.resume_job('manager_job')

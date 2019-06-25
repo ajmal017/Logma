@@ -9,11 +9,15 @@ from datetime import datetime
 class ManagerWrapper(EWrapper):
 
 	def error(self, id_, error_code, error_msg):
+
+		## Keep track of health
+		if error_code in [2103, 2104, 2108]:
+			self.last_data_code = error_code
+
 		msg = '{}~-~{}~-~{}'.format(id_, error_code, error_msg)
 		loggers['error'].info(msg)
 
 		## ERROR HANDLING
-
 		## Duplicate OIDs. Resend the order & change ID
 		if error_code == 103:
 
@@ -53,7 +57,6 @@ class ManagerWrapper(EWrapper):
 
 				self.reqMktData(self.ticker2id[ticker], self.contracts[ticker], '', False, False, [])
 				self.instruments[ticker].blocker.resume_job("manager_job")
-
 
 	def nextValidId(self, orderId):
 		
