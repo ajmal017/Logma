@@ -6,10 +6,10 @@ from joblib import delayed	, Parallel
 
 ################################################
 
-input_dir_ = 'D:/TickData_UZ'
-output_dir_ = 'D:/TickData_Agg'
+input_dir_ = 'D:/TickData_UZ_FW'
+output_dir_ = 'D:/TickData_Agg_FW'
 
-n_jobs = 6
+n_jobs = 12
 min_ = 5
 
 ################################################
@@ -83,4 +83,3 @@ if __name__ == '__main__':
 	args = argparser.parse_args()
 
 	sys.exit(main(args.ticker))
-

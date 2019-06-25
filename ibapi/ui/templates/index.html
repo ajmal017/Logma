@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+	<body>
+	  
+		<div class="jumbotron text-center">
+		  <h1>zQ - Retracement Strategy</h1>
+
+		  <div class="card" style="width: 18rem;">
+			  <div class="card-header">
+			    System Health
+			  </div>
+			  <ul class="list-group list-group-flush">
+			    <li class="list-group-item" style="color:{{system_health['api']}}">API Connection</li>
+			    <li class="list-group-item" style="color:{{system_health['manager']}}">Market Data Connection</li>
+			    <li class="list-group-item" style="color:{{system_health['scanner']}}">Historical Data Connection</li>
+			  </ul>
+			</div>
+
+
+		</div>
+
+		{% block content %}
+
+		<h3> Positions </h3>
+		{{position_table | safe}}
+
+		{% endblock %}
+
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	</body>
+</html>

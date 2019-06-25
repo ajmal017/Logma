@@ -9,12 +9,16 @@ from argparse import ArgumentParser
 
 from consts import dir_
 
-################################################
+######################################################################################################
+### This script generates the signals of a given instrument. Specify the windows that each of the
+### signals will be calculated at. 
+######################################################################################################
 
 windows = [20, 30, 50]
 cutoff = 100
+std_cutoff = 3
 n_jobs = 6
-input_dir_ = 'D:/TickData_UZ'
+input_dir_ = 'D:/TickData_UZ_FW'
 
 ################################################
 
@@ -75,83 +79,66 @@ def short_long_ttc(datetime, df, opens, highs, lows, closes):
 
 	return idx - ctr, drawdown
 
-def aggregate_windows(main):
-
-	tmp = main[0]
-
-	for trades in main[1:]:
-
-		tmp = tmp.merge(trades, on=['TTC', 'Drawdown', 'Datetime', 'Direction'], how='outer')
-
-	tmp = tmp.fillna(0).sort_values('Datetime').reset_index(drop=True)
-
-	return tmp[tmp.TTC > 0]
-
 def get_signals(ticker):
 
 	print(ticker)
 
-	main = []
+	df = pd.read_csv('D:/TickData_Agg_FW/{}.csv'.format(ticker))
+	df['Change'] = (df.Close - df.Open) / df.Open
 
 	for window in windows:
 
-		df = pd.read_csv('D:/TickData_Agg/{}.csv'.format(ticker))
-		df['Change'] = (df.Close - df.Open) / df.Open
+	    std_label = 'STD{}'.format(window)
+	    mean_label = 'Mean{}'.format(window)
 
-		df['STD'] = df.Change.rolling(window=window, min_periods=1).std()
-		df['Mean'] = df.Change.rolling(window=window, min_periods=1).mean()
+	    df[std_label] = df.Change.rolling(window=window, min_periods=1).std()
+	    df[mean_label] = df.Change.rolling(window=window, min_periods=1).mean()
 
-		cutoff = 3
-		longs = df[df.Change > cutoff*df.STD + df.Mean]
-		longs = longs[longs.STD != 0]
+	## Compute Signals
+	longs = df[(df.STD20 != 0) & (df.Volume != 0) & ((df.Change > df.Mean20 + df.STD20*std_cutoff) | (df.Change > df.Mean30 + df.STD30*std_cutoff) | (df.Change > df.Mean50 + df.STD50*std_cutoff))]
+	shorts = df[(df.STD20 != 0) & (df.Volume != 0) & ((df.Change < df.Mean20 - df.STD20*std_cutoff) | (df.Change < df.Mean30 - df.STD30*std_cutoff) | (df.Change < df.Mean50 - df.STD50*std_cutoff))]
 
-		shorts = df[df.Change < df.Mean - cutoff*df.STD]
-		shorts = shorts[shorts.STD != 0]
+	## Make the features
+	df['sig20'] = ((df.Change > df.Mean20 + df.STD20*std_cutoff) | (df.Change < df.Mean20 - df.STD20*std_cutoff)).astype(int)
+	df['sig30'] = ((df.Change > df.Mean30 + df.STD30*std_cutoff) | (df.Change < df.Mean30 - df.STD30*std_cutoff)).astype(int)
+	df['sig50'] = ((df.Change > df.Mean50 + df.STD50*std_cutoff) | (df.Change < df.Mean50 - df.STD50*std_cutoff)).astype(int)
 
-		print('Num Longs', longs.shape[0])
-		print('Num Shorts', shorts.shape[0])
+	print('Num Longs', longs.shape[0])
+	print('Num Shorts', shorts.shape[0])
 
-		opens = df.Open.values
-		highs = df.High.values
-		lows = df.Low.values
-		closes = df.Close.values
+	opens = df.Open.values
+	highs = df.High.values
+	lows = df.Low.values
+	closes = df.Close.values
 
-		ttc_long = []
-		print('TTC Longs')
+	ttc_long = []
+	print('TTC Longs')
 
-		for i, datetime in enumerate(longs.Datetime):
-		    ttc, drawdown = long_short_ttc(datetime, df, opens, highs, lows, closes)
-		    ttc_long.append([ttc, drawdown])
+	for i, datetime in enumerate(longs.Datetime):
+	    ttc, drawdown = long_short_ttc(datetime, df, opens, highs, lows, closes)
+	    ttc_long.append([ttc, drawdown])
 
-		ttc_longs = pd.DataFrame(ttc_long, columns=['TTC', 'Drawdown'])
-		ttc_longs['Datetime'] = longs.Datetime.values
-		ttc_longs['Direction'] = -1
-		print(ttc_longs.describe())
+	ttc_longs = pd.DataFrame(ttc_long, columns=['TTC', 'Drawdown'])
+	ttc_longs['Datetime'] = longs.Datetime.values
+	ttc_longs['Direction'] = -1
+	print(ttc_longs.describe())
 
-		ttc_short = []
-		print('TTC Shorts')
-		for i, datetime in enumerate(shorts.Datetime):
-		    ttc, drawdown = short_long_ttc(datetime, df, opens, highs, lows, closes)
-		    ttc_short.append([ttc, drawdown])
+	ttc_short = []
+	print('TTC Shorts')
+	for i, datetime in enumerate(shorts.Datetime):
+	    ttc, drawdown = short_long_ttc(datetime, df, opens, highs, lows, closes)
+	    ttc_short.append([ttc, drawdown])
 
-		ttc_shorts = pd.DataFrame(ttc_short, columns=['TTC', 'Drawdown'])
-		ttc_shorts['Datetime'] = shorts.Datetime.values
-		ttc_shorts['Direction'] = 1
-		print(ttc_shorts.describe())
+	ttc_shorts = pd.DataFrame(ttc_short, columns=['TTC', 'Drawdown'])
+	ttc_shorts['Datetime'] = shorts.Datetime.values
+	ttc_shorts['Direction'] = 1
+	print(ttc_shorts.describe())
 
-		trades = pd.concat([ttc_longs, ttc_shorts], axis=0).sort_values('Datetime')
+	trades = pd.concat([ttc_longs, ttc_shorts], axis=0).sort_values('Datetime')
+	trades = trades.merge(df[['Datetime', 'sig20', 'sig30', 'sig50', 'Volume']], on='Datetime', how='outer').dropna()
+	trades = trades[trades.Volume != 0].iloc[:, :-1]
 
-		trades['sig{}'.format(window)] = 1
-
-		main.append(trades)
-
-	main = aggregate_windows(main)
-	cols = main.columns
-	raw = pd.read_csv('D:/TickData_Agg/{}.csv'.format(ticker))
-	main = main.merge(raw, how='outer', on='Datetime').dropna().reset_index(drop=True)
-	main = main[main.Volume != 0][cols]
-
-	main.to_csv('{}/AddTrades/{}_trades.csv'.format(dir_, ticker), index=False)
+	trades.to_csv('{}/AddTrades_FW/{}_trades.csv'.format(dir_, ticker), index=False)
 
 def get_tickers():
 

@@ -13,11 +13,6 @@ from joblib import delayed, Parallel
 
 from datetime import datetime
 
-def evalerror(labels, preds):
-	preds[preds > 0.5] = 1
-	preds[preds <= 0.5] = 0
-	return 'accuracy', accuracy_score(preds, labels), True
-
 dir_ = 'res'
 
 def get_main_df():
@@ -31,7 +26,7 @@ def get_main_df():
 		df['Ticker'] = ticker
 		main.append(df)
 
-	main = pd.concat(main, axis=0).iloc[:, 1:].reset_index(drop=True)
+	main = pd.concat(main, axis=0).reset_index(drop=True)
 
 	main.loc[main.TTC <= 20, 'TTC'] = 1
 	main.loc[main.TTC > 20, 'TTC'] = 0
@@ -42,88 +37,77 @@ def get_main_df():
 
 	return main
 
-def eval_fold(idct, idcv, X_train, y_train, param_grid, i):
+def main():
 
-	best_params = []
-
-	xt, yt = X_train.values[idct, :], y_train[idct]
-	xv, yv = X_train.values[idcv, :], y_train[idcv]
-	
-	for j, param in enumerate(ParameterGrid(param_grid)):
-		
-		gbm = lgbm.LGBMClassifier(objective='binary', **param)
-		gbm = gbm.fit(xt, yt, eval_set=[(xv, yv)], eval_metric='auc',
-					  early_stopping_rounds=10, verbose=250)
-
-		key1 = list(gbm.best_score_)[0]
-		best_params.append([param, gbm.best_score_[key1]['binary_logloss'], gbm.best_score_[key1]['auc']])
-
-		print(j, '\n')
-
-	with open('%s/results_%s.pkl' % (dir_,i), 'wb') as file:
-		joblib.dump(best_params, file)
-
-def go_parallel():
+	np.random.seed(72)
 
 	main = get_main_df()
+	print(main.TTC.value_counts())
 
 	train_pct = 0.5
 	test_pct = 1 - train_pct
-	validation_pct = 0.2
-
+	validation_pct = 0.2 ## I Use 5 folds to build it.
 	idc = np.random.permutation(main.shape[0])
 	train_len = int(train_pct * main.shape[0])
 
-	print(main.shape)
-
-	print(main.head())
-
+	## Partition the data
 	train = main.iloc[idc[:train_len], :]
 	test = main.iloc[idc[train_len:], :]
 
-	train_tickers = train.Ticker.values
-	train_drawdowns = train.Drawdown.values
-	train_directions = train.Direction.values
+	##################
+	## TRAIN & VAL SET
+	##################
+
 	y_train = train.TTC.values
-	idx = train.columns.tolist().index('sig20')-1
+	idx = train.columns.tolist().index('Direction')
+	## Remove the tickers from the last column
 	X_train = train.iloc[:, idx:-1]
+	print(X_train.columns)
 
-	test_tickers = test.Ticker.values
-	test_drawdown = test.Drawdown.values
-	test_directions = test.Direction.values
+	idc = np.random.permutation(X_train.shape[0])
+	pct = int(0.2*X_train.shape[0])
+	idc_train = idc[pct:]
+	idc_val = idc[:pct]
+	X_val, y_val = X_train.values[idc_val, :], y_train[idc_val]
+	X_train, y_train = X_train.values[idc_train, :], y_train[idc_train]
+
+	##################
+	## TEST SET
+	##################
+
 	y_test = test.TTC.values
-	idx = test.columns.tolist().index('sig20')-1
+	idx = test.columns.tolist().index('Direction')
+	## Remove the tickers from the last column
 	X_test = test.iloc[:, idx:-1]
+	print(X_test.columns)
 
-	## X-val
-	idx = int(X_test.shape[0]*validation_pct)
-	idc = np.random.permutation(X_test.shape[0])
-	X_val = X_test.values[idc[:idx]]
-	y_val = y_test[idc[:idx]]
-	X_test = X_test.values[idc[idx:]]
-	y_test = y_test[idc[idx:]]
+	## Save the testing set for the risk management portion
+	with open('D:/AlgoMLData/Risk/lgbm_test_set', 'wb') as file:
+		joblib.dump(test, file)
 
-	params = {
-		'learning_rate': 0.05,
-		'max_depth': 10,
-		'min_child_weight': 0.0001,
-		'n_estimators': 10000,
-		'num_leaves': 19,
-		'objective' : 'binary'
-		}
+	##################
+	## Build the model
+	##################
 
-	gbm = lgbm.LGBMClassifier(**params)
-	gbm = gbm.fit(X_train, y_train, early_stopping_rounds=10, eval_set=[(X_val, y_val)], eval_metric='auc')
+	gbm = lgbm.LGBMClassifier(
+	    num_leaves=20,
+	    max_depth=5,
+	    learning_rate=0.1,
+	    min_child_weight=0.0001,
+	    n_estimators=10000
+	)
 
-	## Check model accuracy
-	y_pred = gbm.predict(X_test)
-	print('Testing .. {} Trades .. Accuracy : {}'.format(X_train.shape[0], accuracy_score(y_pred, y_test)))
+	gbm = gbm.fit(X_train, y_train, eval_set=[(X_val, y_val)], eval_metric='auc', early_stopping_rounds=50)
+	y_pred = gbm.predict_proba(X_test)
+
+	print('Testing .. {} Trades .. Accuracy : {}'.format(X_train.shape[0], accuracy_score(y_pred.argmax(axis=1), y_test)))
 
 	## Save Model
-	with open('models/lgbm_{}'.format(datetime.now().strftime('%Y-%m-%d')), 'wb') as file:
+	with open('../models/lgbm_{}'.format(datetime.now().strftime('%Y-%m-%d')), 'wb') as file:
 		joblib.dump(gbm, file)
 
-	with open('models/lgbm_{}'.format(datetime.now().strftime('%Y-%m-%d')), 'rb') as file:
+	## Reload model and predict on same set. 
+	with open('../models/lgbm_{}'.format(datetime.now().strftime('%Y-%m-%d')), 'rb') as file:
 		gbm = joblib.load(file)
 
 	## Check model accuracy
@@ -132,5 +116,5 @@ def go_parallel():
 
 if __name__ == '__main__':
 
-	go_parallel()
+	main()
 

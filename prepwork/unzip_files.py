@@ -1,9 +1,11 @@
 import sys, os
 import zipfile
 
-n = len(os.listdir(os.path.dirname('D:\\TickData\\')))
-dir_ = 'D:\\TickData\\' 
-dir_2 = 'D:\\TickData_UZ\\' 
+from joblib import Parallel, delayed
+
+n = len(os.listdir(os.path.dirname('D:/TickData/')))
+dir_ = 'D:/TickData/' 
+dir_2 = 'D:/TickData_UZ_FW/' 
 
 for i, file in enumerate(os.listdir(os.path.dirname(dir_))):
 	print(i / n)
@@ -15,3 +17,4 @@ for i, file in enumerate(os.listdir(os.path.dirname(dir_))):
 	except Exception as e:
 		print(e)
 		print(file)
+

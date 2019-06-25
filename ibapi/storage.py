@@ -7,7 +7,8 @@ class Storage(object):
     
     def __init__(self, ticker, num_periods, time_period, scanner_job):
         
-        self.data = deque([], maxlen=num_periods)
+        ## Add one for the cummulative product calculation for Long & Short Progressions
+        self.data = deque([], maxlen=num_periods + 1)
 
         self.ticker = ticker
         self.num_periods = num_periods
@@ -60,7 +61,7 @@ class Storage(object):
 
             data_type = 'aggCandle'
 
-        post_market_data_doc(self.ticker, self.time_period, n_date, data_type, (n_open, n_high, n_low, n_close))
+        #post_market_data_doc(self.ticker, self.time_period, n_date, data_type, (n_open, n_high, n_low, n_close))
             
     def candle_time(self):
         

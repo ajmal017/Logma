@@ -3,17 +3,26 @@ from argparse import ArgumentParser
 import pandas as pd
 import numpy as np
 import sys, os
+import time
 
 from entropy import spectral_entropy, app_entropy
 from statsmodels.tsa.stattools import adfuller
 from scipy.stats import kurtosis
 
+import warnings
+warnings.filterwarnings("ignore")
+
 from consts import dir_
 
+######################################################################################################
+### This script takes OHLC data as input and outputs timeseries features of a given instrument.
+######################################################################################################
+
+###################################
+### GLOBAL VARIABLES
 ###################################
 
 input_dir_ = 'D:/TickData_UZ'
-output_dir_ = 'D:/TickData_Agg'
 
 #Rel Vol 1-week MA
 n_periods = 7
@@ -23,8 +32,10 @@ n_candles = 480
 short_window = 20
 long_window = 50
 
-n_jobs = 6
+n_jobs = 8
 
+###################################
+### GLOBAL FUNCTIONS
 ###################################
 
 def filter_weekends(df):
@@ -95,100 +106,117 @@ def market_sessions(df):
 	eur = [[i, 1 - (i - 7) / 9] for i in range(7, 16)]
 	asia = [[i, 1-(i+1) / 9] for i in range(0, 9)]
 	asia = [[23, 1]] + asia
-	
+
 	#Market Hours
 	df['Hour'] = pd.to_datetime(df.Datetime).dt.hour.astype(int)
-	
+
 	#Merge
 	df = df.merge(pd.DataFrame(asia, columns=['Hour', 'Asia']), how='outer', on='Hour')
 	df = df.merge(pd.DataFrame(us, columns=['Hour', 'Amer']), how='outer', on='Hour')
 	df = df.merge(pd.DataFrame(eur, columns=['Hour', 'Eur']), how='outer', on='Hour')
-	
+
 	return df.drop('Hour', axis=1).fillna(0).sort_values('Datetime').reset_index(drop=True)
 
 def features(ticker):
+
+	warnings.filterwarnings("ignore")
 
 	print(ticker)
 
 	def cp(x):
 		return x.cumprod()[-1]
 
-	df = pd.read_csv('D:/TickData_Agg/{}.csv'.format(ticker))
+	df = pd.read_csv('D:/TickData_Agg_FW/{}.csv'.format(ticker))
 	df = filter_weekends(df)
 
 	df['Change'] = (df.Close - df.Open) / df.Open
-	
+
 	## Distribution Statistics
 	df['STDLong'] = df.Change.rolling(window=long_window, min_periods=1).std()
 	df['STDShort'] = df.Change.rolling(window=short_window, min_periods=1).std()
-	
+
 	df['LongVol'] = df.STDLong/np.sqrt(long_window)
 	df['ShortVol'] = df.STDShort/np.sqrt(short_window)
-	
+
 	# Add a small quantity to avoid -inf from the logarithm
-	df['LongVol'] = np.log(df.LongVol+1e-8)
-	df['ShortVol'] = np.log(df.ShortVol+1e-8)
+	df.loc[:, 'LongVol'] = np.log(df.LongVol+1e-8)
+	df.loc[:, 'ShortVol'] = np.log(df.ShortVol+1e-8)
 
 	df['LongSkew'] = df.Change.rolling(window=long_window, min_periods=1).skew()
 	df['ShortSkew'] = df.Change.rolling(window=short_window, min_periods=1).skew()
 
-	df['LongKurtosis'] = df.Change.rolling(window=long_window, min_periods=1).apply(kurtosis, raw=True)
-	df['ShortKurtosis'] = df.Change.rolling(window=short_window, min_periods=1).apply(kurtosis, raw=True)
+	df.loc[:, 'LongSkew'] = df.LongSkew.fillna(value=0)
+	df.loc[:, 'ShortSkew'] = df.ShortSkew.fillna(value=0)
 
 	#Positioning Indicators
 	df['LongSMA'] = df.Close.rolling(window=long_window, min_periods=1).mean()
 	df['ShortSMA'] = df.Close.rolling(window=short_window, min_periods=1).mean()
 
-	df['DLongSMA'] = df.Close / df['LongEMA'].values
-	df['DShortSMA'] = df.Close / df['ShortEMA'].values
+	df['DLongSMA'] = df.Close / df['LongSMA'].values
+	df['DShortSMA'] = df.Close / df['ShortSMA'].values
 
 	### Center Metrics Around 1
 	for col in df.columns:
 		if col in ['Open', 'High', 'Low', 'Close']:
 			df[col] = df[col].pct_change() + 1
 
-	def cp(x):
-		return x.cumprod()[-1]
+	# Market Sessions
+	df = market_sessions(df)
 
-	df['LongSkew'] = df.LongSkew.fillna(value=0)
-	df['ShortSkew'] = df.ShortSkew.fillna(value=0)
+	long_rolling_window = df.Change.rolling(window=long_window, min_periods=1)
+	short_rolling_window = df.Change.rolling(window=short_window, min_periods=1)
 
-	df['LongKurtosis'] = df.LongKurtosis.fillna(value=0)
-	df['ShortKurtosis'] = df.ShortKurtosis.fillna(value=0)
+	start = time.time()
+	df['LongKurtosis'] = long_rolling_window.apply(kurtosis, raw=True)
+	df['ShortKurtosis'] = short_rolling_window.apply(kurtosis, raw=True)
+
+	df.loc[:, 'LongKurtosis'] = df.LongKurtosis.fillna(value=0)
+	df.loc[:, 'ShortKurtosis'] = df.ShortKurtosis.fillna(value=0)
+	print(time.time() - start, 'Kurtosis time')
 
 	# Time series progressions
+	start = time.time()
 	df['LongProg'] = df.Close.rolling(window=long_window, min_periods=1).apply(cp, raw=True)
 	df['ShortProg'] = df.Close.rolling(window=short_window, min_periods=1).apply(cp, raw=True)
+	print(time.time() - start, 'Prog Time')
 
 	# Approximate Entropy
-	df['LongApproximateEntropy'] = df.Change.rolling(window=long_window, min_periods=1).apply(approx_entropy, raw=True)
-	df['ShortApproximateEntropy'] = df.Change.rolling(window=short_window, min_periods=1).apply(approx_entropy, raw=True)
+	start = time.time()
+	df['LongApproximateEntropy'] = long_rolling_window.apply(approx_entropy, raw=True)
+	df['ShortApproximateEntropy'] = short_rolling_window.apply(approx_entropy, raw=True)
+	print(time.time() - start, 'App Time')
 
 	# Spectral Entropy
-	df['LongSpectralEntropy'] = df.Change.rolling(window=long_window, min_periods=1).apply(spec_entropy, raw=True)
-	df['ShortSpectralEntropy'] = df.Change.rolling(window=short_window, min_periods=1).apply(spec_entropy, raw=True)
+	start = time.time()
+	df['LongSpectralEntropy'] = long_rolling_window.apply(spec_entropy, raw=True)
+	df['ShortSpectralEntropy'] = short_rolling_window.apply(spec_entropy, raw=True)
+	print(time.time() - start, 'Spec Time')
 
 	# Autocorrelation
-	df['LongAutocorrelation'] = df.Change.rolling(window=long_window, min_periods=1).apply(autocorrelation, raw=False)
-	df['ShortAutocorrelation'] = df.Change.rolling(window=short_window, min_periods=1).apply(autocorrelation, raw=False)
-	
+	start = time.time()
+	df['LongAutocorrelation'] = long_rolling_window.apply(autocorrelation, raw=False)
+	df['ShortAutocorrelation'] = short_rolling_window.apply(autocorrelation, raw=False)
+	print(time.time() - start, 'Auto Time')
+
 	# Stationarity
-	df['LongStationarity'] = df.Change.rolling(window=long_window, min_periods=1).apply(stationarity, raw=True)
-	df['ShortStationarity'] = df.Change.rolling(window=short_window, min_periods=1).apply(stationarity, raw=True)
+	start = time.time()
+	df['LongStationarity'] = long_rolling_window.apply(stationarity, raw=True)
+	df['ShortStationarity'] = short_rolling_window.apply(stationarity, raw=True)
+	print(time.time() - start, 'Stat Time')
 
 	# FILL NA
 	df.LongSpectralEntropy.fillna(0, inplace=True)
 	df.ShortSpectralEntropy.fillna(0, inplace=True)
 	df.LongAutocorrelation.fillna(0, inplace=True)
 	df.ShortAutocorrelation.fillna(0, inplace=True)
+	df.LongApproximateEntropy.fillna(0, inplace=True)
+	df.ShortApproximateEntropy.fillna(0, inplace=True)
 
-	# Market Sessions
-	df = market_sessions(df)
+	## Remove first 50
+	df = df.iloc[long_window:, :]
 
 	# Discard Temp Features
 	df.drop(['Volume','VWAP', 'Ticks', 'LongSMA', 'ShortSMA', 'Open', 'High', 'Low', 'Close', 'STDLong', 'STDShort'], axis=1, inplace=True)
-
-	df = df.iloc[long_window:, :]
 
 	## NaN Value Check
 	print(df.isnull().sum(axis=0))
@@ -197,9 +225,7 @@ def features(ticker):
 
 	print(df.head())
 
-	df.to_csv('{}/Features/{}_clean.csv'.format(dir_, ticker), index=False)
-
-######################################################################
+	df.to_csv('{}/Features_FW/{}_clean.csv'.format(dir_, ticker), index=False)
 
 def get_tickers():
 
@@ -219,11 +245,8 @@ def go_parallel():
 def main(ticker):
 
 	if ticker == 'ALL':
-
 		go_parallel()
-
 	else:
-
 		features(ticker)
 
 ######################################################################
@@ -235,4 +258,3 @@ if __name__ == '__main__':
 	args = argparse.parse_args()
 
 	main(args.ticker)
-

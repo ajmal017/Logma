@@ -29,7 +29,10 @@ def get_main_df():
 		df['Ticker'] = ticker
 		main.append(df)
 
-	main = pd.concat(main, axis=0).iloc[:, 1:].reset_index(drop=True)
+	main = pd.concat(main, axis=0).reset_index(drop=True)
+
+	print(main.head())
+	print(main.columns)
 
 	main.loc[main.TTC <= 20, 'TTC'] = 1
 	main.loc[main.TTC > 20, 'TTC'] = 0
@@ -63,36 +66,47 @@ def eval_fold(idct, idcv, X_train, y_train, param_grid, i):
 
 def go_parallel():
 
+	np.random.seed(72)
+
 	main = get_main_df()
+	print(main.TTC.value_counts())
 
-	train_pct = 0.7
+	train_pct = 0.5
 	test_pct = 1 - train_pct
-	validation_pct = 0.1
-
 	idc = np.random.permutation(main.shape[0])
 	train_len = int(train_pct * main.shape[0])
 
-	print(main.shape)
-
+	## Partition the data
 	train = main.iloc[idc[:train_len], :]
 	test = main.iloc[idc[train_len:], :]
 
-	train_tickers = train.Ticker.values
-	train_drawdowns = train.Drawdown.values
-	train_directions = train.Direction.values
-	y_train = train.TTC.values
-	idx = train.columns.tolist().index('sig20')-1
-	X_train = train.iloc[:, idx:-1]
+	##################
+	## TRAIN SET
+	##################
 
-	test_tickers = test.Ticker.values
-	test_drawdown = test.Drawdown.values
-	test_directions = test.Direction.values
+	y_train = train.TTC.values
+	idx = train.columns.tolist().index('Direction')
+	X_train = train.iloc[:, idx:-1]
+	print(X_train.columns)
+
+	##################
+	## TEST SET
+	##################
+
 	y_test = test.TTC.values
-	idx = test.columns.tolist().index('sig20')-1
+	idx = test.columns.tolist().index('Direction')
 	X_test = test.iloc[:, idx:-1]
+	print(X_train.columns)
 
 	print(X_train.head())
 	print(X_test.head())
+
+	####################
+	## PARAMETER SEARCH
+	####################
+
+	NFOLDS = 5
+	kfold = StratifiedKFold(n_splits=NFOLDS, shuffle=True, random_state=218)
 
 	param_grid = {
 		'n_estimators' : [10000],
@@ -101,21 +115,7 @@ def go_parallel():
 		'num_leaves' : [5, 10, 20, 50, 100],
 		'min_child_weight' : [0.0001, 0.001, 0.05, 0.1],
 	}
-
-	param_grid = {
-		'n_estimators' : [10000],
-		'max_depth' : [-1, 5, 7, 9, 10, 11, 13, 15],
-		'learning_rate' : [0.0001, 0.001, 0.05, 0.1],
-		'num_leaves' : [15, 17, 19, 20, 21, 23, 25],
-		'min_child_weight' : [0.0001, 0.001, 0.05, 0.1],
-	}
-
-	NFOLDS = 5
-	kfold = StratifiedKFold(n_splits=NFOLDS, shuffle=True, random_state=218)
-
 	print('Num Searches', len(list(ParameterGrid(param_grid))) * 5)
-
-	np.random.seed(72)
 
 	Parallel(n_jobs=5)(delayed(eval_fold)(idct, idcv, X_train, y_train, param_grid, i)
 					for i, (idct, idcv) in enumerate(kfold.split(X_train, y_train)))

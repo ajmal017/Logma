@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import joblib
+import joblib, warnings
 
 from scipy.stats import kurtosis
 from scipy.stats import skew
@@ -8,13 +8,32 @@ from entropy import *
 from statsmodels.tsa.stattools import adfuller
 from sklearn.preprocessing import StandardScaler
 
+###################################################################
+## The model class computes a prediction given a signal has occured.
+## A model object is referenced by the instrument class.
+
+## 2019-06-19 COLUMN ORDER
+## DIRECTION, SIG20, SIG30, SIG50, CHANGE, LONGVOL, SHORTVOL
+## LONGSKEW, SHORTSKEW, DLONGSMA, DSHORTSMA, ASIA, US, EUR
+## LONGKURTOSIS, SHORTKURTOSIS, LONGPROG, SHORTPROG
+## LONGAPPENTROPY, SHORTAPPENTROPY, LONGSPECENTROPY, LONGAUTOCORR
+## SHORTAUTOCORR, LONGSTAT, SHORTSTAT
+
+## NO SCALE
+## DIRECTION, SIG20, SIG30, SIG50, ASIA, US, EUR, LONGSTAT
+## SHORTSTAT
+###################################################################
+
 class Model(object):
 
-    model_path = '/home/zquantz/Documents/Models/lgbm_2019-04-16'
+
+    model_path = '/home/zquantz/Documents/Models/lgbm_2019-04-19'
     scaling_dir = '/home/zquantz/Documents/Scalers'
-    log_trim = 7
+    log_trim = 5
 
     def __init__(self, ticker, short_num_periods, num_periods):
+
+        warnings.filterwarnings("ignore")
         
         self.ticker = ticker
         self.short_num_periods = short_num_periods
@@ -65,12 +84,13 @@ class Model(object):
         
     def is_trade(self, data):
 
-        dfe = pd.DataFrame(data, columns=['Datetime', 'Open', 'High', 'Low', 'Close'])
-        dfe.describe()
+        dfe = pd.DataFrame(data.copy(), columns=['Datetime', 'Open', 'High', 'Low', 'Close'])
         df = dfe.iloc[1:, :].copy()
-        
-        df['Hour'] = pd.to_datetime(df.Datetime).dt.hour
+
         df['Change'] = (df.Close - df.Open) / df.Open
+        df['Hour'] = pd.to_datetime(df.Datetime).dt.hour
+        dfs = df.iloc[-self.short_num_periods:, :].copy()
+        
         change = df.Change.values[-1]
         
         sig50std = df.Change.std()
@@ -85,54 +105,68 @@ class Model(object):
         sig30 = 1 if change > sig30mean + 3*sig30std else 1 if change < sig30mean - 3*sig30std else 0
         sig50 = 1 if change > sig50mean + 3*sig50std else 1 if change < sig50mean - 3*sig50std else 0
         
-        if self.is_signal(sig20, sig30, sig50):
+        if True or self.is_signal(sig20, sig30, sig50):
             
+            ## Trade Direction
             direction = np.sign(change)*-1
             
+            ## Open-Close Price Change
             change = self.log_trimming(self.iqr_trimming(change, 'change'))
 
-            dfs = df.iloc[-self.short_num_periods:, :]
-
-            ## Distribution Statistics
+            ## Volatility
             long_vol = np.log(1e-8+(df.Change.std() / np.sqrt(self.num_periods)))
             short_vol = np.log(1e-8+(dfs.Change.std() / np.sqrt(self.short_num_periods)))
 
-            long_skew = df.Change.skew()
-            short_skew = dfs.Change.skew()
+            ## Skewness
+            long_skew = np.nan_to_num(df.Change.skew())
+            short_skew = np.nan_to_num(dfs.Change.skew())
 
-            long_kurtosis = kurtosis(df.Change.values)
-            short_kurtosis = kurtosis(dfs.Change.values)
+            ## Kurtosis
+            long_kurtosis = np.nan_to_num(self.log_trimming(kurtosis(df.Change.values)))
+            short_kurtosis = np.nan_to_num(self.log_trimming(kurtosis(dfs.Change.values)))
             
-            dlongsma = dfe.Close / dfe.Close.rolling(window=self.num_periods, min_periods=1).mean()
+            ## SMA Price Distance
+            dlongsma = df.Close / df.Close.rolling(window=self.num_periods, min_periods=1).mean()
             dlongsma = dlongsma.values[-1]
             dlongsma = self.log_trimming(self.iqr_trimming(dlongsma, 'dlongsma'))
-
-            dshortsma = dfe.Close / dfe.Close.rolling(window=self.short_num_periods, min_periods=1).mean()
+            #
+            dshortsma = df.Close / df.Close.rolling(window=self.short_num_periods, min_periods=1).mean()
             dshortsma = dshortsma.values[-1]
             dshortsma = self.log_trimming(self.iqr_trimming(dshortsma, 'dshortsma'))
-
-            dfe.Close = dfe.Close.pct_change() + 1
 
             # Market Sessions
             hour = df.Hour.values[-1]
             us_time = self.us[hour] if hour in self.us else 0
             eur_time = self.eur[hour] if hour in self.eur else 0
             asia_time = self.asia[hour] if hour in self.asia else 0
+
+            ## DFE - Extended dataframe to maintain 50 datapoints when calculating the % Change.
+            ## Close now in Pct Change Format. Use the second value to exclude the NaN value.
+            dfe.Close = dfe.Close.pct_change() + 1
             
+            ## Cummulative Price Progression
             longprog = dfe.Close.values[1:].cumprod()[-1]
             longprog = self.log_trimming(self.iqr_trimming(longprog, 'longprog'))
-
+            #
             shortprog = dfe.Close.values[-self.short_num_periods:].cumprod()[-1]
             shortprog = self.log_trimming(self.iqr_trimming(shortprog, 'shortprog'))
 
+            ## Spectral Entropy
             longspec = spectral_entropy(df.Change.values, sf=self.num_periods, method='welch', nperseg=(self.num_periods/8), normalize=True)
-            
+            longspec = np.nan_to_num(self.log_trimming(self.iqr_trimming(longspec, 'longspecentropy')))
+
+            ## Approximate Entropy
             longape = app_entropy(df.Change.values.copy(), order=2, metric='chebyshev')
+            longape = np.nan_to_num(self.log_trimming(self.iqr_trimming(longape, 'longappentropy')))
+            #
             shortape = app_entropy(dfs.Change.values.copy(), order=2, metric='chebyshev')
+            shortape = np.nan_to_num(self.log_trimming(self.iqr_trimming(shortape, 'shortappentropy')))
 
-            long_ac = df.Change.autocorr(11)
-            short_ac = dfs.Change.autocorr(11)
+            ## Autocorrelation
+            long_ac = np.nan_to_num(df.Change.autocorr(11))
+            short_ac = np.nan_to_num(dfs.Change.autocorr(11))
 
+            ## Stationarity Test
             t, _, _, _, t_crit, _ = adfuller(df.Change.values, autolag = 'AIC')
             t_crit = list(t_crit.values())[1]
             long_stat =  0 if (t < t_crit or np.isnan(t)) else 1
@@ -141,17 +175,21 @@ class Model(object):
             t_crit = list(t_crit.values())[1]
             short_stat = 0 if (t < t_crit or np.isnan(t)) else 1
 
-            feats = np.array([direction, abs(sig20), abs(sig30), abs(sig50), change, long_vol, short_vol, long_skew, short_skew, long_kurtosis, short_kurtosis,
-                    dlongsma, dshortsma, asia_time, us_time, eur_time, longprog, shortprog, longape, shortape, longspec, long_ac,
-                    short_ac, long_stat, short_stat])
+            feats = np.array([direction, abs(sig20), abs(sig30), abs(sig50), change, long_vol, short_vol, long_skew, short_skew,
+                    dlongsma, dshortsma, asia_time, us_time, eur_time, long_kurtosis, short_kurtosis, longprog, shortprog, longape, 
+                    shortape, longspec, long_ac, short_ac, long_stat, short_stat])
 
-            exclude = [0, 1, 2, 3, 13, 14, 15, 23, 24]
+            exclude = [0, 1, 2, 3, 11, 12, 13, 23, 24]
             include = [i for i in range(feats.shape[0]) if i not in exclude]
 
             feats[include] = self.scalers['ss'].transform([feats[include]])
 
+<<<<<<< HEAD
             return self.predict([feats])[0], feats.tolist(), 1, df.Close.values[-1]
+=======
+            return self.predict([feats])[0], feats, direction, df.Open.values[-1], df.Close.values[-1]
+>>>>>>> 242937a2533df78b66bdd2d163638c3b0594577d
 
         else:
 
-            return 0, [], 0, 0
+            return 0, [], 0, 0, 0

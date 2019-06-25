@@ -17,7 +17,7 @@ class ManagerClient(EClient):
 
 		EClient.__init__(self, wrapper = wrapper)
 
-	def on_signal(self, direction, quantity, symbol, price, data):
+	def on_signal(self, direction, quantity, symbol, prices, data):
 
 		loggers[symbol].info('Signal {} - Executing Trade'.format(direction))
 
@@ -27,15 +27,37 @@ class ManagerClient(EClient):
 		## Direction
 		action = self.direction2action[direction]
 
-		## Adjust the price for min tick increment rule
-		price = adjust_price(price, tick_increment, direction, margin = 1)
+		## Set up targets & adjust for tick increments
+		open_, close = prices
+		cs = abs(close - open_)
+
+		entry = close
+		entry = adjust_price(entry, tick_increment, direction, margin=2)
+
+		take_profit = entry + (cs * direction)
+		take_profit= adjust_price(take_profit, tick_increment, direction, margin=2)
+
+		soft_stop = entry - (cs * self.risk * direction)
+		soft_stop = adjust_price(soft_stop, tick_increment, direction, margin=0)
+
+		hard_stop = entry - 2 * (cs * self.risk * direction)
+		hard_stop = adjust_price(hard_stop, tick_increment, direction, margin=0)
+
+		reduced_soft = entry - (cs * self.risk * 0.5 * direction)
+		reduced_soft = adjust_price(reduced_soft, tick_increment, direction, margin=0)
+
+		reduced_hard = entry - 2 * (cs * self.risk * 0.5 * direction)
+		reduced_hard = adjust_price(reduced_hard, tick_increment, direction, margin=0)
 
 		## Trade details
 		details = {
-			"entry_price" : price,
-			"take_profit" : price + (direction * tick_increment * 1),
-			"soft_stop" : price - (direction * tick_increment * 1),
-			"hard_stop" : price - (direction * tick_increment * 2)
+			"entry_price" : entry,
+			"take_profit" : take_profit,
+			"soft_stop" : soft_stop,
+			"hard_stop" : hard_stop,
+			"reduced_soft" : reduced_soft,
+			"reduced_hard" : reduced_hard,
+			"candle_size" : cs / (tick_increment / 5)
 		}
 
 		## Add trade object to index
