@@ -10,57 +10,65 @@ TradeOrders = namedtuple('TradeOrders', ['init_order', 'init_oid', 'profit_order
 
 class Trade(object):
 
-	def __init__(self, manager, symbol, action, direction, quantity, details, data):
+	def __init__(self, manager, symbol=None, action=None, direction=None, quantity=None, details=None, data=None, **kwargs):
 
-		## Start Time
-		self.init_time = datetime.now()
-
-		## Book keeping
-		self.symbol = symbol
-		self.contract = manager.contracts[symbol]
-		self.direction = direction
-		self.action = action
-		self.closing_action = manager.closing_actions[action]
-		self.num_updates = []
-		self.data = data
-
-		## Manager stuff
 		self.manager = manager
-		self.tick_incr = manager.tick_increments[self.symbol]
 
-		## Closing instructions
-		self.details = details
+		if symbol == None:
 
-		## Trade status
-		self.status = 'PENDING'
-		self.state = 'NORMAL'
-		self.execution_logic = 'NONE'
+			for key in kwargs:
+				setattr(self, key, kwargs[key])
 
-		## Initial order quantity
-		self.quantity = quantity
+		else:
 
-		## Place initial order
-		self.setup()
+			## Start Time
+			self.init_time = datetime.now()
 
-		## Switches
-		self.wick_switch = True
-		self.maturity_switch = True
-		self.soft_stop_switch = False
-		self.take_profit_switch = False
-		self.hard_stop_switch = False
+			## Book keeping
+			self.symbol = symbol
+			self.contract = manager.contracts[symbol]
+			self.direction = direction
+			self.action = action
+			self.closing_action = manager.closing_actions[action]
+			self.num_updates = []
+			self.data = data
 
-		## Placeholders
-		self.num_filled = 0
-		self.num_filled_on_close = 0
-		self.drawdown = 0
-		self.run_up = 0
-		self.avg_filled_price_on_close = -1
-		self.avg_filled_price = -1
-		self.execution_time = -1
+			## Manager stuff
+			self.tick_incr = manager.tick_increments[self.symbol]
 
-		## Period details
-		self.time_period = 5
-		self.maturity = 20
+			## Closing instructions
+			self.details = details
+
+			## Trade status
+			self.status = 'PENDING'
+			self.state = 'NORMAL'
+			self.execution_logic = 'NONE'
+
+			## Initial order quantity
+			self.quantity = quantity
+
+			## Place initial order
+			self.setup()
+
+			## Switches
+			self.wick_switch = True
+			self.maturity_switch = True
+			self.soft_stop_switch = False
+			self.take_profit_switch = False
+			self.hard_stop_switch = False
+
+			## Placeholders
+			self.num_filled = 0
+			self.num_filled_on_close = 0
+			self.drawdown = 0
+			self.run_up = 0
+			self.avg_filled_price_on_close = -1
+			self.avg_filled_price = -1
+			self.execution_time = -1
+
+			## Period details
+			self.time_period = 5
+			self.maturity = 20
 
 		self.logger = loggers[symbol]
 
@@ -86,6 +94,16 @@ class Trade(object):
 			"Last Update" : getattr(self, 'last_update', 0),
 			"Candle Size" : self.details['candle_size']
 		})
+
+	def serialize(self):
+
+		attributes = self.__dict__
+
+		attributes.pop("logger")
+		attributes.pop("manager")
+
+		with open('db/trades/{}'.format(self.symbol), 'wb') as file:
+			joblib.dump(attributes, file)
 
 	def setup(self):
 
@@ -220,7 +238,7 @@ class Trade(object):
 				self.maturity_switch = False
 
 			## On wick in profit
-			if self.wick_switch and self.is_in_profit():
+			if self.wick_switch and self.is_in_wick():
 				self.logger.info('WICK State reached.')
 				self.state = 'WICK'
 				self.details['soft_stop'] = self.details['reduced_soft']
@@ -275,6 +293,11 @@ class Trade(object):
 	def is_in_profit(self):
 
 		target = self.details['entry_price']
+		return self.direction * (self.last_update - target) >= 0
+
+	def is_in_wick(self):
+
+		target = self.details['take_profit']
 		return self.direction * (self.last_update - target) >= 0
 
 	def is_take_profit(self):

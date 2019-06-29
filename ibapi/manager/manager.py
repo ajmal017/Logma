@@ -6,6 +6,7 @@ from manager.manager_wrapper import ManagerWrapper
 from threading import Thread
 from datetime import datetime
 
+from trade import Trade
 from tools.zcontracts import forex_contract
 
 import logging
@@ -94,13 +95,33 @@ class Manager(ManagerClient, ManagerWrapper):
 
 	def on_start(self):
 
-		pass
+		for ticker in os.listdir('db/trades/'):
+
+			self.loggers['error'].info('De-serialize {} Trade.'.format(ticker))
+
+			with open('db/trades/{}'.format(ticker)) as file:
+
+				serialized_trade = joblib.load(file)
+				assert serialized_trade['symbol'] == ticker
+
+				self.trades[ticker] = Trade(self, symbol = None, **kwargs)
+
+				self.reqMktData(self.ticker2id[ticker], self.contracts[ticker], '', False, False, [])
+
 
 	def now(self):
 
 		return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 	def on_close(self):
+
+		for ticker in self.trades:
+
+			## Dont save trades that are not even filled.
+			if self.trades[ticker].status == 'PENDING':
+				continue
+			
+			self.trades[ticker].serialize()
 
 		## Close all orders
 		self.reqGlobalCancel()
