@@ -97,7 +97,12 @@ if __name__ == '__main__':
 		atexit.register(strat.join)
 		atexit.register(strat.on_close)
 
-	except:
+	except Exception as e:
+
+		strat.on_close()
+		strat.join()
+
+	finally:
 
 		strat.on_close()
 		strat.join()
