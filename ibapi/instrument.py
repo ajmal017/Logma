@@ -34,7 +34,7 @@ class Instrument(Thread):
             signal, features, direction, open_, close = self.model.is_trade(list(self.storage.data).copy())
             cs = abs(close - open_) / (self.manager.tick_increments[self.ticker] / 5)
 
-            if True and cs >= 1:
+            if signal and cs >= 10:
 
                 data = {
                     "historical" : list(self.storage.data),
@@ -45,6 +45,10 @@ class Instrument(Thread):
 
                 self.logger.info('JOB: Starting Manager')
                 self.blocker.resume_job('manager_job')
+
+        elif self.ticker in self.manager.trades:
+
+            self.manager.trades[self.ticker].post_data.append(self.storage.data[-1])
             
     def manager_job(self):
     

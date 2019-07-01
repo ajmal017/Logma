@@ -100,7 +100,7 @@ class ManagerWrapper(EWrapper):
 					trade.on_close()
 
 		except Exception as e:
-			pass
+			print('oStatus', e)
 
 	def tickPrice(self, tickerId, field, price, attribs):
 
@@ -113,4 +113,4 @@ class ManagerWrapper(EWrapper):
 				trade.on_period()
 
 		except Exception as e:
-			pass
+			print('tPrice', e)

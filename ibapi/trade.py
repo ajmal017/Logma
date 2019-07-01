@@ -6,46 +6,45 @@ from tools.zlogging import loggers, post_trade_doc
 
 from collections import namedtuple
 
+import joblib
+
 TradeOrders = namedtuple('TradeOrders', ['init_order', 'init_oid', 'profit_order', 'profit_oid', 'loss_order', 'loss_oid'])
 
 class Trade(object):
 
-	def __init__(self, manager, symbol=None, action=None, direction=None, quantity=None, details=None, data=None, **kwargs):
+	###################################################################################
+	## Need to pass symbol, action, direction, quantity, details and data in dictionary.
+	## This makes it easy to re-load trade objects without adding too much logic on top.
+	## manager_client.py and manager.py are the only files that create trade object.
+	## Pass manager and isSerialized directly.
+	####################################################################################
+
+	def __init__(self, manager, isSerialized, **kwargs):
+
+		for key in kwargs:
+			setattr(self, key, kwargs[key])
 
 		self.manager = manager
+		self.logger = loggers[self.symbol]
 
-		if symbol == None:
-
-			for key in kwargs:
-				setattr(self, key, kwargs[key])
-
-		else:
+		if not isSerialized:
 
 			## Start Time
 			self.init_time = datetime.now()
 
 			## Book keeping
-			self.symbol = symbol
-			self.contract = manager.contracts[symbol]
-			self.direction = direction
-			self.action = action
-			self.closing_action = manager.closing_actions[action]
+			self.contract = manager.contracts[self.symbol]
+			self.closing_action = manager.closing_actions[self.action]
 			self.num_updates = []
-			self.data = data
+			self.post_data = []
 
 			## Manager stuff
 			self.tick_incr = manager.tick_increments[self.symbol]
-
-			## Closing instructions
-			self.details = details
 
 			## Trade status
 			self.status = 'PENDING'
 			self.state = 'NORMAL'
 			self.execution_logic = 'NONE'
-
-			## Initial order quantity
-			self.quantity = quantity
 
 			## Place initial order
 			self.setup()
@@ -69,41 +68,6 @@ class Trade(object):
 			## Period details
 			self.time_period = 5
 			self.maturity = 20
-
-		self.logger = loggers[symbol]
-
-	def simple_view(self):
-
-		return deepcopy({
-			"Ticker" : self.symbol,
-			"Initiated Time" : self.init_time,
-			"Execution Time" : self.execution_time,
-			"Direction" : int(self.direction),
-			"Trade Length" : len(self.num_updates),
-			"Status" : self.status,
-			"State" : self.state,
-			"Execution Logic" : self.execution_logic,
-			"Quantity" : self.quantity,
-			"Drawdown" : self.drawdown,
-			"Run Up" : self.run_up,
-			"Filled Position" : self.num_filled,
-			"Avg Filled Price" : self.avg_filled_price,
-			"Take Profit Price" : self.details['take_profit'],
-			"Soft Stop Price" : self.details['soft_stop'],
-			"Hard Stop Price" : self.details['hard_stop'],
-			"Last Update" : getattr(self, 'last_update', 0),
-			"Candle Size" : self.details['candle_size']
-		})
-
-	def serialize(self):
-
-		attributes = self.__dict__
-
-		attributes.pop("logger")
-		attributes.pop("manager")
-
-		with open('db/trades/{}'.format(self.symbol), 'wb') as file:
-			joblib.dump(attributes, file)
 
 	def setup(self):
 
@@ -149,17 +113,36 @@ class Trade(object):
 
 		print('Init', self.symbol, init_oid)
 
+	def serialize(self):
+
+		attributes = self.__dict__
+
+		attributes.pop("logger")
+		attributes.pop("manager")
+
+		with open('db/trades/{}'.format(self.symbol), 'wb') as file:
+			joblib.dump(attributes, file)
+
+	def update_and_send(self, order_key, adjusted_price):
+		
+		self.orders[order_key]['order'].lmtPrice = adjusted_price
+		#self.orders[order_key]['order'].totalQuantity = self.quantity - self.num_filled_on_close
+
+		oid = self.orders[order_key]['order_id']
+		oid = oid if oid is not None else self.manager.get_oid()
+		self.manager.placeOrder(oid, self.contract, self.orders[order_key]['order'])
+
+		## Book keeping
+		self.orders[order_key]['order_id'] = oid
+		self.manager.orders[oid] = self.orders[order_key]['order']
+		self.manager.order2trade[oid] = self
+
 	def on_fill(self):
 
 		if self.status == 'PENDING':
 			## Set trade status
 			self.status = 'ACTIVE'
 			self.execution_time = datetime.now()
-
-			## Book keeping
-			self.orders['profit']['order_id'] = profit_oid
-			self.manager.orders[profit_oid] = self.orders['profit']['order']
-			self.manager.order2trade[profit_oid] = self
 
 			print('Filled', self.symbol)
 
@@ -189,20 +172,6 @@ class Trade(object):
 			print('POSTED')
 
 			self.status = 'CLOSED'
-
-	def update_and_send(self, order_key, adjusted_price):
-		
-		self.orders[order_key]['order'].lmtPrice = adjusted_price
-		#self.orders[order_key]['order'].totalQuantity = self.quantity - self.num_filled_on_close
-
-		oid = self.orders[order_key]['order_id']
-		oid = oid if oid is not None else self.manager.get_oid()
-		self.manager.placeOrder(oid, self.contract, self.orders[order_key]['order'])
-
-		## Book keeping
-		self.orders[order_key]['order_id'] = oid
-		self.manager.orders[oid] = self.orders[order_key]['order']
-		self.manager.order2trade[oid] = self
 
 	def on_event(self, order_key, margin = 1):
 
@@ -327,3 +296,26 @@ class Trade(object):
 		dt = datetime.now()
 		delta = dt - self.init_time
 		return self.num_filled == 0 and delta.seconds >= self.time_period * 60
+
+	def simple_view(self):
+
+		return deepcopy({
+			"Ticker" : self.symbol,
+			"Initiated Time" : self.init_time,
+			"Execution Time" : self.execution_time,
+			"Direction" : int(self.direction),
+			"Trade Length" : len(self.num_updates),
+			"Status" : self.status,
+			"State" : self.state,
+			"Execution Logic" : self.execution_logic,
+			"Quantity" : self.quantity,
+			"Drawdown" : self.drawdown,
+			"Run Up" : self.run_up,
+			"Filled Position" : self.num_filled,
+			"Avg Filled Price" : self.avg_filled_price,
+			"Take Profit Price" : self.details['take_profit'],
+			"Soft Stop Price" : self.details['soft_stop'],
+			"Hard Stop Price" : self.details['hard_stop'],
+			"Last Update" : getattr(self, 'last_update', 0),
+			"Candle Size" : self.details['candle_size']
+		})
