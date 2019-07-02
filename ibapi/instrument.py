@@ -45,6 +45,10 @@ class Instrument(Thread):
 
                 self.logger.info('JOB: Starting Manager')
                 self.blocker.resume_job('manager_job')
+
+        elif self.ticker in self.manager.trades:
+
+            self.manager.trades[self.ticker].post_data.append(self.storage.data[-1])
             
     def manager_job(self):
     

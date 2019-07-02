@@ -76,7 +76,7 @@ def after_request(response):
 def dashboard():
 
 	## Positions
-	position_table =  get_table()
+	position_table = get_table()
 
 	## System Health
 	system_health = get_health()
@@ -86,28 +86,19 @@ def dashboard():
 if __name__ == '__main__':
 
 	try:
-
+	
 		strat = StrategyThread()
 		strat.start()
-
-		#bg_sched = BackgroundScheduler()
-		#bg_sched.add_job(get_table, 'cron', second='*/11', id='dashboard')
-		#bg_sched.start()
 
 		http_server = WSGIServer(('0.0.0.0', 9095), app)
 		http_server.serve_forever()
 
-		## Call functions to end without hanging threads
-		atexit.register(strat.join)
-		atexit.register(strat.on_close)
-		#atexit.register(bg_sched.shutdown)
-
 	except Exception as e:
 
-		print(e)
-	
+		strat.on_close()
+		strat.join()
+
 	finally:
 
-		#bg_sched.shutdown()
 		strat.on_close()
 		strat.join()

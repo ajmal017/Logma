@@ -6,9 +6,11 @@ from manager.manager_wrapper import ManagerWrapper
 from threading import Thread
 from datetime import datetime
 
+from trade import Trade
 from tools.zcontracts import forex_contract
+from tools.zlogging import loggers
 
-import logging
+import logging, joblib, os
 
 ##############################
 
@@ -94,13 +96,48 @@ class Manager(ManagerClient, ManagerWrapper):
 
 	def on_start(self):
 
-		pass
+		for ticker in os.listdir('db/trades/'):
+
+			loggers['error'].info('De-serialize {} Trade.'.format(ticker))
+
+			with open('db/trades/{}'.format(ticker), 'rb') as file:
+
+				serialized_trade = joblib.load(file)
+				assert serialized_trade['symbol'] == ticker
+
+				trade = Trade(manager = self, isSerialized = True, **serialized_trade)
+
+				## Recreate the order maps
+				for key in trade.orders:
+
+					oid = trade.orders[key]['order_id']
+
+					if oid is None:
+						continue
+
+					self.order2trade[oid] = trade
+
+					self.orders[oid] = trade.orders[key]['order']
+
+				self.trades[ticker] = trade
+
+				self.reqMktData(self.ticker2id[ticker], self.contracts[ticker], '', False, False, [])
+
+			os.unlink('db/trades/{}'.format(ticker))
 
 	def now(self):
 
 		return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 	def on_close(self):
+
+		for ticker in self.trades:
+
+			## Dont save trades that are not even filled.
+			if self.trades[ticker].status == 'PENDING':
+				continue
+			
+			self.trades[ticker].serialize()
 
 		## Close all orders
 		self.reqGlobalCancel()

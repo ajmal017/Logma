@@ -61,7 +61,15 @@ class ManagerClient(EClient):
 		}
 
 		## Add trade object to index
-		self.trades[symbol] = Trade(manager = self, symbol = symbol, action = action, direction = direction, quantity = quantity, details = details, data = data)
+		trade_args = {
+			"symbol" : symbol,
+			"action" : action, 
+			"direction" : direction,
+			"quantity" : quantity,
+			"details" : details,
+			"data" : data
+		}
+		self.trades[symbol] = Trade(manager = self, isSerialized = False, **trade_args)
 
 		## Start market data for instrument
 		self.reqMktData(self.ticker2id[symbol], self.contracts[symbol], '', False, False, [])

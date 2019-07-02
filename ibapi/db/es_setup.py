@@ -3,7 +3,7 @@ from elasticsearch import helpers
 
 import requests, json
 
-es = Elasticsearch([{"host" : "192.168.2.38", "port" : 9200}])
+es = Elasticsearch([{"host" : "localhost", "port" : 9200}])
 
 if __name__ == '__main__':
 
@@ -24,6 +24,7 @@ if __name__ == '__main__':
 		'direction' : {'type' : 'long'},
 		'position': {'type': 'long'},
 		'avgCost': {'type': 'double'},
+		'candleSize' : {'type' : 'double'},
 		'initTime': {'type': 'date', 'format': 'date_hour_minute_second'},
 		'executionTime': {'type': 'date', 'format': 'date_hour_minute_second'},
 		'closingTime': {'type': 'date', 'format': 'date_hour_minute_second'},

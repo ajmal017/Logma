@@ -2,27 +2,25 @@ from elasticsearch import Elasticsearch, helpers
 from datetime import datetime, timedelta
 import numpy as np
 import logging
+import uuid
 import os
+
+##################
+## CONSTS
+#################
+
+fmt = '%Y-%m-%dT%H:%M:%S'
 
 dir_ = os.path.dirname(os.path.realpath(__name__))
 es = Elasticsearch([{"host" : "192.168.2.38", "port" : 9200}])
 
-tickers = [	"EURCHF",
-			"USDCHF",
-			"GBPUSD",
-			"USDJPY",
-			"EURUSD",
-			"EURGBP",
-			"NZDUSD",
-			"USDCAD",
-			"EURJPY",
-			"AUDUSD",
-			"GBPJPY",
-			"CHFJPY",	
-			"AUDNZD",
-			"CADJPY"]
+tickers = [	"EURCHF","USDCHF","GBPUSD","USDJPY","EURUSD","EURGBP",
+			"NZDUSD","USDCAD","EURJPY","AUDUSD","GBPJPY","CHFJPY",	
+			"AUDNZD","CADJPY"]
 
-#### LOGGING ####
+##################
+## LOGGING
+#################
 
 loggers = {}
 
@@ -50,10 +48,9 @@ logger.addHandler(file_handler)
 
 loggers['error'] = logger
 
-#### INDEXING ######
-
-fmt = '%Y-%m-%dT%H:%M:%S'
-es = Elasticsearch([{"host" : "localhost", "port" : 9200}])
+##################
+## INDEXING
+#################
 
 global actions
 actions = []
@@ -93,13 +90,16 @@ def post_market_data_doc(ticker, time_period, data_time, data_type, data, dates 
 	actions.append(doc_)
 
 	if len(actions) % 1007 == 0:
-		np.save('db/dumps/marketdata_{}.npy'.format(data_time), actions)
+		np.save('db/dumps/marketdata_{}.npy'.format(uuid.uuid4()), actions)
 		actions = []
 
 def post_trade_doc(trade):
 
-	trade.data['dates'] = [x[0] for x in trade.data['historical']]
-	trade.data['historical'] = [x[1:] for x in trade.data['historical']]
+	trade.data['preDates'] = [x[0] for x in trade.data['historical']]
+	trade.data['prePrices'] = [x[1:] for x in trade.data['historical']]
+
+	trade.data['postDates'] = [x[0] for x in trade.post_data]
+	trade.data['postPrices'] = [x[1:] for x in trade.post_data]
 
 	doc_ = {
 		"ticker" : trade.symbol,
@@ -118,7 +118,8 @@ def post_trade_doc(trade):
 		"executionLogic" : trade.execution_logic,
 		"tickIncrement" : trade.tick_incr,
 		"numUpdates" : trade.num_updates,
-		'closingTime' : datetime.now().strftime(fmt)
+		'closingTime' : datetime.now().strftime(fmt),
+		"candleSize" : trade.details['candle_size']
 	}
 
 	if trade.status != 'PENDING':
@@ -137,4 +138,4 @@ def post_trade_doc(trade):
 		"_source" : doc_
 	}
 
-	np.save('db/dumps/{}_{}'.format(trade.symbol, doc_['_source']['closingTime']), [doc_])
+	np.save('db/dumps/{}_{}'.format(trade.symbol, uuid.uuid4()), [doc_])

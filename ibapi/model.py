@@ -26,9 +26,8 @@ from sklearn.preprocessing import StandardScaler
 
 class Model(object):
 
-
-    model_path = '/home/zquantz/Documents/AlgoML/models/lgbm_2019-06-19'
-    scaling_dir = '/home/zquantz/Documents/AlgoML/scalers'
+    model_path = 'models/lgbm_2019-06-19'
+    scaling_dir = 'scalers'
     log_trim = 5
 
     def __init__(self, ticker, short_num_periods, num_periods):
