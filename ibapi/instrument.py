@@ -34,7 +34,7 @@ class Instrument(Thread):
             signal, features, direction, open_, close = self.model.is_trade(list(self.storage.data).copy())
             cs = abs(close - open_) / (self.manager.tick_increments[self.ticker] / 5)
 
-            if True and cs >= 1:
+            if signal and cs >= 10:
 
                 data = {
                     "historical" : list(self.storage.data),

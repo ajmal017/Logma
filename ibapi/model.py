@@ -27,8 +27,8 @@ from sklearn.preprocessing import StandardScaler
 class Model(object):
 
 
-    model_path = '/home/zquantz/Documents/Models/lgbm_2019-04-19'
-    scaling_dir = '/home/zquantz/Documents/Scalers'
+    model_path = '/home/zquantz/Documents/AlgoML/models/lgbm_2019-06-19'
+    scaling_dir = '/home/zquantz/Documents/AlgoML/scalers'
     log_trim = 5
 
     def __init__(self, ticker, short_num_periods, num_periods):
@@ -105,7 +105,7 @@ class Model(object):
         sig30 = 1 if change > sig30mean + 3*sig30std else 1 if change < sig30mean - 3*sig30std else 0
         sig50 = 1 if change > sig50mean + 3*sig50std else 1 if change < sig50mean - 3*sig50std else 0
         
-        if True or self.is_signal(sig20, sig30, sig50):
+        if self.is_signal(sig20, sig30, sig50):
             
             ## Trade Direction
             direction = np.sign(change)*-1
@@ -184,7 +184,7 @@ class Model(object):
 
             feats[include] = self.scalers['ss'].transform([feats[include]])
 
-            return self.predict([feats])[0], feats, direction, df.Open.values[-1], df.Close.values[-1]
+            return self.predict([feats])[0], feats.tolist(), direction, df.Open.values[-1], df.Close.values[-1]
 
 
         else:
