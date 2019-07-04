@@ -8,3 +8,5 @@ tmp_data/
 logs/
 ibapi/logs/
 ml_opt/res/
+ibapi/db/dumps/
+ibapi/db/trades/
