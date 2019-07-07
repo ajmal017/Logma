@@ -1,8 +1,8 @@
 from copy import deepcopy
 from datetime import datetime
-from tools.zorders import limit_order, limit_if_touched
+from tools.zorders import limit_order
 from tools.utils import adjust_price
-from tools.zlogging import loggers, post_trade_doc
+from tools.zlogging import loggers
 
 from collections import namedtuple
 
@@ -167,9 +167,11 @@ class Trade(object):
 			# Remove trade from list
 			del self.manager.trades[self.symbol]
 
-			## Logging
-			post_trade_doc(self)
-			print('POSTED')
+			# Send to backlog
+			try:
+				self.manager.backlog[self.symbol].append((self, datetime.now()))
+			except Exception as e:
+				self.manager.backlog[self.symbol] = [(self, datetime.now())]
 
 			self.status = 'CLOSED'
 

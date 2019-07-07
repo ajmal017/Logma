@@ -31,8 +31,8 @@ class ManagerClient(EClient):
 		open_, close = prices
 		cs = abs(close - open_)
 
-		entry = close
-		entry = adjust_price(entry, tick_increment, direction, margin=2)
+		entry = close + direction * tick_increment
+		entry = adjust_price(entry, tick_increment, direction, margin=0)
 
 		take_profit = entry + (cs * direction)
 		take_profit= adjust_price(take_profit, tick_increment, direction, margin=2)
