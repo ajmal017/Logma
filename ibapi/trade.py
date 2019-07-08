@@ -173,6 +173,7 @@ class Trade(object):
 			except Exception as e:
 				self.manager.backlog[self.symbol] = [(self, datetime.now())]
 
+			self.closing_time = datetime.now()
 			self.status = 'CLOSED'
 
 	def on_event(self, order_key, margin = 1):

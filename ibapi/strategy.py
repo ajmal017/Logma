@@ -106,8 +106,3 @@ class Strategy(object):
 
 		for ticker in self.instruments:
 			self.instruments[ticker].on_close()
-
-if __name__ == '__main__':
-
-	strat = Strategy(num_periods = 50, short_num_periods = 20, time_period = 1)
-	strat.on_start()

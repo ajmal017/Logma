@@ -49,7 +49,7 @@ class Scanner(ScannerClient, ScannerWrapper):
 		self.config = DataConfig(
 				## Add one for the cummulative product calculation for Long & Short Progressions
 				durationStr = "{} S".format((num_periods + 1) * 60 * time_period),
-				barSizeSetting = "{} min".format(time_period),
+				barSizeSetting = "{} {}".format(time_period, 'min' if time_period == 1 else 'mins'),
 				whatToShow = "MIDPOINT",
 				useRTH = 0,
 				formatDate = 1,

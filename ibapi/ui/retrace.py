@@ -87,7 +87,7 @@ if __name__ == '__main__':
 
 	try:
 	
-		strat = StrategyThread()
+		strat = StrategyThread(num_periods = 50, short_num_periods = 20, time_period = 5)
 		strat.start()
 
 		http_server = WSGIServer(('0.0.0.0', 5000), app)

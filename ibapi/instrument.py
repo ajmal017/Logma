@@ -64,6 +64,7 @@ class Instrument(Thread):
 
                 if int((dt - close_time).seconds / (60 * self.time_period)) == self.N_BACKLOG_PERIODS:
 
+                    print('POSTING BACKLOG')
                     post_trade_doc(trade)
                     idc.append(i)
 
