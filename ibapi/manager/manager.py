@@ -80,7 +80,7 @@ class Manager(ManagerClient, ManagerWrapper):
 		self.risk = 2.5
 
 		## Data health
-		self.last_error_code = 2104
+		self.last_data_code = 2104
 
 		## Connect to gateway
 		self.connect(*self.connection)

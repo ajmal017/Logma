@@ -219,7 +219,9 @@ if __name__ == '__main__':
 		for file in files:
 
 			es_doc = np.load(dir_+file)[0]
-			if 'marketdata' not in file:
+			es_doc['_source']['data'].pop('historical', None)
+
+			if 'marketdata_' not in file:
 
 				print('Sending Email.')
 				notify_(es_doc['_source'])

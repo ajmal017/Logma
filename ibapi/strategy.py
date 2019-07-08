@@ -109,5 +109,5 @@ class Strategy(object):
 
 if __name__ == '__main__':
 
-	strat = Strategy(num_periods = 50, short_num_periods = 20, time_period = 1)
+	strat = Strategy(num_periods = 50, short_num_periods = 20, time_period = 5)
 	strat.on_start()

@@ -3,7 +3,7 @@ from elasticsearch import helpers
 
 import requests, json
 
-es = Elasticsearch([{"host" : "localhost", "port" : 9200}])
+es = Elasticsearch([{"host" : "192.168.2.38", "port" : 9200}])
 
 if __name__ == '__main__':
 
