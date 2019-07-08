@@ -46,6 +46,9 @@ class Manager(ManagerClient, ManagerWrapper):
 		## OrderId to Order mapping
 		self.orders = {}
 
+		## Backlog of trades that need more data
+		self.backlog = {}
+
 		## Connection Details
 		self.connection = (ip_address, port, clientId)
 

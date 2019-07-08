@@ -1,7 +1,7 @@
 from apscheduler.schedulers.background import BlockingScheduler
 
 from model import Model
-from tools.zlogging import loggers
+from tools.zlogging import loggers, post_trade_doc
 
 from datetime import datetime
 from threading import Thread
@@ -10,6 +10,7 @@ import time
 class Instrument(Thread):
 
     n_times_per_second = 10
+    N_BACKLOG_PERIODS = 3
     
     def __init__(self, ticker, time_period, short_num_periods, num_periods, manager):
 
@@ -49,6 +50,26 @@ class Instrument(Thread):
         elif self.ticker in self.manager.trades:
 
             self.manager.trades[self.ticker].post_data.append(self.storage.data[-1])
+
+        if self.ticker in self.manager.backlog:
+
+            idc = []
+
+            for i, trade in enumerate(self.manager.backlog[self.ticker]):
+
+                dt = datetime.now()
+                trade, close_time = trade
+                
+                trade.post_data.append(self.storage.data[-1])                
+
+                if int((dt - close_time).seconds / (60 * self.time_period)) == self.N_BACKLOG_PERIODS:
+
+                    print('POSTING BACKLOG')
+                    post_trade_doc(trade)
+                    idc.append(i)
+
+            for idx in idc:
+                del self.manager.backlog[self.ticker][idx]
             
     def manager_job(self):
     

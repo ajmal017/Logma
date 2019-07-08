@@ -2,11 +2,13 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
+
 from elasticsearch import helpers
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import mpl_finance as mf
 from es_setup import es
+
 import pandas as pd
 import smtplib, ssl
 import numpy as np
@@ -68,15 +70,16 @@ def notify_(trade):
 	ticker = trade['ticker']
 	action = trade['action']
 	quantity = int(trade.get('position', 0))
-	avg_price = trade.get('avgCost', 'NaN')
+	avg_price = trade.get('avgCost', trade['entryLimitPrice'])
 
 	# Profitability
 	risk = np.round((trade['candleSize'] * 2.5), 2)
 	reward = np.round(trade['candleSize'], 2)
+	denom = 0.2 * trade['tickIncrement']
 	if trade['executionLogic'] != 'NO FILL':
-		runup = np.round((trade['runUp'] / trade['tickIncrement']) / reward, 2)
-		drawdown = np.round((trade['drawdown'] / trade['tickIncrement']) / risk, 2)
-		realized = np.round((trade['direction'] * (trade['avgCostOnClose'] - trade['avgCost'])) / trade['tickIncrement'], 2)
+		runup = np.round((trade['runUp'] / denom) / reward, 2)
+		drawdown = np.round((trade['drawdown'] / denom) / risk, 2)
+		realized = np.round((trade['direction'] * (trade['avgCostOnClose'] - trade['avgCost'])) / denom, 2)
 	else:
 		runup, drawdown, realized = 0, 0, 0
 
@@ -219,9 +222,8 @@ if __name__ == '__main__':
 		for file in files:
 
 			es_doc = np.load(dir_+file)[0]
-			es_doc['_source']['data'].pop('historical', None)
-
-			if 'marketdata_' not in file:
+			
+			if 'marketdata' not in file:
 
 				print('Sending Email.')
 				notify_(es_doc['_source'])
