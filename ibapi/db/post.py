@@ -111,7 +111,8 @@ def notify_(trade):
 	####################################
 
 	sender_email = "zqretrace@gmail.com"
-	receiver_email = "zqretrace@gmail.com"
+	receiver_email = "zqretrace@gmail.com, mp0941745@gmail.com"
+	receiver_email_list = ["zqretrace@gmail.com", "mp0941745@gmail.com"]
 	password = "Street1011"
 
 	message = MIMEMultipart("alternative")
@@ -208,7 +209,7 @@ def notify_(trade):
 	with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
 	    server.login(sender_email, password)
 	    server.sendmail(
-	        sender_email, receiver_email, message.as_string()
+	        sender_email, receiver_email_list, message.as_string()
 	    )
 	plt.close('all')
 
