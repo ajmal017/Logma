@@ -101,6 +101,8 @@ def post_trade_doc(trade):
 	trade.data['postDates'] = [x[0] for x in trade.post_data]
 	trade.data['postPrices'] = [x[1:] for x in trade.post_data]
 
+	trade.data.pop('historical')
+
 	doc_ = {
 		"ticker" : trade.symbol,
 		"action" : trade.action,
@@ -114,7 +116,7 @@ def post_trade_doc(trade):
 		"stopLossLimitPrice" : trade.orders['loss']['order'].lmtPrice,
 		"timePeriod" : trade.time_period,
 		"maturity" : trade.maturity,
-		"numPeriods" : len(trade.data['historical']),
+		"numPeriods" : len(trade.data['preDates']),
 		"executionLogic" : trade.execution_logic,
 		"tickIncrement" : trade.tick_incr,
 		"numUpdates" : trade.num_updates,

@@ -90,12 +90,8 @@ if __name__ == '__main__':
 		strat = StrategyThread(num_periods = 50, short_num_periods = 20, time_period = 5)
 		strat.start()
 
-		http_server = WSGIServer(('0.0.0.0', 5000), app)
+		http_server = WSGIServer(('0.0.0.0', 9095), app)
 		http_server.serve_forever()
-
-		## Call functions to end without hanging threads
-		atexit.register(strat.join)
-		atexit.register(strat.on_close)
 
 	except Exception as e:
 

@@ -106,3 +106,4 @@ class Strategy(object):
 
 		for ticker in self.instruments:
 			self.instruments[ticker].on_close()
+

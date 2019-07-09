@@ -190,7 +190,7 @@ class Trade(object):
 
 		## Log the number of updates per minute
 		dt = (datetime.now() - self.init_time)
-		idx = int(dt.seconds / 60)
+		idx = int(dt.seconds / (self.time_period * 60))
 
 		try:
 			self.num_updates[idx] += 1
