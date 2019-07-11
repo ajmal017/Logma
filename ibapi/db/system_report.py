@@ -102,7 +102,15 @@ def report_(trades):
 	df['RF'] = rf
 	x = df.Realized / 1000 - df.Factor * df.RF
 	sharpe_ratio = x.mean() / x.std()
-	sharpe_ratio
+
+	## Sortino
+	num = df.Realized / 1000 - df.Factor * df.RF
+	denom = df[df.Realized < 0].Realized / 1000
+	denom = denom.values.std()
+	sortino_ratio = num.mean() / denom
+
+	# Profit Factor
+	profit_factor = main[main.PnL == 'G'].Realized.sum() / abs(main[main.PnL == 'L'].Realized.sum())
 
 	## Streaks
 	results = main[main.PnL != 'N'].Realized.values
@@ -152,55 +160,51 @@ def report_(trades):
 	    exe_logic = trade['_source']['executionLogic']
 	    state = trade['_source']['state']
 	    stats.append([exe_logic, state])
-	stats.append(['HARD STOP', 'NAN'])
-	stats.append(['NO FILL', 'NAN'])
-	stats.append(['SOFT STOP', 'NAN'])
 	df = pd.DataFrame(stats, columns = ['ExeLogic', 'State'])
 
-	states = ['WICK', 'NORMAL', 'MATURITY']
-	logics = ['TAKE PROFIT', 'HARD STOP', 'SOFT STOP', 'NO FILL']
-
-	x = df['ExeLogic'].value_counts()
-	x = x.sort_index()
-	group_size = x.values.tolist()
-	group_names = x.index.values.tolist()
-
-	subgroup_names = {key : [] for key in group_names}
-	subgroup_size = {key : [] for key in group_names}
-
-	for name in group_names:
-	    
-	    x = df[df.ExeLogic == name].State.value_counts()
-	    idx = x.index.values.tolist()
-	    vals = x.values.tolist()
-	    
-	    subgroup_names[name].extend(idx)
-	    subgroup_size[name].extend(vals)
-
-	# Create colors
 	g, r, gr=[plt.cm.Greens, plt.cm.Reds, plt.cm.Greys]
-	 
+	states = ['WICK', 'NORMAL', 'MATURITY']
+	logics = ['HARD STOP', 'TAKE PROFIT', 'SOFT STOP', 'NO FILL']
+	colors = {
+	    'TAKE PROFIT' : (g, 0.6),
+	    'HARD STOP' : (r, 0.9),
+	    'SOFT STOP' : (r, 0.65),
+	    'NO FILL' : (gr, 0.6)
+	}
+
+	group_names, group_sizes, group_colors = [], [], []
+	sub_names, sub_sizes, sub_colors = [], [], []
+
+	for logic in logics:
+	   
+	    if logic in df.ExeLogic.values:
+	        
+	        tmp = df[df.ExeLogic == logic]
+	        
+	        group_names.append(logic)
+	        group_sizes.append(tmp.shape[0])
+	        color, shade = colors[logic]
+	        group_colors.append(color(shade))
+	    
+	        for i, state in enumerate(states):
+	            
+	            if state in tmp.State.values:
+	                
+	                sub_names.append(state)
+	                sub_sizes.append(tmp[tmp.State == state].shape[0])
+	                color, shade = colors[logic]
+	                sub_colors.append(color(shade - (i+1)*0.05))
+
 	# First Ring (outside)
-	fig, ax = plt.subplots(figsize=(15, 15))
+	fig, ax = plt.subplots(figsize=(10, 10))
 	ax.axis('equal')
-	group_size = np.array(group_size)
-	group_size = group_size / group_size.sum()
-	mypie, _ = ax.pie(group_size, radius=1.1, labels=['%s %.2f%%' % (name, size * 100) for name, size in zip(group_names, group_size)], colors=[r(0.9), gr(0.6), r(0.65), g(0.6)])
+	group_sizes = np.array(group_sizes)
+	group_sizes = group_sizes / group_sizes.sum()
+	mypie, _ = ax.pie(group_sizes, radius=1.1, labels=['%s %.2f%%' % (name, size * 100) for name, size in zip(group_names, group_sizes)], colors=group_colors)
 	plt.setp(mypie, width=1, edgecolor='white')
 
-	## Hard stop
-	try:
-	    colors = [r(0.9-0.05*(i+1)) for i in range(len(subgroup_names['HARD STOP']))]
-	except:
-	    colors = []
-	colors.extend([gr(0.6-0.05*(i+1)) for i in range(len(subgroup_names['NO FILL']))])
-	colors.extend([r(0.6-0.05*(i+1)) for i in range(len(subgroup_names['SOFT STOP']))])
-	colors.extend([g(0.6-0.05*(i+1)) for i in range(len(subgroup_names['TAKE PROFIT']))])
-	subgroup_names = [item for sublist in subgroup_names.values() for item in sublist]
-	subgroup_size = [item for sublist in subgroup_size.values() for item in sublist]
-
-	# Second Ring (Inside)
-	mypie2, _ = ax.pie(subgroup_size, radius=.85, labels=subgroup_names, labeldistance=0.7, colors=colors)
+	## Second Ring (Inside)
+	mypie2, _ = ax.pie(sub_sizes, radius=.85, labels=sub_names, labeldistance=0.7, colors=sub_colors)
 	plt.setp(mypie2, width=0.4, edgecolor='white')
 	plt.margins(0,0)
 
@@ -215,57 +219,54 @@ def report_(trades):
 	## Organize the groups
 	stats = []
 	for trade in trades:
-	    
 	    exe_logic = trade['_source']['executionLogic']
 	    state = trade['_source']['state']
 	    stats.append([exe_logic, state])
-	stats.append(['HARD STOP', 'NAN'])
-	stats.append(['NO FILL', 'NAN'])
-	stats.append(['SOFT STOP', 'NAN'])
 	df = pd.DataFrame(stats, columns = ['ExeLogic', 'State'])
-	df = df[df.ExeLogic != 'NO FILL']
 
-	x = df['ExeLogic'].value_counts()
-	x = x.sort_index()
-	group_size = x.values.tolist()
-	group_names = x.index.values.tolist()
-
-	subgroup_names = {key : [] for key in group_names}
-	subgroup_size = {key : [] for key in group_names}
-
-	for name in group_names:
-	    
-	    if name == 'NO FILL':
-	        continue
-	    
-	    x = df[df.ExeLogic == name].State.value_counts()
-	    idx = x.index.values.tolist()
-	    vals = x.values.tolist()
-	    
-	    subgroup_names[name].extend(idx)
-	    subgroup_size[name].extend(vals)
-
-
-	# Create colors
 	g, r, gr=[plt.cm.Greens, plt.cm.Reds, plt.cm.Greys]
-	 
+	states = ['WICK', 'NORMAL', 'MATURITY']
+	logics = ['HARD STOP', 'TAKE PROFIT', 'SOFT STOP']
+	colors = {
+	    'TAKE PROFIT' : (g, 0.6),
+	    'HARD STOP' : (r, 0.9),
+	    'SOFT STOP' : (r, 0.65),
+	    'NO FILL' : (gr, 0.6)
+	}
+
+	group_names, group_sizes, group_colors = [], [], []
+	sub_names, sub_sizes, sub_colors = [], [], []
+
+	for logic in logics:
+	   
+	    if logic in df.ExeLogic.values:
+	        
+	        tmp = df[df.ExeLogic == logic]
+	        
+	        group_names.append(logic)
+	        group_sizes.append(tmp.shape[0])
+	        color, shade = colors[logic]
+	        group_colors.append(color(shade))
+	    
+	        for i, state in enumerate(states):
+	            
+	            if state in tmp.State.values:
+	                
+	                sub_names.append(state)
+	                sub_sizes.append(tmp[tmp.State == state].shape[0])
+	                color, shade = colors[logic]
+	                sub_colors.append(color(shade - (i+1)*0.05))
+
 	# First Ring (outside)
-	fig, ax = plt.subplots(figsize=(15, 15))
+	fig, ax = plt.subplots(figsize=(10, 10))
 	ax.axis('equal')
-	group_size = np.array(group_size)
-	group_size = group_size / group_size.sum()
-	mypie, _ = ax.pie(group_size, radius=1.1, labels=['%s %.2f%%' % (name, size * 100) for name, size in zip(group_names, group_size)], colors=[r(0.9), r(0.65), g(0.6)])
-	plt.setp( mypie, width=1, edgecolor='white')
+	group_sizes = np.array(group_sizes)
+	group_sizes = group_sizes / group_sizes.sum()
+	mypie, _ = ax.pie(group_sizes, radius=1.1, labels=['%s %.2f%%' % (name, size * 100) for name, size in zip(group_names, group_sizes)], colors=group_colors)
+	plt.setp(mypie, width=1, edgecolor='white')
 
-	## Hard stop
-	colors = [r(0.9-0.05*(i+1)) for i in range(len(subgroup_names['HARD STOP']))]
-	colors.extend([r(0.6-0.05*(i+1)) for i in range(len(subgroup_names['SOFT STOP']))])
-	colors.extend([g(0.6-0.05*(i+1)) for i in range(len(subgroup_names['TAKE PROFIT']))])
-	subgroup_names = [item for sublist in subgroup_names.values() for item in sublist]
-	subgroup_size = [item for sublist in subgroup_size.values() for item in sublist]
-
-	# Second Ring (Inside)
-	mypie2, _ = ax.pie(subgroup_size, radius=.85, labels=subgroup_names, labeldistance=0.7, colors=colors)
+	## Second Ring (Inside)
+	mypie2, _ = ax.pie(sub_sizes, radius=.85, labels=sub_names, labeldistance=0.7, colors=sub_colors)
 	plt.setp(mypie2, width=0.4, edgecolor='white')
 	plt.margins(0,0)
 
@@ -479,6 +480,8 @@ def report_(trades):
 					<br><br><br>
 					<b>Profitability</b>
 					Sharpe: {np.round(sharpe_ratio, 2)}<br>
+					Sortino: {np.round(sortino_ratio, 2)}<br>
+					Profit Factor: {np.round(profit_factor, 2)}<br>
 					Max Winning Run: {np.round(max_run, 2)}<br>
 					Max Losing Run: {np.round(max_loss_run, 2)}<br>
 					Max Consec. Active Trades: {max_consec_trades}<br>
@@ -498,7 +501,6 @@ def report_(trades):
 					<img src="cid:trade_executions_plot">
 					<img src="cid:fill_executions_plot"><br>
 					<img src="cid:var_plot"><br>
-					<img src="cid:daily_profit_breakdown"><br>
 					<img src="cid:closetime_heatmap_plot"><br>
 			        <br>
 			        zQ<br>
