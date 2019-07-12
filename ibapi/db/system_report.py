@@ -5,6 +5,7 @@ from email.mime.base import MIMEBase
 
 from datetime import datetime, timedelta
 from elasticsearch import Elasticsearch
+from argparse import ArgumentParser
 import matplotlib.ticker as mtick
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -556,4 +557,8 @@ def report_(trades):
 
 if __name__ == '__main__':
 
-	report_(get_trades(7))
+	argparser = ArgumentParser()
+	argparser.add_argument('-d', '--days', default=7)
+	args = argparser.parse_args()
+
+	report_(get_trades(int(args.days)))
