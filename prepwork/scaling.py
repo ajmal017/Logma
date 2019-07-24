@@ -10,7 +10,7 @@ from argparse import ArgumentParser
 from joblib import Parallel, delayed
 import joblib
 
-from consts import dir_
+from consts import *
 
 ###################################################################
 ## This scales and transforms all the features to tame them. 
@@ -27,8 +27,6 @@ lower = 0.01
 log_trim = 5
 
 n_jobs = 6
-
-input_dir_ = 'D:/TickData_UZ'.format(dir_)
 
 ###################################################################
 ### GLOBAL FUNCTIONS
@@ -58,8 +56,8 @@ def scale_it(ticker):
 
 	scaling_dict = {}
 
-	features = pd.read_csv('{}/Features/{}_clean.csv'.format(dir_, ticker))
-	trades =  pd.read_csv('{}/AddTrades/{}_trades.csv'.format(dir_, ticker))
+	features = pd.read_csv(features_dir/ticker)
+	trades =  pd.read_csv(trades_dir/ticker)
 
 	## Filter out double feature entries (is a really rare case)
 	unique_dts = features.Datetime.value_counts()
@@ -112,12 +110,15 @@ def scale_it(ticker):
 	#####################
 
 	drop = ['ShortSpectralEntropy']
-	no_scale = ['LongStationarity', 'ShortStationarity', 'Asia', 'Amer', 'Eur']
+	no_scale = ['LongStationarity', 'ShortStationarity', 'Asia', 'Amer', 'Eur', 'BRP', 'HBP', 'LBP']
 
 	ss = StandardScaler()
 
 	X_scale = features[[col for col in features.columns if col not in drop+no_scale+['Datetime']]]
 	X_train = X_scale.iloc[:int(X_scale.shape[0]*0.9), :]
+	print(X_train.columns)
+	print()
+	print(X_scale.columns)
 	ss = ss.fit(X_train)
 	X_scale = ss.transform(X_scale)
 	scaling_dict['ss'] = ss
@@ -159,14 +160,14 @@ def scale_it(ticker):
 	print()
 
 	## Save
-	trades.to_csv('{}/Scaled/{}_scaled.csv'.format(dir_, ticker), index=False)
-	with open('{}/Scalers/{}'.format(dir_, ticker), 'wb') as file:
+	trades.to_csv(scaled_dir/ticker, index=False)
+	with open(scaler_dir/ticker, 'wb') as file:
 		joblib.dump(scaling_dict, file)
 
 def get_tickers():
 
 	tickers = []
-	for file in os.listdir(input_dir_):
+	for file in os.listdir(data_dir):
 		ticker = file.split('-')[0]
 		tickers.append(ticker) if ticker not in tickers else None
 	return tickers

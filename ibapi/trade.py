@@ -36,6 +36,7 @@ class Trade(object):
 			self.contract = manager.contracts[self.symbol]
 			self.closing_action = manager.closing_actions[self.action]
 			self.num_updates = []
+			self.updates = []
 			self.post_data = []
 
 			## Manager stuff
@@ -196,6 +197,8 @@ class Trade(object):
 			self.num_updates[idx] += 1
 		except:
 			self.num_updates.append(1)
+
+		self.updates.append(self.last_update)
 		
 		## If the trade was filled
 		if self.status == 'ACTIVE':

@@ -26,7 +26,7 @@ from sklearn.preprocessing import StandardScaler
 
 class Model(object):
 
-    model_path = 'models/lgbm_2019-06-19'
+    model_path = 'models/lgbm_2019-07-23'
     scaling_dir = 'scalers'
     log_trim = 5
 
@@ -110,7 +110,7 @@ class Model(object):
             direction = np.sign(change)*-1
             
             ## Open-Close Price Change
-            change = self.log_trimming(self.iqr_trimming(change, 'change'))
+            change = self.iqr_trimming(change, 'change')
 
             ## Volatility
             long_vol = np.log(1e-8+(df.Change.std() / np.sqrt(self.num_periods)))
@@ -121,17 +121,17 @@ class Model(object):
             short_skew = np.nan_to_num(dfs.Change.skew())
 
             ## Kurtosis
-            long_kurtosis = np.nan_to_num(self.log_trimming(kurtosis(df.Change.values)))
-            short_kurtosis = np.nan_to_num(self.log_trimming(kurtosis(dfs.Change.values)))
+            long_kurtosis = np.nan_to_num(kurtosis(df.Change.values))
+            short_kurtosis = np.nan_to_num(kurtosis(dfs.Change.values))
             
             ## SMA Price Distance
             dlongsma = df.Close / df.Close.rolling(window=self.num_periods, min_periods=1).mean()
             dlongsma = dlongsma.values[-1]
-            dlongsma = self.log_trimming(self.iqr_trimming(dlongsma, 'dlongsma'))
+            dlongsma = self.iqr_trimming(dlongsma, 'dlongsma')
             #
             dshortsma = df.Close / df.Close.rolling(window=self.short_num_periods, min_periods=1).mean()
             dshortsma = dshortsma.values[-1]
-            dshortsma = self.log_trimming(self.iqr_trimming(dshortsma, 'dshortsma'))
+            dshortsma = self.iqr_trimming(dshortsma, 'dshortsma')
 
             # Market Sessions
             hour = df.Hour.values[-1]
@@ -145,21 +145,21 @@ class Model(object):
             
             ## Cummulative Price Progression
             longprog = dfe.Close.values[1:].cumprod()[-1]
-            longprog = self.log_trimming(self.iqr_trimming(longprog, 'longprog'))
+            longprog = self.iqr_trimming(longprog, 'longprog')
             #
             shortprog = dfe.Close.values[-self.short_num_periods:].cumprod()[-1]
-            shortprog = self.log_trimming(self.iqr_trimming(shortprog, 'shortprog'))
+            shortprog = self.iqr_trimming(shortprog, 'shortprog')
 
             ## Spectral Entropy
             longspec = spectral_entropy(df.Change.values, sf=self.num_periods, method='welch', nperseg=(self.num_periods/8), normalize=True)
-            longspec = np.nan_to_num(self.log_trimming(self.iqr_trimming(longspec, 'longspecentropy')))
+            longspec = np.nan_to_num(self.iqr_trimming(longspec, 'longspecentropy'))
 
             ## Approximate Entropy
             longape = app_entropy(df.Change.values.copy(), order=2, metric='chebyshev')
-            longape = np.nan_to_num(self.log_trimming(self.iqr_trimming(longape, 'longappentropy')))
+            longape = np.nan_to_num(self.iqr_trimming(longape, 'longappentropy'))
             #
             shortape = app_entropy(dfs.Change.values.copy(), order=2, metric='chebyshev')
-            shortape = np.nan_to_num(self.log_trimming(self.iqr_trimming(shortape, 'shortappentropy')))
+            shortape = np.nan_to_num(self.iqr_trimming(shortape, 'shortappentropy'))
 
             ## Autocorrelation
             long_ac = np.nan_to_num(df.Change.autocorr(11))
@@ -174,14 +174,23 @@ class Model(object):
             t_crit = list(t_crit.values())[1]
             short_stat = 0 if (t < t_crit or np.isnan(t)) else 1
 
-            feats = np.array([direction, abs(sig20), abs(sig30), abs(sig50), change, long_vol, short_vol, long_skew, short_skew,
+            brp = abs(df.Open.values[-1] - df.Close.values[-1]) / (df.High.values[-1] - df.Low.values[-1])
+            hbp = (df.High.values[-1] - max(df.Open.values[-1], df.Close.values[-1])) / (df.High.values[-1] - min(df.Open.values[-1] , df.Close.values[-1]))
+            lbp = (min(df.Open.values[-1], df.Close.values[-1]) - df.Low.values[-1]) / (max(df.Open.values[-1], df.Close.values[-1]) - df.Low.values[-1])
+
+            feats = np.array([direction, abs(sig20), abs(sig30), abs(sig50), change, brp, hbp, lbp, long_vol, short_vol, long_skew, short_skew,
                     dlongsma, dshortsma, asia_time, us_time, eur_time, long_kurtosis, short_kurtosis, longprog, shortprog, longape, 
                     shortape, longspec, long_ac, short_ac, long_stat, short_stat])
-
-            exclude = [0, 1, 2, 3, 11, 12, 13, 23, 24]
+            
+            exclude = [0, 1, 2, 3, 5, 6, 7, 14, 15, 16, 26, 27]
             include = [i for i in range(feats.shape[0]) if i not in exclude]
-
+            
             feats[include] = self.scalers['ss'].transform([feats[include]])
+            
+            log_trim = [4, 12, 13, 17, 18, 19, 20, 21, 22, 23]
+                                          
+            for i in log_trim:
+                feats[i] = self.log_trimming(feats[i])
 
             return self.predict([feats])[0], feats.tolist(), direction, df.Open.values[-1], df.Close.values[-1]
 

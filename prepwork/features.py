@@ -12,7 +12,7 @@ from scipy.stats import kurtosis
 import warnings
 warnings.filterwarnings("ignore")
 
-from consts import dir_
+from consts import *
 
 ######################################################################################################
 ### This script takes OHLC data as input and outputs timeseries features of a given instrument.
@@ -21,8 +21,6 @@ from consts import dir_
 ###################################
 ### GLOBAL VARIABLES
 ###################################
-
-input_dir_ = 'D:/TickData_UZ'
 
 #Rel Vol 1-week MA
 n_periods = 7
@@ -126,10 +124,22 @@ def features(ticker):
 	def cp(x):
 		return x.cumprod()[-1]
 
-	df = pd.read_csv('D:/TickData_Agg_FW/{}.csv'.format(ticker))
+	df = pd.read_csv(data_dir/ticker)
 	df = filter_weekends(df)
 
+	## Candle Change
 	df['Change'] = (df.Close - df.Open) / df.Open
+
+	print('Here')
+
+	## Body Range Pct
+	df['BRP'] = abs(df.Close - df.Open) / (df.High - df.Low)
+
+	## High Body Pct
+	df['HBP'] = (df.High - df[['Open', 'Close']].max(axis=1)) / (df.High - df[['Open', 'Close']].min(axis=1))
+
+	## Low Body Pct
+	df['LBP'] = (df[['Open', 'Close']].min(axis=1) - df.Low) / (df[['Open', 'Close']].max(axis=1) - df.Low)
 
 	## Distribution Statistics
 	df['STDLong'] = df.Change.rolling(window=long_window, min_periods=1).std()
@@ -216,7 +226,7 @@ def features(ticker):
 	df = df.iloc[long_window:, :]
 
 	# Discard Temp Features
-	df.drop(['Volume','VWAP', 'Ticks', 'LongSMA', 'ShortSMA', 'Open', 'High', 'Low', 'Close', 'STDLong', 'STDShort'], axis=1, inplace=True)
+	df.drop(['Volume', 'LongSMA', 'ShortSMA', 'Open', 'High', 'Low', 'Close', 'STDLong', 'STDShort'], axis=1, inplace=True)
 
 	## NaN Value Check
 	print(df.isnull().sum(axis=0))
@@ -225,13 +235,13 @@ def features(ticker):
 
 	print(df.head())
 
-	df.to_csv('{}/Features_FW/{}_clean.csv'.format(dir_, ticker), index=False)
+	df.to_csv(features_dir/ticker, index=False)
 
 def get_tickers():
 
 	tickers = []
 
-	for file in os.listdir(input_dir_):
+	for file in os.listdir(data_dir):
 
 		ticker = file.split('-')[0]
 		tickers.append(ticker) if ticker not in tickers else None

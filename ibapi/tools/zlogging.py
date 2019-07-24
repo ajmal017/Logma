@@ -120,6 +120,7 @@ def post_trade_doc(trade):
 		"executionLogic" : trade.execution_logic,
 		"tickIncrement" : trade.tick_incr,
 		"numUpdates" : trade.num_updates,
+		'updates' : trade.updates,
 		'closingTime' : trade.closing_time.strftime(fmt),
 		"candleSize" : trade.details['candle_size']
 	}

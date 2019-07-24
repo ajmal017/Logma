@@ -22,10 +22,10 @@ def get_main_df():
 
 	main = []
 
-	for file in os.listdir('D:/AlgoMLData/Scaled/'):
+	for file in os.listdir('D:/AlgoMLData/ScaledIB/'):
 		print(file)
 		ticker = file.split('_')[0]
-		df = pd.read_csv('D:/AlgoMLData/Scaled/{}'.format(file))
+		df = pd.read_csv('D:/AlgoMLData/ScaledIB/{}'.format(file))
 		df['Ticker'] = ticker
 		main.append(df)
 

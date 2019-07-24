@@ -43,7 +43,8 @@ if __name__ == '__main__':
 		'maturity': {'type': 'long'},
 		'numPeriods': {'type': 'long'},
 		'data' : {'type' : 'object'},
-		'numUpdates' : {'type' : 'long'}}},
+		'numUpdates' : {'type' : 'long'},
+		'updates' : {'type' : 'object'}}},
 		}))
 
 	print(es.indices.create("marketdata", body = {

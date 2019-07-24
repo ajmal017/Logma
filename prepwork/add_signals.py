@@ -7,7 +7,7 @@ from joblib import Parallel, delayed
 
 from argparse import ArgumentParser
 
-from consts import dir_
+from consts import *
 
 ######################################################################################################
 ### This script generates the signals of a given instrument. Specify the windows that each of the
@@ -17,8 +17,7 @@ from consts import dir_
 windows = [20, 30, 50]
 cutoff = 100
 std_cutoff = 3
-n_jobs = 6
-input_dir_ = 'D:/TickData_UZ_FW'
+n_jobs = 14
 
 ################################################
 
@@ -83,7 +82,9 @@ def get_signals(ticker):
 
 	print(ticker)
 
-	df = pd.read_csv('D:/TickData_Agg_FW/{}.csv'.format(ticker))
+	df = pd.read_csv(data_dir/ticker).sort_values('Datetime', ascending=True).drop_duplicates()
+	df = df.reset_index(drop=True)
+	print(df.head())
 	df['Change'] = (df.Close - df.Open) / df.Open
 
 	for window in windows:
@@ -138,13 +139,13 @@ def get_signals(ticker):
 	trades = trades.merge(df[['Datetime', 'sig20', 'sig30', 'sig50', 'Volume']], on='Datetime', how='outer').dropna()
 	trades = trades[trades.Volume != 0].iloc[:, :-1]
 
-	trades.to_csv('{}/AddTrades_FW/{}_trades.csv'.format(dir_, ticker), index=False)
+	trades.to_csv(trades_dir/ticker, index=False)
 
 def get_tickers():
 
 	tickers = []
 
-	for file in os.listdir(input_dir_):
+	for file in os.listdir(data_dir):
 		ticker = file.split('-')[0]
 		tickers.append(ticker) if ticker not in tickers else None
 

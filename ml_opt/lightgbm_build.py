@@ -19,10 +19,10 @@ def get_main_df():
 
 	main = []
 
-	for file in os.listdir('D:/AlgoMLData/Scaled/'):
+	for file in os.listdir('D:/AlgoMLData/ScaledIB/'):
 		print(file)
 		ticker = file.split('_')[0]
-		df = pd.read_csv('D:/AlgoMLData/Scaled/{}'.format(file))
+		df = pd.read_csv('D:/AlgoMLData/ScaledIB/{}'.format(file))
 		df['Ticker'] = ticker
 		main.append(df)
 
@@ -82,7 +82,7 @@ def main():
 	print(X_test.columns)
 
 	## Save the testing set for the risk management portion
-	with open('D:/AlgoMLData/Risk/lgbm_test_set', 'wb') as file:
+	with open('D:/AlgoMLData/Risk/lgbm_test_set_v2', 'wb') as file:
 		joblib.dump(test, file)
 
 	##################
@@ -90,8 +90,8 @@ def main():
 	##################
 
 	gbm = lgbm.LGBMClassifier(
-	    num_leaves=20,
-	    max_depth=5,
+	    num_leaves=10,
+	    max_depth=10,
 	    learning_rate=0.1,
 	    min_child_weight=0.0001,
 	    n_estimators=10000
