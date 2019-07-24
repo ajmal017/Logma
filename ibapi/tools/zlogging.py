@@ -125,7 +125,7 @@ def post_trade_doc(trade):
 		"candleSize" : trade.details['candle_size']
 	}
 
-	if trade.status != 'PENDING':
+	if trade.execution_logic != 'NO FILL':
 
 		doc_['position'] = trade.num_filled
 		doc_['avgCost'] = trade.avg_filled_price

@@ -94,7 +94,7 @@ if __name__ == '__main__':
 		http_server.serve_forever()
 
 	except Exception as e:
-
+		print('EEE', e) 	
 		strat.on_close()
 		strat.join()
 
